@@ -23,9 +23,16 @@ text → line → word → morphological unit, each carrying features (form, lem
 part of speech, …).
 
 ## The main resources (detail in `../data/README.md`)
-- **CUC — Cuneiform Ugaritic Corpus**: Text-Fabric dataset, 278 KTU tablets (CACCHT).
+- **CUC — Cuneiform Ugaritic Corpus**: original Text-Fabric dataset, 278 KTU
+  tablets (CACCHT), plus the `AlexWalhai/cuc` HuggingFace JSONL mirror used by
+  the notebooks.
 - **ContextFabric**: graph corpus engine + `cfabric-mcp` server for LLMs/agents.
-- **UDB — Ugaritic Data Bank**: Latin transliteration, bibliography, commentary.
+- **UDB — Ugaritic Data Bank**: Spanish-team corpus of CAT texts, mostly under
+  the same numbers; now a licensed Accordance package, with UDB/concordance PDFs
+  listed on Juan-Pablo Vita's Academia page.
+- **USC Digital Library / InscriptiFact**: high-resolution tablet photographs
+  from Bruce Zuckerman and the West Semitic Research Project; formerly
+  `inscriptifact.com`, now under USC Digital Library access/reuse terms.
 - **KTU**: standard text numbering; **DUL/DULAT**: the standard dictionary.
 - For comparison: **BHSA** (Hebrew Bible), **DSS** (Dead Sea Scrolls), and other
   Text-Fabric / ContextFabric corpora.

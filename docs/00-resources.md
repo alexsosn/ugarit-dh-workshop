@@ -11,15 +11,16 @@ manual-access items are flagged so nothing surprises you live.
 
 ## 1. Live corpus data — the backbone ▶️
 
-**DONE:** the real corpus is now bundled in `data/cuc/` (278 KTU tablets, JSONL
-exported from your `ugaritic-nb` repo) and wired into `data/loader.py`. Every
-notebook runs offline on real data. The fake sample is gone.
+**DONE:** the real corpus is now accessed through `data/loader.py`, which
+downloads/caches line-level JSONL from the HuggingFace mirror `AlexWalhai/cuc`.
+The original corpus remains `DT-UCPH/cuc`; the workshop repo no longer ships the
+CUC JSONL files.
 
 | Resource | What it is | Use |
 |----------|-----------|-----|
-| **`data/cuc/`** (bundled) ✅▶️ | 278 tablets, line-level JSONL: Latin + cuneiform + refs. | Primary data for all notebooks. |
+| **`AlexWalhai/cuc`** (HuggingFace) ✅▶️ | 278 tablets, line-level JSONL: Latin + cuneiform + refs. | Primary data source used by `data/loader.py`. |
 | **`DT-UCPH/cuc`** (GitHub / Text-Fabric) ✅ | Source TF dataset (CACCHT). | Sign-level features (emendation, certainty, alt readings) the JSONL drops. |
-| **`AlexWalhai/cuc`** (HuggingFace) ✅ | Same corpus, **7,577 rows**, Parquet, ~3.5 MB. | DuckDB/SQL console; word-level queries. |
+| **UDB — Ugaritic Data Bank** 🔑⚖️ | Spanish-team electronic corpus, mostly using CAT/KTU numbers; see Cunchillos, Vita, and Zamora 2003. | Licensed package in Accordance; UDB PDFs and concordance files are listed on Juan-Pablo Vita's [Academia page](https://csic.academia.edu/JuanPabloVita). |
 | **ContextFabric** + `cfabric-mcp` | Graph engine + MCP server. | Hour 3 closing: LLM/agent access to the corpus. |
 
 > ⚖️ **Licence correction:** the CUC Text-Fabric data is **CC BY-NC 4.0**
@@ -61,7 +62,7 @@ putting any in slides.
 
 | Source | Notes |
 |--------|-------|
-| **USC Digital Library / InscriptiFact** 🔑⚖️ | High-res tablet images; account/permission for reuse. Best quality. |
+| **USC Digital Library / InscriptiFact** 🔑⚖️ | High-res tablet images produced by Bruce Zuckerman and the West Semitic Research Project. Formerly at `inscriptifact.com`; now in the USC Digital Library, e.g. [this Ugaritic collection/search entry](https://digitallibrary.usc.edu/asset-management/2A3BF1OL6PW?&WS=SearchResults&Flat=FP). Check account, permission, and reuse terms. |
 | **OCHRE — Ugarit Tablet Inventory** (UChicago) ⚖️ | Inventory + images; good for provenance. |
 | **Louvre — collections** (`?q=Ugarit`) ⚖️ | Many objects; check each item's licence (some open). |
 | **Syria journal 1956 vol. 33** (Persée) ✅ | Open archival photos/plans — good, citable, low-friction. |
@@ -106,13 +107,13 @@ These two are the backbone for the **"one tablet → nine representations"** dia
 
 ## 6. Your existing experiments → notebook mapping (explored & verified)
 
-I read the actual code. Status: ✅ = methods/data already folded into the bundled
+I read the actual code. Status: ✅ = methods/data already folded into the
 notebooks; ↪ = referenced as the "production version" to port later.
 
 | Your code | What it actually does | Feeds | Status |
 |-----------|----------------------|-------|--------|
 | `ugaritic-nb/notebooks/letter_frequencies.ipynb` | Loads `DT-UCPH/cuc` via Text-Fabric; counts signs; **has the wedge/turn complexity table** for all 30 signs. | `1b` | ✅ complexity table extracted → `data/alphabet.json`; `1b` rewritten to test frequency vs **complexity** and vs **order**. |
-| `ugaritic-nb/cuc/json/*.jsonl` (278 tablets) | Line-level export: Latin + cuneiform + ref. | all | ✅ bundled into `data/cuc/`. |
+| `AlexWalhai/cuc` (HuggingFace JSONL, 278 tablets) | Line-level export: Latin + cuneiform + ref. | all | ✅ consumed by `data/loader.py`; not committed to the repo. |
 | Wolfram, *Ugaritic letter frequencies* (UDB) | Same hypothesis on UDB. | `1b` | ↪ "two corpora, same question" comparison slide. |
 | `ugaritic-nb/notebooks/script_translator.ipynb` | `unvocalized_to_ugaritic` / Latin↔cuneiform maps. | `03` / images | ↪ port for an abecedary figure + transliteration helper. |
 | `ugaritic-nb/notebooks/tf_idf.ipynb` | Hand-rolled TF-IDF over tablet lines. | `2a` | ✅ superseded by the scikit-learn version in `2a`. |
@@ -126,13 +127,23 @@ notebooks; ↪ = referenced as the "production version" to port later.
 TF-IDF, and the name graph — Hour 2 and most of `3b` can be *demos of UgaritLab*
 rather than from-scratch code.
 
+### UDB access note
+
+The **Ugaritic Data Bank** was produced by a Spanish team of scholars and includes
+the texts in CAT, mostly under the same numbers; cite Cunchillos, Vita, and
+Zamora 2003. It was formerly accessible online, but is now distributed commercially
+as an Accordance Bible Software package. For the workshop/demo pipeline, do not
+redistribute UDB data: direct participants to Juan-Pablo Vita's
+[Academia page](https://csic.academia.edu/JuanPabloVita), where PDF files of the
+UDB texts and concordance are listed.
+
 ---
 
 ## 7. Gaps & recommended next actions
 
-Done in this pass: ✅ real CUC bundled + loader rewritten; ✅ all 7 notebooks now
-run on real data; ✅ alphabet complexity + omen tree extracted; ✅ licence/feature
-facts corrected. Remaining:
+Done in this pass: ✅ real CUC loader wired to HuggingFace JSONL; ✅ all 7
+notebooks now run on real data after the first cache fill; ✅ alphabet complexity
+and omen tree extracted; ✅ licence/feature facts corrected. Remaining:
 
 1. **Persist the SQL queries.** Copy the DuckDB query *text* (mḫṣ forms, duplicate
    lines, hapax, n-grams-with-refs) into the relevant notebooks so the live session

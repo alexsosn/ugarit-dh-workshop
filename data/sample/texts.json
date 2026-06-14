@@ -1,4 +1,4 @@
 {
-  "_deprecated": "This placeholder sample has been REMOVED from use. The workshop now ships the real Copenhagen Ugaritic Corpus in data/cuc/ (278 KTU tablets), loaded by data/loader.py. This file is kept only as an empty tombstone and can be deleted.",
+  "_deprecated": "This placeholder sample has been REMOVED from use. The workshop now loads the real Copenhagen Ugaritic Corpus from the AlexWalhai/cuc JSONL mirror on HuggingFace via data/loader.py. This file is kept only as an empty tombstone and can be deleted.",
   "texts": []
 }

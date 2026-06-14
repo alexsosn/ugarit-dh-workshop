@@ -10,10 +10,11 @@ The Python code in this repository may alternatively be reused under the MIT
 License at the user's option.
 
 IMPORTANT — third-party data:
-The bundled corpus in data/cuc/ is the Copenhagen Ugaritic Corpus (CACCHT
-project, DT-UCPH/cuc), licensed CC BY-NC 4.0 — NON-COMMERCIAL use with
-attribution. It is included here for educational use only and is NOT covered by
-this repository's license.
+The workshop loader points to the Copenhagen Ugaritic Corpus (CACCHT project,
+DT-UCPH/cuc), mirrored as line-level JSONL files at HuggingFace
+(`AlexWalhai/cuc`). The underlying corpus is licensed CC BY-NC 4.0 —
+NON-COMMERCIAL use with attribution. It is NOT covered by this repository's
+license.
 
 Other primary data (ContextFabric, UDB, KTU editions, DUL/DULAT, tablet
 photographs, museum catalogue entries) likewise remains under the terms of its

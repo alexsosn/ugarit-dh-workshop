@@ -18,6 +18,6 @@ graphviz
 jupyterlab
 ipykernel
 
-# OPTIONAL — full corpus access (Option B in README).
-# Notebooks fall back to data/sample/ if this is not installed.
+# OPTIONAL — full Text-Fabric access to the original CUC graph dataset.
+# The default loader uses HuggingFace JSONL via the Python standard library.
 # text-fabric

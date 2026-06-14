@@ -39,8 +39,8 @@ A successful session means participants:
 
 ## 4. Scope **[settled]**
 
-- **In scope:** the workshop repo only — `docs/` readings, `notebooks/`, bundled
-  `data/cuc/`, `images/`, `slides/`.
+- **In scope:** the workshop repo only — `docs/` readings, `notebooks/`, the
+  CUC/HuggingFace loader in `data/`, `images/`, `slides/`.
 - **Out of scope (referenced, not built here):** UgaritLab (`dulat`), `ugaritic-nb`,
   the `omens` project, CUC packaging. These are *shown/credited* as "where this
   goes next", not specified or modified.
@@ -106,8 +106,8 @@ Final slide + a repo page (`docs/09-get-involved.md`) covering:
 
 Target all three, in priority order:
 1. **Google Colab** — primary. **Bootstrap: first cell `!git clone` the public
-   GitHub repo, then `%cd` into it.** Bundled `data/cuc/` (4 MB) travels with the
-   clone, so `loader.py` works unchanged.
+   GitHub repo, then `%cd` into it.** The first notebook call to `load_texts()`
+   downloads CUC JSONL from HuggingFace into a local cache; no API key required.
 2. **Binder** — launch the whole repo in-browser from GitHub.
 3. **Local venv** — `pip install -r requirements.txt` for power users.
 
@@ -126,11 +126,14 @@ anyone getting stuck.
 from `docs/`; we refine the deck in passes. Not a hand-off either way.
 
 ### H3 UDB source & licence **[settled]**
-The agent demo converts ***The Texts of the Ugaritic Data Bank*** (PDF on
-Academia.edu: `academia.edu/1442697`). **Redistribution-safe model:** each person
-who builds the tool **downloads the PDF themselves and converts it to SQLite
-themselves**; the workshop repo ships **only the instructions + the agent prompt**,
-**never** the PDF or the resulting database.
+The agent demo converts ***The Texts of the Ugaritic Data Bank***, produced by the
+Spanish UDB team (Cunchillos, Vita, and Zamora 2003). UDB was formerly accessible
+online and is now sold as an Accordance Bible Software package; PDFs of the UDB
+texts and concordance are listed on Juan-Pablo Vita's Academia page
+(`https://csic.academia.edu/JuanPabloVita`). **Redistribution-safe model:** each
+person who builds the tool **downloads the PDF themselves and converts it to
+SQLite themselves**; the workshop repo ships **only the instructions + the agent
+prompt**, **never** the PDF or the resulting database.
 
 ## 6a. Timeline **[settled]**
 
@@ -175,4 +178,4 @@ author will supply**, not blockers to building:
 | 4 | Workshop date = 17 Jul 2026; dry-run-ready by early July. |
 | 5 | H1–H2 get "your turn" challenge cells. |
 | 5 | Slides co-built iteratively (not a hand-off). |
-| 5 | H3 source = UDB PDF (academia.edu/1442697); self-download + self-convert, no redistribution. |
+| 5 | H3 source = UDB PDF/concordance via Juan-Pablo Vita's Academia page; self-download + self-convert, no redistribution. |

@@ -2,12 +2,13 @@
 Data loader for the Ugarit DH workshop — backed by the REAL corpus.
 ===================================================================
 
-The repository now bundles the **Copenhagen Ugaritic Corpus (CUC)** as
-line-level JSONL (278 KTU tablets) under ``data/cuc/``. Every notebook calls
-``load_texts()`` and gets a uniform list of tablets back — offline, no downloads,
-no Text-Fabric required.
+The notebooks use the **Copenhagen Ugaritic Corpus (CUC)** through line-level
+JSONL files hosted on HuggingFace (``AlexWalhai/cuc``). Every notebook calls
+``load_texts()`` and gets a uniform list of tablets back. The first run downloads
+the JSONL files into a local cache; later runs reuse that cache.
 
-  Source : CUC, CACCHT project (DT-UCPH/cuc), Text-Fabric export → JSONL.
+  Source : CUC, CACCHT project (DT-UCPH/cuc), Text-Fabric export → JSONL
+           at https://huggingface.co/datasets/AlexWalhai/cuc.
   Licence: Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0).
            Educational / non-commercial use only — see data/README.md.
 
@@ -40,14 +41,28 @@ Quick start (inside a notebook):
 from __future__ import annotations
 
 import json
+import os
 import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from urllib.error import URLError
+from urllib.parse import quote
+from urllib.request import urlopen
 from collections import Counter
 from pathlib import Path
 
 _HERE = Path(__file__).resolve().parent
-_CUC_DIR = _HERE / "cuc"
 _ALPHABET_PATH = _HERE / "alphabet.json"
 _OMEN_PATH = _HERE / "omens" / "sheep_birth_omens.json"
+_HF_DATASET = "AlexWalhai/cuc"
+_HF_API_URL = f"https://huggingface.co/api/datasets/{_HF_DATASET}"
+_HF_RAW_BASE = f"https://huggingface.co/datasets/{_HF_DATASET}/resolve/main"
+_CACHE_MANIFEST = ".cuc-jsonl-manifest.json"
+_CACHE_DIR = Path(
+    os.environ.get(
+        "UGARIT_CUC_CACHE",
+        Path.home() / ".cache" / "ugarit-dh-workshop" / "cuc-jsonl",
+    )
+)
 
 # Characters that are not part of a word form (restorations, breaks, dividers).
 _STRIP_CHARS = "[]()<>!?*/\\"
@@ -107,20 +122,78 @@ def clean_tokens(latin_line: str):
 # Public API
 # ---------------------------------------------------------------------------
 
+def _remote_jsonl_filenames():
+    """Return the JSONL filenames available in the HuggingFace CUC dataset."""
+    try:
+        with urlopen(_HF_API_URL, timeout=30) as response:
+            meta = json.loads(response.read().decode("utf-8"))
+    except URLError as exc:
+        raise RuntimeError(
+            "Could not fetch the CUC file list from HuggingFace. "
+            "Check your internet connection or set UGARIT_CUC_CACHE to a "
+            "directory containing the CUC JSONL files."
+        ) from exc
+
+    names = [
+        item["rfilename"]
+        for item in meta.get("siblings", [])
+        if item.get("rfilename", "").endswith(".jsonl")
+    ]
+    if not names:
+        raise RuntimeError(f"No JSONL files found in HuggingFace dataset {_HF_DATASET}.")
+    return sorted(names)
+
+
+def _download_jsonl(filename: str, destination: Path):
+    """Download one JSONL file from HuggingFace into the local cache."""
+    url = f"{_HF_RAW_BASE}/{quote(filename)}"
+    try:
+        with urlopen(url, timeout=60) as response:
+            destination.write_bytes(response.read())
+    except URLError as exc:
+        raise RuntimeError(f"Could not download CUC file {filename!r} from {url}.") from exc
+
+
+def _jsonl_paths():
+    """Return local cached paths for all remote CUC JSONL files."""
+    _CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    manifest_path = _CACHE_DIR / _CACHE_MANIFEST
+
+    names = None
+    if manifest_path.exists():
+        with open(manifest_path, encoding="utf-8") as f:
+            names = json.load(f).get("files", [])
+        if names and all((_CACHE_DIR / name).exists() for name in names):
+            return [_CACHE_DIR / name for name in names]
+
+    names = _remote_jsonl_filenames()
+    missing = [
+        name for name in names
+        if not (_CACHE_DIR / name).exists() or (_CACHE_DIR / name).stat().st_size == 0
+    ]
+    if missing:
+        with ThreadPoolExecutor(max_workers=16) as pool:
+            futures = {
+                pool.submit(_download_jsonl, name, _CACHE_DIR / name): name
+                for name in missing
+            }
+            for future in as_completed(futures):
+                future.result()
+
+    with open(manifest_path, "w", encoding="utf-8") as f:
+        json.dump({"dataset": _HF_DATASET, "files": names}, f, indent=2)
+    return [_CACHE_DIR / name for name in names]
+
+
 def load_texts(genres=None, min_tokens=1, verbose=True):
-    """Load the bundled CUC corpus as a list of tablet dictionaries.
+    """Load the CUC corpus as a list of tablet dictionaries.
 
     genres:     optional iterable of genre labels to keep (e.g. ["letter", "myth"]).
     min_tokens: drop tablets with fewer than this many word tokens (skip scraps).
     verbose:    print a one-line summary.
     """
-    if not _CUC_DIR.exists():
-        raise FileNotFoundError(
-            f"CUC data not found at {_CUC_DIR}. The repo should bundle data/cuc/*.jsonl."
-        )
-
     texts = []
-    for path in sorted(_CUC_DIR.glob("*.jsonl")):
+    for path in _jsonl_paths():
         ktu = path.stem.replace("KTU ", "").strip()
         lines, ugaritic, refs, tokens = [], [], [], []
         with open(path, encoding="utf-8") as f:
@@ -155,7 +228,7 @@ def load_texts(genres=None, min_tokens=1, verbose=True):
     if verbose:
         n_tok = sum(len(t["tokens"]) for t in texts)
         print(f"[loader] Loaded {len(texts)} CUC tablets, {n_tok} word tokens "
-              f"(source: cuc, licence: CC BY-NC 4.0).")
+              f"(source: {_HF_DATASET} JSONL cache, licence: CC BY-NC 4.0).")
     return texts
 
 

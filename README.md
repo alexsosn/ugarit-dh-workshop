@@ -49,8 +49,8 @@ cells in order and read the comments.
 ├── README.md              ← you are here
 ├── requirements.txt       ← Python dependencies
 ├── data/
-│   ├── loader.py          ← hybrid loader: real Text-Fabric/CUC → sample fallback
-│   ├── sample/            ← small bundled dataset so notebooks run offline
+│   ├── loader.py          ← CUC JSONL loader backed by HuggingFace cache
+│   ├── sample/            ← deprecated placeholder sample data
 │   └── README.md          ← data sources and citation map
 ├── docs/                  ← readings (Markdown); see docs/00-resources.md for the resource catalogue
 ├── notebooks/             ← Jupyter notebooks, one per exercise
@@ -69,13 +69,15 @@ pip install -r requirements.txt
 jupyter lab                       # or: jupyter notebook
 ```
 
-The **real corpus is bundled** in `data/cuc/` (278 KTU tablets, CC BY-NC 4.0), so
-every notebook runs **offline** — no downloads, no API keys. Just `load_texts()`.
+The notebooks use the **real Copenhagen Ugaritic Corpus (CUC)** via JSONL files
+hosted at HuggingFace (`AlexWalhai/cuc`). The first `load_texts()` call downloads
+the corpus into a local cache; later calls reuse the cache. No API keys are
+needed.
 
 ### Optional — full Text-Fabric features
-The bundled JSONL has transliteration + cuneiform + line references. For
+The HuggingFace JSONL has transliteration + cuneiform + line references. For
 sign-level features (emendation, certainty, alternative readings) or to query the
-corpus as a graph, install Text-Fabric and use the upstream dataset:
+corpus as a graph, install Text-Fabric and use the original upstream dataset:
 
 ```bash
 pip install text-fabric        # then, in a notebook:  use("DT-UCPH/cuc")
@@ -86,8 +88,10 @@ pip install text-fabric        # then, in a notebook:  use("DT-UCPH/cuc")
 ## Data sources (overview)
 
 - **CUC — Cuneiform Ugaritic Corpus**: Text-Fabric dataset of the Ugaritic corpus (`DT-UCPH/cuc`), CACCHT project.
+- **AlexWalhai/cuc**: HuggingFace mirror of CUC line-level JSONL files used by the workshop loader.
 - **ContextFabric**: graph-based corpus engine on the Text-Fabric data model, with an MCP server (`cfabric-mcp`) for LLM/agent tools.
-- **UDB — Ugaritic Data Bank**: Latin transliteration of the corpus with bibliography and commentary.
+- **UDB — Ugaritic Data Bank**: Spanish-team corpus of CAT texts, mostly with the same numbers; now sold as an Accordance package, with UDB/concordance PDFs listed on Juan-Pablo Vita's Academia page.
+- **USC Digital Library / InscriptiFact**: high-resolution tablet photographs from Bruce Zuckerman and the West Semitic Research Project; formerly at `inscriptifact.com`, now surfaced through USC Digital Library.
 - **KTU**: *Die keilalphabetischen Texte aus Ugarit* — the standard text-numbering scheme used throughout.
 - **DUL / DULAT**: *A Dictionary of the Ugaritic Language in the Alphabetic Tradition*.
 
