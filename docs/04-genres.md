@@ -13,9 +13,20 @@
 - **Lexical / school texts** — abecedaries, vocabularies (KTU 5.x).
 
 ## The KTU numbering convention
-The leading digit signals genre family: **1** = literary/ritual, **2** = letters,
-**3** = legal, **4** = administrative, **5** = scribal/lexical. (A useful prior,
-not a strict rule.)
+In CAT/KTU, each text has a unique number consisting of a single digit genre code,
+followed by a period, followed by one to three more digits. For example:
+`KTU 1.14`, `KTU 3.2`, `KTU 4.143`.
+
+The first digit indicates the genre of the text:
+- **1.** literary and religious texts
+- **2.** letters
+- **3.** legal texts
+- **4.** economic or administrative texts
+- **5.** scribal exercises
+- **6.** inscriptions on seals, labels, ivories, etc.
+- **7.** unclassified texts
+- **8.** illegible tablets and uninscribed fragments
+- **9.** unpublished texts
 
 > **Central question for Hour 2:** *How much of the genre is visible from the
 > vocabulary alone?* We test this with TF-IDF keywords (`2a`) and with similarity
@@ -27,5 +38,4 @@ not a strict rule.)
 - **Genre formulas** can dominate; watch for **false thematic signals**.
 
 ## TODO
-- [ ] One-line description + example KTU number per genre.
 - [ ] Note how many texts per genre are in the working corpus.

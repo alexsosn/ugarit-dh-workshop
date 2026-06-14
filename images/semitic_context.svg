@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 760" role="img" aria-labelledby="title desc">
+  <title id="title">Ugaritic in Semitic context</title>
+  <desc id="desc">A simplified family-tree diagram placing Ugaritic under Northwest Semitic within the larger Semitic language family.</desc>
+  <style>
+    .branch {
+      fill: none;
+      stroke: #1f2933;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .node {
+      fill: #ffffff;
+      stroke: #c9d1d9;
+      stroke-width: 1.5;
+      rx: 8;
+    }
+    .text {
+      fill: #111827;
+      font-family: "Iowan Old Style", Georgia, "Times New Roman", serif;
+      font-size: 27px;
+      font-weight: 700;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+    .leaf {
+      font-size: 24px;
+      font-style: italic;
+      font-weight: 700;
+    }
+    .small {
+      font-size: 22px;
+    }
+    .highlight {
+      fill: #fff7ed;
+      stroke: #d97706;
+      stroke-width: 2.5;
+    }
+  </style>
+
+  <rect width="1500" height="760" fill="#ffffff"/>
+
+  <path class="branch" d="M750 98 L450 145"/>
+  <path class="branch" d="M750 98 L1220 145"/>
+
+  <path class="branch" d="M450 203 L270 260"/>
+  <path class="branch" d="M450 203 L720 260"/>
+  <path class="branch" d="M450 203 L970 250"/>
+
+  <path class="branch" d="M270 318 L180 390"/>
+  <path class="branch" d="M270 318 L520 380"/>
+  <path class="branch" d="M270 318 L770 380"/>
+
+  <path class="branch" d="M180 448 L90 665"/>
+  <path class="branch" d="M180 448 L350 540"/>
+  <path class="branch" d="M315 419 L610 665"/>
+
+  <path class="branch" d="M350 594 L260 665"/>
+  <path class="branch" d="M350 594 L435 665"/>
+
+  <path class="branch" d="M520 462 L760 665"/>
+  <path class="branch" d="M770 462 L910 665"/>
+  <path class="branch" d="M720 318 L930 355 L1060 665"/>
+
+  <path class="branch" d="M1220 203 L1230 665"/>
+  <path class="branch" d="M1220 203 L1400 665"/>
+
+  <rect class="node" x="605" y="40" width="290" height="58"/>
+  <text class="text" x="750" y="69">Proto-Semitic</text>
+
+  <rect class="node" x="325" y="145" width="250" height="58"/>
+  <text class="text" x="450" y="174">West Semitic</text>
+
+  <rect class="node" x="1095" y="145" width="250" height="58"/>
+  <text class="text" x="1220" y="174">East Semitic</text>
+
+  <rect class="node" x="125" y="260" width="290" height="58"/>
+  <text class="text" x="270" y="289">Central Semitic</text>
+
+  <rect class="node" x="605" y="260" width="230" height="58"/>
+  <text class="text" x="720" y="289">Ethiopian</text>
+
+  <rect class="node" x="835" y="250" width="270" height="82"/>
+  <text class="text" x="970" y="280">Modern South</text>
+  <text class="text" x="970" y="310">Arabian</text>
+
+  <rect class="node" x="45" y="390" width="270" height="58"/>
+  <text class="text small" x="180" y="419">Northwest Semitic</text>
+
+  <rect class="node" x="420" y="380" width="200" height="82"/>
+  <text class="text" x="520" y="410">North</text>
+  <text class="text" x="520" y="440">Arabian</text>
+
+  <rect class="node" x="665" y="380" width="210" height="82"/>
+  <text class="text" x="770" y="410">Old South</text>
+  <text class="text" x="770" y="440">Arabian</text>
+
+  <rect class="node" x="265" y="540" width="170" height="54"/>
+  <text class="text" x="350" y="567">Canaanite</text>
+
+  <rect class="node highlight" x="30" y="665" width="120" height="52"/>
+  <text class="text leaf" x="90" y="691">Ugaritic</text>
+
+  <rect class="node" x="175" y="665" width="170" height="52"/>
+  <text class="text leaf" x="260" y="691">Phoenician</text>
+
+  <rect class="node" x="375" y="665" width="120" height="52"/>
+  <text class="text leaf" x="435" y="691">Hebrew</text>
+
+  <rect class="node" x="540" y="665" width="140" height="52"/>
+  <text class="text leaf" x="610" y="691">Aramaic</text>
+
+  <rect class="node" x="700" y="665" width="120" height="52"/>
+  <text class="text leaf" x="760" y="691">Arabic</text>
+
+  <rect class="node" x="850" y="665" width="120" height="52"/>
+  <text class="text leaf" x="910" y="691">Sabaic</text>
+
+  <rect class="node" x="1000" y="665" width="120" height="52"/>
+  <text class="text leaf" x="1060" y="691">Ge'ez</text>
+
+  <rect class="node" x="1165" y="665" width="130" height="52"/>
+  <text class="text leaf" x="1230" y="691">Eblaite</text>
+
+  <rect class="node" x="1325" y="665" width="150" height="52"/>
+  <text class="text leaf" x="1400" y="691">Akkadian</text>
+</svg>

@@ -7,8 +7,11 @@ from the `docs/` Markdown):
 - `ras_shamra_site.*` — site photo or plan.
 - `tablet_example.*` — a clay tablet (photo).
 - `abecedary_order.*` — the canonical Ugaritic alphabet order.
+- `semitic_context.svg` — simplified family-tree diagram placing Ugaritic in
+  Semitic context; course redraw after Huehnergard, Introduction to Ugaritic
+  (2012).
 - `one_tablet_many_forms.*` — diagram of the nine representations of one tablet.
 - `architecture_diagram.*` — the full DH toolkit architecture (doc 08).
 
 > Record **source and license/credit** for every image (especially museum/photo
-> archives such as InscriptiFact or the Louvre).
+> archives such as USC Digital Library / InscriptiFact or the Louvre).
