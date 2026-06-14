@@ -1,0 +1,22 @@
+Copyright (c) 2026 [WORKSHOP AUTHOR / INSTITUTION — fill in]
+
+Workshop materials (text, code, illustrations authored here) are released under
+the Creative Commons Attribution 4.0 International License (CC BY 4.0) unless
+noted otherwise:
+
+    https://creativecommons.org/licenses/by/4.0/
+
+The Python code in this repository may alternatively be reused under the MIT
+License at the user's option.
+
+IMPORTANT — third-party data:
+The bundled corpus in data/cuc/ is the Copenhagen Ugaritic Corpus (CACCHT
+project, DT-UCPH/cuc), licensed CC BY-NC 4.0 — NON-COMMERCIAL use with
+attribution. It is included here for educational use only and is NOT covered by
+this repository's license.
+
+Other primary data (ContextFabric, UDB, KTU editions, DUL/DULAT, tablet
+photographs, museum catalogue entries) likewise remains under the terms of its
+original provider. See data/README.md before redistributing any corpus material.
+
+[TODO: confirm final license choice with the workshop organizers.]

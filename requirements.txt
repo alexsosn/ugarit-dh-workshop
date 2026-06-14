@@ -1,0 +1,23 @@
+# Core scientific stack — used by every notebook
+numpy
+pandas
+matplotlib
+scikit-learn      # TF-IDF, cosine similarity, clustering
+scipy
+plotly            # interactive maps in notebook 2b
+umap-learn; python_version < "3.14"  # headline genre map; PCA fallback on newer Python
+
+# Networks (Hour 3 — letters as social graphs)
+networkx
+
+# Decision trees / divination structures (Hour 3)
+# scikit-learn covers modeling; graphviz is optional for nicer tree rendering
+graphviz
+
+# Notebook environment
+jupyterlab
+ipykernel
+
+# OPTIONAL — full corpus access (Option B in README).
+# Notebooks fall back to data/sample/ if this is not installed.
+# text-fabric

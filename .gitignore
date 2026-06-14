@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Text-Fabric downloads (the bundled data/cuc/ JSONL IS committed; this is the
+# separate Text-Fabric cache, which is not)
+text-fabric-data/
+~/text-fabric-data/
+data/_cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
