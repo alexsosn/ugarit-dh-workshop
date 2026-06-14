@@ -19,7 +19,7 @@ CUC JSONL files.
 | Resource | What it is | Use |
 |----------|-----------|-----|
 | **`AlexWalhai/cuc`** (HuggingFace) ✅▶️ | 278 tablets, line-level JSONL: Latin + cuneiform + refs. | Primary data source used by `data/loader.py`. |
-| **`DT-UCPH/cuc`** (GitHub / Text-Fabric) ✅ | Source TF dataset (CACCHT). | Sign-level features (emendation, certainty, alt readings) the JSONL drops. |
+| **`DT-UCPH/cuc`** (GitHub / Text-Fabric) ✅ | Source CUC Text-Fabric dataset, 278 KTU tablets, CACCHT project, CC BY-NC 4.0. | Full graph features: tablet, column, line, side, `g_cons`, trailer, language, sign, `emen`, `cert`, `cont`, `alt`. |
 | **UDB — Ugaritic Data Bank** 🔑⚖️ | Spanish-team electronic corpus, mostly using CAT/KTU numbers; see Cunchillos, Vita, and Zamora 2003. | Licensed package in Accordance; UDB PDFs and concordance files are listed on Juan-Pablo Vita's [Academia page](https://csic.academia.edu/JuanPabloVita). |
 | **ContextFabric** + `cfabric-mcp` | Graph engine + MCP server. | Hour 3 closing: LLM/agent access to the corpus. |
 
@@ -34,6 +34,10 @@ CUC JSONL files.
 > similarity notebooks therefore work on **forms, not lemmas** (homographs blur
 > the signal). "Morphological tagging" in `08-modern-toolkit.md` is the *future*
 > goal, not current CUC.
+>
+> **CACCHT:** CUC is developed by Christian Canu Højgaard, Martijn Naaijer,
+> Martin Ehrensvärd, Robert Rezetko, Oliver Glanz, and Willem van Peursen as
+> part of *Creating Annotated Corpora of Classical Hebrew Texts*.
 
 ### Saved CUC SQL-console queries (DuckDB) — ready-made demos 🔑*(share-links)*
 
@@ -89,6 +93,7 @@ These two are the backbone for the **"one tablet → nine representations"** dia
 
 | Source | Use |
 |--------|-----|
+| **Encyclopaedia Britannica — ["Ugarit"](https://www.britannica.com/place/Ugarit)** ✅ | Quick orientation: location, excavation history, stratigraphy, Late Bronze prosperity, archives, scripts/languages, destruction, and biblical-studies relevance. Local copy used for extraction: `../sources/Ugarit_Britannica.html`. |
 | **EUPT — Kirta** (Göttingen) ✅ | Scholarly edition + translation; Hour 2 genre/myth examples. |
 | **Sapiru — Baal Cycle pt. I** ✅ | Accessible English Baal-vs-Yam; quotable in `01`/`04` slides. |
 | **Interbible / intertextual.bible (KTU)** ✅ | KTU ↔ Bible cross-links; supports the "background to biblical tradition" thread (`01`, `05`). |

@@ -52,6 +52,17 @@ Latin transliterations used in this course:
 ## The language
 - A **Northwest Semitic** language, related to Phoenician, Hebrew, and Aramaic.
 - Written mostly without vowels (consonantal), like other early Semitic scripts.
+- Ugarit was multilingual: Britannica summarizes scribal use of **Ugaritic,
+  Akkadian, Sumerian, and Hurrian**, with several writing systems in circulation
+  (including Egyptian and Hittite hieroglyphic, Cypro-Minoan, and cuneiform
+  scripts). This is why Ugaritic should be taught as part of a cosmopolitan
+  scribal setting, not as an isolated language.
+- Several copies of the **30-sign alphabet** were found from 1949 onward; shorter
+  alphabetic systems with about 25 or 22 signs are also associated with
+  13th-century traders.
+
+*Background source: Encyclopaedia Britannica,
+["Ugarit"](https://www.britannica.com/place/Ugarit).*
 
 ![Simplified Semitic language family tree, with Ugaritic highlighted under Northwest Semitic.](../images/semitic_context.svg)
 

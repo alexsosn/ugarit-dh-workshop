@@ -20,11 +20,32 @@ the first run downloads them into a local cache.
 
 ### What CUC contains (and does not)
 
-CUC 0.1.x annotates: **tablet, column, line, side, word (`g_cons` = consonantal
-form), sign, trailer**, plus sign-level **emendation / certainty / alternative
-reading**. It does **not** (yet) carry lemma or part-of-speech tags — so the
-TF-IDF / similarity notebooks work on **word forms**, not lemmas. Flag this when
-discussing homographs.
+CUC is the **Copenhagen Ugaritic Corpus**, a work-in-progress Text-Fabric dataset
+of KTU texts from the CACCHT project (*Creating Annotated Corpora of Classical
+Hebrew Texts*). CACCHT is a collaboration of Christian Canu Højgaard, Martijn
+Naaijer, Martin Ehrensvärd, Robert Rezetko, Oliver Glanz, and Willem van Peursen.
+The underlying corpus license is **CC BY-NC 4.0**.
+
+CUC currently contains **278 tablets** from KTU 1.x-3.x. Coverage includes:
+
+```text
+KTU 1.1-1.7, 1.14-1.25, 1.27-1.29, 1.31, 1.38-1.41, 1.43,
+1.45-1.50, 1.54-1.58, 1.61-1.63, 1.65, 1.67, 1.69, 1.71-1.76,
+1.78-1.98, 1.100-1.109, 1.111-1.119, 1.121-1.122, 1.124,
+1.126-1.127, 1.129-1.130, 1.132-1.134, 1.136-1.144,
+1.146-1.147, 1.149, 1.153-1.156, 1.158-1.177, 1.179-1.180;
+KTU 2.1, 2.3-2.18, 2.20-2.27, 2.30-2.44, 2.46-2.75,
+2.77-2.80, 2.82-2.105, 2.107-2.113;
+KTU 3.1-3.35.
+```
+
+CUC annotates: **tablet, column, line, side, word (`g_cons` = consonantal form),
+trailer** (word spacing/dividers), **language**, **sign**, **emen** (emendations,
+including reconstructed, missing, excised, or redundant signs/letters), **cert**
+(certainty, corresponding to KTU italics), **cont** (line continuation), and
+**alt** (alternative reading). It does **not** (yet) carry lemma or part-of-speech
+tags — so the TF-IDF / similarity notebooks work on **word forms**, not lemmas.
+Flag this when discussing homographs.
 
 > **Genre labels are heuristic** (KTU number + a curated list of well-known
 > tablets in `loader.py:FINE_GENRE`), not a scholarly classification.
@@ -56,7 +77,7 @@ these scattered representations. The minimal record we use:
 
 | Resource | What it is | How to get it |
 |----------|-----------|---------------|
-| **CUC — Cuneiform Ugaritic Corpus** | Text-Fabric dataset, 278 KTU tablets (CACCHT project) | Original: `DT-UCPH/cuc` on GitHub; JSONL mirror used here: `AlexWalhai/cuc` on HuggingFace |
+| **CUC — Cuneiform Ugaritic Corpus** | Work-in-progress Text-Fabric dataset, 278 KTU tablets, CACCHT project, CC BY-NC 4.0 | Original: `DT-UCPH/cuc` on GitHub; JSONL mirror used here: `AlexWalhai/cuc` on HuggingFace |
 | **ContextFabric** | Graph corpus engine on the Text-Fabric model; `cfabric-mcp` MCP server for LLM/agents | `Context-Fabric` on GitHub |
 | **UDB — Ugaritic Data Bank** | Spanish-team corpus of CAT texts, mostly with the same numbers; Latin transliteration + bibliography + commentary. Cite Cunchillos, Vita, and Zamora 2003. | Licensed Accordance package; UDB texts and concordance PDFs are listed on Juan-Pablo Vita's Academia page: <https://csic.academia.edu/JuanPabloVita> |
 | **KTU** | *Die keilalphabetischen Texte aus Ugarit* — standard numbering | print + mapped in digital editions |
