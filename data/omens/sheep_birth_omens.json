@@ -1,72 +1,74 @@
 {
-  "omen": {
-    "sheep birth": {
-      "missing body part": {
-        "[body part] 1": "the land will perish",
-        "[body part] 2": "the king will sieze the lan[d of his enemy and?] the weapon of the king will lay the land low",
-        "nostrils": "[...]",
-        "[...] and nostrils": "the land [...]; there will be famine in the land",
-        "ḤRṢP in [its?] K[...]": "[...]",
-        "thigh": {
-          "left": "the king will [...] his enemy",
-          "right": "[...]"
-        },
-        "leg": {
-          "lower left leg": "the king will [...] his enemy",
-          "(rear?) legs": "huradu troops will turn against the king",
-          "left (fore?)leg": "the land of the enemy will perish"
-        },
-        "spleen": "the king will not obtain offspring",
-        "testicles": "the seed-grain will be affected",
-        "middle part of foreleg": {
-          "left?": "[...] will destroy the cattle",
-          "right": "[...] will not obtain offspring"
-        },
-        "tongue": "[...]",
-        "lower lip": "[...]",
-        "ear": {
-          "right": "the enemy will devastate and consume the land",
-          "left": "the king will devastate the enemy's land and consume it"
-        },
-        "[-]KB": "the seed-grain of that land will be consumed",
-        "penis": "the weapon of the king will indeed be raised"
-      },
-      "unusual appearance": {
-        "whole body": {
-          "stone": "many will fall in the land",
-          "piece of wood": "ATR YLD, its cattle will be destroyed",
-          "smooth fetus without hair": "there will be [...] in the land"
-        },
-        "face": {
-          "face like an 'IRN": "days of our lord will be shortened, cattle affected",
-          "nose like a bird's": "the gods will destroy the land, something will fly away",
-          "protruding [-]B from mouth": "the enemy will devour the land",
-          "two tongues": "the land will be scattered",
-          "eyes in forehead": "the king will be more powerful than his Huptu-troops"
-        },
-        "short rear legs": "our lord will confront the huradu troops and Rašap will consume the progeny",
-        "horn of flesh in left temple": "[...]",
-        "protruding [-]DR": "the Sun/Šapšu will abase that land",
-        "B[--] and HR in temples": "the king will make peace with his enemy",
-        "ʿ[--]": "the gods will destroy that land",
-        "HR and [-]R": "the king will destroy his enemy"
-      }
+ "_source": "Translations from Dennis Pardee, Ritual and Cult at Ugarit (WAW 10, 2002), ch. VI: 'sheep birth' = Text 42, RS 24.247+ (KTU 1.103+1.145), Malformed Animal Fetuses; 'celestial' = Text 44, RIH 78/14 (KTU 1.163), Lunar Omens.",
+ "_note": "These are TWO different tablets, bundled for convenience; notebook 3c draws them as separate trees.",
+ "omen": {
+  "sheep birth": {
+   "missing body part": {
+    "[body part] 1": "the land will perish",
+    "[body part] 2": "the king will sieze the lan[d of his enemy and?] the weapon of the king will lay the land low",
+    "nostrils": "[...]",
+    "[...] and nostrils": "the land [...]; there will be famine in the land",
+    "ḤRṢP in [its?] K[...]": "[...]",
+    "thigh": {
+     "left": "the king will [...] his enemy",
+     "right": "[...]"
     },
-    "celestial": {
-      "moon appearance": {
-        "new moon [...]": "there will be poverty",
-        "color": {
-          "rises red 1": "prosperity during that month",
-          "rises yellow-green": "cattle will perish",
-          "rises red 2": "[...] assembly"
-        },
-        "newness of the moon": "personnel [...] and will be put down",
-        "YM YH YRH KSLM": "the kings will keep an eye on each other",
-        "three times a moon is seen in a month": "there will be rain"
-      },
-      "star falls": {
-        "on the thirtieth day": "the king [...]"
-      }
-    }
+    "leg": {
+     "lower left leg": "the king will [...] his enemy",
+     "(rear?) legs": "huradu troops will turn against the king",
+     "left (fore?)leg": "the land of the enemy will perish"
+    },
+    "spleen": "the king will not obtain offspring",
+    "testicles": "the seed-grain will be affected",
+    "middle part of foreleg": {
+     "left?": "[...] will destroy the cattle",
+     "right": "[...] will not obtain offspring"
+    },
+    "tongue": "[...]",
+    "lower lip": "[...]",
+    "ear": {
+     "right": "the enemy will devastate and consume the land",
+     "left": "the king will devastate the enemy's land and consume it"
+    },
+    "[-]KB": "the seed-grain of that land will be consumed",
+    "penis": "the weapon of the king will indeed be raised"
+   },
+   "unusual appearance": {
+    "whole body": {
+     "stone": "many will fall in the land",
+     "piece of wood": "ATR YLD, its cattle will be destroyed",
+     "smooth fetus without hair": "there will be [...] in the land"
+    },
+    "face": {
+     "face like an 'IRN": "days of our lord will be shortened, cattle affected",
+     "nose like a bird's": "the gods will destroy the land, something will fly away",
+     "protruding [-]B from mouth": "the enemy will devour the land",
+     "two tongues": "the land will be scattered",
+     "eyes in forehead": "the king will be more powerful than his Huptu-troops"
+    },
+    "short rear legs": "our lord will confront the huradu troops and Rašap will consume the progeny",
+    "horn of flesh in left temple": "[...]",
+    "protruding [-]DR": "the Sun/Šapšu will abase that land",
+    "B[--] and HR in temples": "the king will make peace with his enemy",
+    "ʿ[--]": "the gods will destroy that land",
+    "HR and [-]R": "the king will destroy his enemy"
+   }
+  },
+  "celestial": {
+   "moon appearance": {
+    "new moon [...]": "there will be poverty",
+    "color": {
+     "rises red 1": "prosperity during that month",
+     "rises yellow-green": "cattle will perish",
+     "rises red 2": "[...] assembly"
+    },
+    "newness of the moon": "personnel [...] and will be put down",
+    "YM YH YRH KSLM": "the kings will keep an eye on each other",
+    "three times a moon is seen in a month": "there will be rain"
+   },
+   "star falls": {
+    "on the thirtieth day": "the king [...]"
+   }
   }
+ }
 }

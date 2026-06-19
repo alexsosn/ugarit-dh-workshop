@@ -56,6 +56,9 @@ _BUNDLED_CUC_DIR = _HERE / "cuc"
 _ALPHABET_PATH = _HERE / "alphabet.json"
 _OMEN_PATH = _HERE / "omens" / "sheep_birth_omens.json"
 _OMEN_TEXT_PATH = _HERE / "omens" / "ugaritic_birth_omens.txt"
+_BABYLONIAN_IZBU_PATH = _HERE / "omens" / "babylonian_izbu_omens.json"
+_BABYLONIAN_FOETUS_PATH = _HERE / "omens" / "babylonian_foetus_omens.json"
+_BABYLONIAN_CELESTIAL_PATH = _HERE / "omens" / "babylonian_celestial_omens.json"
 _HF_DATASET = "AlexWalhai/cuc"
 _HF_API_URL = f"https://huggingface.co/api/datasets/{_HF_DATASET}"
 _HF_RAW_BASE = f"https://huggingface.co/datasets/{_HF_DATASET}/resolve/main"
@@ -319,6 +322,41 @@ def load_omen_tree():
 def load_omen_text():
     """Return the teaching excerpt of the Ugaritic birth-omen text."""
     return _OMEN_TEXT_PATH.read_text(encoding="utf-8")
+
+
+def load_babylonian_izbu_tree():
+    """Return Šumma izbu Tablet I (human-birth omens) as a nested dict.
+
+    The Babylonian "parent" of the Ugaritic sheep-birth omens
+    (``load_omen_tree``). Transcribed from the Neo-/Late Babylonian exemplar
+    MS 1808, ed. A. R. George, *Babylonian Divinatory Texts Chiefly in the
+    Schøyen Collection* (CUSAS 18), 2013, no. 35, pp. 259-261.
+    """
+    with open(_BABYLONIAN_IZBU_PATH, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_babylonian_foetus_tree():
+    """Return the Old Babylonian miscarried-foetus teratomancy omens (George
+    2013, no. 12) as a nested dict.
+
+    Organized by body feature; the *closest* genre parallel to the Ugaritic
+    sheep-birth omens (both read an anomalous newborn body → fate of king and
+    land). Sourced from the companion ``omens`` project.
+    """
+    with open(_BABYLONIAN_FOETUS_PATH, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_babylonian_celestial_tree():
+    """Return the Babylonian lunar-eclipse (celestial) omens as a nested dict.
+
+    Enūma Anu Enlil tradition (cf. George 2013, nos. 13-14); parallels the
+    'celestial' branch of the Ugaritic omen tablet. Sourced from the companion
+    ``omens`` project.
+    """
+    with open(_BABYLONIAN_CELESTIAL_PATH, encoding="utf-8") as f:
+        return json.load(f)
 
 
 # ---------------------------------------------------------------------------

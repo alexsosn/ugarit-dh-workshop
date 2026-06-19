@@ -1,0 +1,94 @@
+{
+  "_source": "Babylonian lunar-eclipse omens (Enuma Anu Enlil celestial-omen tradition); cf. the Old Babylonian lunar-eclipse tablets ed. A. R. George, Babylonian Divinatory Texts (CUSAS 18), 2013, nos. 13-14.",
+  "_note": "The eclipse read by watch, by the direction in which it clears, and by month/day. Parallels the 'celestial' branch of the Ugaritic omen tablet (sheep_birth_omens.json).",
+  "omen": {
+    "celestial omens": {
+      "lunar eclipse": {
+        "general": {
+          "evening watch": "signifies a fatal epidemic",
+          "middle watch": "signifies the decline of commerce",
+          "morning watch": "signifies the end of a dynasty (or recovery from sickness)",
+          "right-hand side reversed": "deluge will occur everywhere",
+          "obscured from center and clears suddenly": "king will die; destruction of Elam",
+          "begins and clears in the south": "downfall of Subartu and Akkad",
+          "begins and clears in the west": "eclipse pertaining to Amurru",
+          "begins and clears in the north": "eclipse pertaining to Akkad",
+          "begins and clears in the east": "eclipse pertaining to Subartu",
+          "comes forth obscured and clears": "Elam and Gutium will perish",
+          "remains obscured until daylight": "eclipse pertaining to the whole world",
+          "comes forth obscured": "cataclysmic deluge"
+        },
+        "month-specific": {
+          "Nisannu": {
+            "day 14": "downfall of the king of Akkad; city and people will be safe",
+            "day 15": "famine; people will trade their infant children for silver",
+            "day 19": "redness of moon is orange-hued; abundance for the people",
+            "day 20": "king will declare war on king",
+            "day 21": "commerce will dwindle"
+          },
+          "Ayyaru": {
+            "day 14": "all-powerful king will die; land will perish",
+            "day 15": "king and people are safe; war declared; shortfall of barley",
+            "day 16": "king of Amurru will die; his people will perish"
+          },
+          "Simanu": {
+            "day 14": "famous king will die; a prince will seize the throne; cities depopulated",
+            "day 15": "king of Amurru’s servants will kill him in revolt",
+            "day 16": "king will fall in battle; watercourse will dry up"
+          },
+          "Dumuzi": {
+            "day 14": "inundation reduces barley; large people seek refuge among smaller ones",
+            "day 15": "rains removed; starvation",
+            "day 16": "evil in the land; bounty lost"
+          },
+          "Abu": {
+            "day 14": "famine; king of Amurru will die",
+            "day 15": "Nergal will devour; fatalities in the land",
+            "day 16": "ewes will not bring lambs to term"
+          },
+          "Elul": {
+            "day 14": "king’s brother will seize throne in a revolt",
+            "day 15": "king’s son will kill father and seize the throne",
+            "day 16": "king of the upper land will enter deserted land"
+          },
+          "Tashritu": {
+            "day 14": "attack by Elam on my land; agriculture will thrive",
+            "day 15": "locust swarm will arise in spring and strike crops",
+            "day 16": "king will die; dynasty over; land will be at war"
+          },
+          "Kislimu": {
+            "day 14": "attack by Gutian army; people will perish",
+            "day 15": "enemy will demolish fortifications",
+            "day 16": "king’s auxiliaries and troops will turn hostile to him",
+            "day 20": "fog and constant rumbles of thunder",
+            "day 21": "civil war"
+          },
+          "Tebetu": {
+            "day 14": "Adad will devastate men, livestock, and wild animals for one year",
+            "day 15": "rain removed; land’s crops lost",
+            "day 16": "king without claim will seize throne; war",
+            "day 20": "a people that experienced deportation will return home",
+            "day 21": "king of a lost people will return home"
+          },
+          "Addaru": {
+            "day 14": "dogs will go mad and bite people",
+            "day 15": "lions will rampage and cut off traffic",
+            "day 16": "an undefeated land will be defeated",
+            "day 20": "defeat of Ur",
+            "day 21": "Gutian army will conquer the land of Akkad"
+          },
+          "Leap-Addaru": {
+            "day 14": "hard times; people will trade infant children for silver",
+            "day 15": "destruction of Ur",
+            "day 16": "land of Akkad will be resettled"
+          }
+        }
+      },
+      "other": {
+        "meteorite; Moon-god sets in angry mood": {
+          "Nisannu day 16": "an important city will be conquered"
+        }
+      }
+    }
+  }
+}

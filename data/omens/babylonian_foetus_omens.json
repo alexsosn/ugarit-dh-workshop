@@ -1,0 +1,67 @@
+{
+  "_source": "Old Babylonian teratomancy: anomalous (miscarried-foetus) omens. Ed. A. R. George, Babylonian Divinatory Texts Chiefly in the Schoyen Collection (CUSAS 18), 2013, no. 12. English translation: George 2013.",
+  "_note": "Organized by body feature of the malformed foetus. The DIRECT genre parallel to the Ugaritic sheep-birth omens (KTU 1.103): both read an anomalous newborn body and predict the fate of king and land.",
+  "omen": {
+    "horns": {
+      "two on right, one on left": "symbol of Sargon, who had no equal",
+      "two on left, one on right": "enemy will hem you in and take away your territory",
+      "protruding": "there will be an all-powerful king in the land; alternative: the dynasty of the king and his sons is at an end"
+    },
+    "eyes": {
+      "on forehead": "there will be an all-powerful king in the land",
+      "single large eye on forehead": "there will be an all-powerful king in the land",
+      "eye down level with jaw": "there will be an all-powerful king",
+      "one eye": "a populous land will gather in strongholds"
+    },
+    "mouth": {
+      "second mouth on right jaw": "the king’s word will carry more weight than his enemy’s",
+      "second mouth on left jaw": "you will behave as your enemy’s subordinate"
+    },
+    "hair": {
+      "long like lion’s mane on right jaw": "the king will have no equal",
+      "coat of wool": "end of dynasty, king’s rule ends; in war, enemy will defeat army, people will mourn"
+    },
+    "body": {
+      "two bodies, one head": "there will be an all-powerful king in the land",
+      "two heads, two mouths, two shoulder-blades": "the town where it was born will be defiled, the land will be devoured",
+      "two heads, two spines, two tails, eight feet": "king’s son will occupy the throne"
+    },
+    "limbs": {
+      "missing pair of feet, regular mouth and anus": "town will experience famine and be in dire straits",
+      "bowels on head, open wound on right side": "town will be captured, razed, and people scattered",
+      "right front hoof like donkey’s hoof": "famine will grip the land",
+      "left front hoof like donkey’s hoof": "famine will grip the enemy’s land",
+      "right rear hoof like donkey’s hoof": "starvation among livestock",
+      "left rear hoof like donkey’s hoof": "man’s flock will increase",
+      "all four hooves like donkey’s hoof": "Adad will devastate"
+    },
+    "bowels": {
+      "spilling out in a pile": "people will experience famine, will send their possessions to market",
+      "on top of head": "another people will carry off that people’s possessions"
+    },
+    "appearance": {
+      "like an ibex": "there will be a strong king in the land",
+      "like an ox’s horn": "portent of Sargon",
+      "like a brick": "hardship will grip the land, barley-ration will diminish",
+      "full of air like a bladder": "palace will become empty, Adad will devastate the irrigated land",
+      "round and hard like a wheel": "people will perish, will mourn",
+      "like a cheetah": "there will be an all-powerful king in the land",
+      "like a turtle": "dynasty of Enlil; land will prosper, king of Sumer will rule",
+      "like a lion’s face": "strong king will mobilize the land; alternative: fatal epidemic",
+      "like a pig": "land will dwell in peace"
+    },
+    "teeth and tongue": {
+      "teeth already erupted": "king’s days are over, another will sit on throne",
+      "no tongue": "rule will be reign of wicked man, criminals will destroy the land"
+    },
+    "ears": {
+      "ears cover eyes": "the man will perish"
+    },
+    "spine and ribs": {
+      "four ribs, four haunches, four shoulders": "there will be an all-powerful king in the land"
+    },
+    "legs and feet": {
+      "front feet like donkey’s hooves": "Adad will devastate"
+    }
+  }
+}

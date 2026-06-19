@@ -38,6 +38,40 @@ Other Baal-cycle formulas may not include the word *bʿl* itself. A classic
 example is *rkb ʿrpt*, "Rider on the Clouds," a storm-god epithet useful for
 comparison with Northwest Semitic and biblical poetic language.
 
+## The mountain behind *bʿl ṣpn*: one peak, four mythologies
+
+The epithet *bʿl ṣpn*, "Baal of **Ṣapānu**," names the god's holy mountain — a real
+peak, **Jebel al-Aqraʿ** (~1700 m), on the coast just north of Ugarit at the modern
+Syria–Türkiye border. Remarkably, the *same* mountain anchors the storm-god myth in
+four traditions:
+
+| Tradition | Name of the mountain | What happens there |
+|-----------|----------------------|--------------------|
+| Ugaritic | **Ṣapānu** (*ṣpn*) | Baal's throne; he reigns after defeating Yammu (Sea) |
+| Hittite | **Mount Ḫazzi** | the Storm-god climbs it in the *Song of Ullikummi* |
+| Greek | **Mount Kásion** (Casius) | **Zeus fights Typhon** — Apollodorus, *Library* 1.6.3 |
+| Hebrew | **Zaphon** (*ṣāpôn*) | the mythic "mount of assembly" (Ps 48:2; Isa 14:13) |
+
+In **Apollodorus** (*Library* 1.6.3) Zeus pursues the monster **Typhon** to **Mount
+Casius**, grapples with him there, and only later pins him under Mount Etna:
+
+> "Zeus pelted Typhon at a distance with thunderbolts … and as he fled pursued him
+> closely as far as **Mount Casius, which overhangs Syria**." — Apollodorus, *Library*
+> 1.6.3 (trans. J. G. Frazer)
+
+Strip away the Greek names and it is Baal's own mountain — the storm-god's victory
+over a chaos-monster, told on Ṣapānu. (Full passage, Greek and Frazer's translation:
+[Perseus](http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0021%3Atext%3DLibrary%3Abook%3D1%3Achapter%3D6%3Asection%3D3).)
+
+The Hebrew Bible kept the word: **ṣāpôn** became ordinary Hebrew for "**north**," but
+its mythic charge survives where **Zaphon** is still a cosmic mountain — Zion imagined
+as "the heights of **Zaphon**" (Ps 48:2) and the rebel who would enthrone himself "on
+the mount of assembly, in the recesses of **Zaphon**" (Isa 14:13).
+
+> **Why this matters for the workshop:** a single two-word formula, *bʿl ṣpn*, opens
+> onto four mythologies and one mountain you can find on a map — the most concrete
+> illustration of the comparative thread in [`01-ugarit-history.md`](01-ugarit-history.md).
+
 ## Link to biblical poetry
 Ugaritic parallelism and stock phrasing illuminate the **formulaic** character of
 biblical Hebrew poetry — a classic comparative-philology point.

@@ -1,0 +1,38 @@
+{
+  "_source": "Šumma izbu Tablet I (Standard Babylonian series of birth/teratomantic omens), Neo-/Late Babylonian exemplar MS 1808. Edited by A. R. George, Babylonian Divinatory Texts Chiefly in the Schøyen Collection (CUSAS 18), Bethesda: CDL Press, 2013, no. 35, pp. 259-261. English translation: George 2013.",
+  "_note": "Tablet I of Šumma izbu concerns HUMAN births; the Ugaritic KTU 1.103 omens in sheep_birth_omens.json concern SHEEP/GOAT births. Both belong to the same Mesopotamian teratomancy (izbu) tradition. Line numbers refer to George's edition. '[...]' marks a break in the tablet.",
+  "omen": {
+    "gives birth to an animal": {
+      "lion (l.5)": "that town will be taken, its king will be captured",
+      "wolf (l.6)": "the people's minds will become deranged",
+      "dog (l.7)": "the head of the household will die and that household will be scattered; the people's minds will become deranged; plague will devour",
+      "pig (l.8)": "a woman will occupy the throne",
+      "ox (l.9)": "there will be an all-powerful king in the land",
+      "buffalo (l.10)": "there will be an all-powerful king in the land and the land will experience misery",
+      "wild bull (l.11)": "the king will encounter no equal",
+      "elephant (l.12)": "that land will be abandoned",
+      "donkey (l.13)": "there will be an all-powerful king in the land",
+      "sheep (l.14)": "the prince will encounter no equal",
+      "cat (l.15)": "the prince will encounter no equal",
+      "snake (l.16)": "the man's household will be flogged(?)"
+    },
+    "gives birth to an unusual form": {
+      "terrapin's head (l.17)": "(it is) the portent of Ur; devastation will occur in the land",
+      "turtle (l.18)": "the man's household [...]",
+      "egg (l.19)": "the man's household [...]"
+    },
+    "gives birth to multiple children": {
+      "four or five boys (l.123)": "that people will be scattered; the dynasty will change",
+      "four or five girls (l.124)": "that land will become more populous; the man's household will expand",
+      "six (l.129)": "that land will become more populous; the king will conquer his foes",
+      "seven (l.130)": "rise of a rebel king; the people's minds will become deranged; people will sell their infant children for silver",
+      "seven or eight (l.131)": "a rebel king will arise and the land will become depopulated"
+    },
+    "unborn baby in the womb": {
+      "cries (l.1)": "the land will experience hardship",
+      "grips the mother (l.2)": "the kor-measure will be in short supply; the man's household will be scattered",
+      "groans (l.3)": "the palace will requisition the man's house",
+      "calls out audibly (l.4)": "a mighty enemy will arise and destroy the land; the enemy will consume its finest goods"
+    }
+  }
+}

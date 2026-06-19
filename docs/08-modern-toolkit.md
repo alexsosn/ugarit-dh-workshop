@@ -47,6 +47,11 @@ dictionary, or Sefaria without copy-paste.*
 - Coding agents for generating and checking code.
 - Automatic preparation of small DH prototypes.
 
+## Further reading
+- Franco Moretti, *Distant Reading* (London: Verso, 2013) — the manifesto for reading a
+  literary corpus at scale rather than one text at a time; the intellectual backdrop to
+  this whole workshop.
+
 ## TODO
 - [ ] Add a real tagged-word screenshot from CUC.
 - [ ] Draw the architecture diagram.

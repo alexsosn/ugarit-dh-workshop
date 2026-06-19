@@ -16,7 +16,9 @@
   reoccupied — which is precisely why its archives survived in place.
 - **Background to later traditions.** Ugaritic myth and religion provide an early
   cultural and religious backdrop for the later biblical tradition (e.g. the god
-  El, the storm-god Baal, poetic parallelism).
+  El, the storm-god Baal, poetic parallelism) — and connect outward to Phoenician,
+  Hittite, Mesopotamian, and Greek myth. See *Ugarit among the ancient traditions*
+  below.
 
 ## Fast historical frame
 
@@ -117,6 +119,122 @@ The Temple of Baal anchors the religious side of the introduction. Ugaritic
 texts preserve divine names, myths, offerings, and ritual language; the temple
 architecture gives those texts a spatial counterpart.
 
+## Ugarit among the ancient traditions
+
+> **Status:** comparative / intertextual context. Pairs with the sacred-mountain
+> note in [`05-formulas.md`](05-formulas.md) and the omen-science note in
+> [`07-divination.md`](07-divination.md).
+
+Because Ugarit sat at a Late Bronze Age crossroads (above), its archives let us
+watch the *same* gods, the *same* stories, and even the *same* sacred mountain
+travel across the Canaanite/biblical, Phoenician, Hittite, Mesopotamian, and Greek
+worlds. For a non-specialist audience this is a payoff of the whole course: Ugarit
+is the hinge that makes those connections visible.
+
+### The Hebrew Bible — the closest tradition
+
+Ugaritic religion is our best picture of the Canaanite world out of which Israel
+emerged, so the overlaps are dense and well studied:
+
+- **El** (*ʾil*), the aged head of the Ugaritic pantheon, shares his name and many
+  epithets with biblical **ʾĒl / ʾElōhîm**.
+- **Baal**, the storm-god "**Rider on the Clouds**" (*rkb ʿrpt*), supplies imagery
+  later attached to **YHWH** (cf. *rōkēb bāʿarābôt*, Ps 68:5).
+- **Athirat** ↔ biblical **Asherah**; the seven-headed sea-dragon **Lôtan** (*ltn*)
+  ↔ **Leviathan** (Isa 27:1; Ps 74:13–14).
+- The **parallelism** and stock word-pairs of Ugaritic poetry illuminate the
+  formulaic character of biblical Hebrew verse (see [`05-formulas.md`](05-formulas.md)).
+
+Two ready-made datasets in this repo let you *explore* this rather than just assert
+it:
+
+- **`data/intertextual_connections.json`** — 79 verse-level Bible ↔ Ugaritic links
+  harvested from [intertextual.bible](https://intertextual.bible) (e.g. Gen 2:2 and
+  Gen 10:5 ↔ the **Baal Cycle**).
+- **UgaritLab's biblical cross-reference layer** (the `TCS_refs` set for KTU 1.1–1.6)
+  — the classic verse list keyed to the Baal Cycle: Ps 29, Ps 48, Isa 14:13,
+  Isa 27:1, Ps 74:13–14, and more.
+
+### Phoenician — Philo of Byblos and Sanchuniathon
+
+The Canaanite mythology of Ugarit did not die with the city. A Greek-language
+window onto its first-millennium afterlife is the ***Phoenician History*** of
+**Philo of Byblos** (Herennius Philo, late 1st–early 2nd c. CE). Philo claims merely
+to *translate* an ancient Phoenician sage, **Sanchuniathon**, said to predate the
+Trojan War. The work survives only because the Church Father **Eusebius** quoted it
+in his *Praeparatio Evangelica* (1.9–10) — to argue that pagan religion was just
+deified humans.
+
+That apologetic framing matches Philo's method: his is a **euhemeristic** theogony,
+in which gods are rationalized as ancient kings and inventors. Read through the
+standard *interpretatio*, his pantheon lines up with both the Ugaritic and the Greek:
+
+| Philo / Phoenician | Ugaritic | Greek | Role |
+|--------------------|----------|-------|------|
+| Elos / **Kronos** | **El** (*ʾil*) | Kronos | aged high god |
+| **Dagon** | **Dagan** | — | grain; father of Baal |
+| **Hadad / Demarous** | **Baal** (*Haddu*) | Zeus | active storm-god |
+| **Astarte** | **ʿAṯtart** | Aphrodite | great goddess |
+
+The decisive link to Ugarit: Philo reports (*PE* 1.10.31) a scene of **Hadad and
+Astarte reigning with Kronos' (El's) assent** — and *exactly* that scene turns up
+in a tablet from Ras Shamra, **RS 24.252** (*Ugaritica V*). So there is a traceable
+chain: **Bronze-Age Ugarit → Phoenician myth → Philo (Roman era) → Eusebius
+(Christian apologetics)**.
+
+> **A scholarly caution worth teaching.** Whether Philo really had an ancient
+> written "Sanchuniathon," or constructed him, is disputed. The standard critical
+> edition (Attridge & Oden 1981) is *more sceptical* than many — yet still judges
+> the work "a valuable witness to Canaanite mythology." A good live example of
+> source-criticism: a genuinely old tradition, transmitted through layers of later
+> agendas.
+
+### Greek — the storm-god and the dragon
+
+Greek myth shares Ugarit's signature plot, the **Chaoskampf**: a young storm/sky
+god defeats a monstrous embodiment of the sea or chaos. Baal defeats **Yammu** (Sea)
+and the dragon **Lôtan**; **Zeus defeats Typhon**. The parallel is not just
+thematic — it is *geographic*: in **Apollodorus** (*Library* 1.6.3) Zeus pursues
+Typhon "as far as **Mount Casius, which overhangs Syria**" (trans. Frazer) — and that
+mountain is none other than Baal's holy **Ṣapānu**. This shared mountain is the single most
+vivid connection in the course; it gets its own treatment in
+[`05-formulas.md`](05-formulas.md).
+
+| Tradition | Storm/sky god | Chaos foe | Battleground |
+|-----------|---------------|-----------|--------------|
+| Ugarit | **Baal** | Yammu (Sea) / Lôtan | Mt **Ṣapānu** |
+| Greece | **Zeus** | **Typhon** | Mt **Kásion** |
+| Hatti | Storm-god (Tarḫunna / Teshub) | **Illuyanka** | Mt **Ḫazzi** |
+| Babylon | Marduk | Tiamat (Sea) | — |
+| Israel | YHWH | **Leviathan** / Rahab | "Zaphon" |
+
+### Hittite / Hurrian — Ugarit's overlord
+
+In its golden age Ugarit was a **vassal of the Hittite empire**, and Hurro-Hittite
+literature shares the same mythic grammar:
+
+- The **Kumarbi cycle** ("Kingship in Heaven") tells a **succession myth** — sky-
+  father **Anu → Kumarbi → the storm-god Teshub** — that closely mirrors Hesiod's
+  *Theogony* (**Ouranos → Kronos → Zeus**). Ugarit and Phoenicia lie on the route by
+  which such Near Eastern material reached Greek poetry.
+- In the **Song of Ullikummi**, the Storm-god climbs **Mount Ḫazzi** — the same
+  Ṣapānu / Kásion — to confront a stone giant rising from the sea.
+- The **Storm-god vs the dragon Illuyanka** is the Hittite Chaoskampf.
+
+### Egypt — prestige and the "made-in-Canaan" caveat
+
+Egyptian influence is everywhere at Ugarit — royal gift-statuary, stelae, and
+imported luxuries — but a useful caution for students of material culture is that
+much of the "Egyptian" artwork found across the Levant (scarabs, faience,
+Egyptianizing ivories) was in fact **produced in Canaanite / Levantine workshops**,
+not imported from Egypt. "Egyptian-looking" at Ugarit often means *local craft in a
+prestigious international style*, not direct import.
+
+> **Central idea:** same gods, same story, even the same mountain. Ugarit lets a
+> newcomer *see* the shared substrate beneath Canaanite, biblical, Phoenician,
+> Anatolian, Mesopotamian, and Greek myth — and the in-repo datasets let them test
+> it for themselves.
+
 ## Why Ugarit is ideal for Digital Humanities
 
 > **Central idea:** the corpus is comparatively **compact** yet **rich** in genres
@@ -134,12 +252,25 @@ architecture gives those texts a spatial counterpart.
   `images/The-Acropolis-area-Ugarit-Produced-by-the-author-using-AutoCAD-software-and-based-on.png`).
 - Temple of Baal architectural reading
   (`images/Archeological-reading-of-the-Temple-of-Baal-A-Temple-of-Baal-Proposed-sections-by.png`).
+- Greek reflex of the storm-god myth: a Chalcidian black-figure hydria of **Zeus
+  battling Typhon** (c. 540 BCE, Munich, Staatliche Antikensammlungen 596; ΖΕΥΣ
+  inscribed) — pairs with the Ṣapānu = Kásion point in `05-formulas.md`.
+  *(Licence: confirm reuse terms before adding the file — see `images/README.md`.)*
 - Timeline strip: foundation → archives → 1185 BCE collapse.
 
 ## Further reading
 - Wilfred G. E. Watson and Nicolas Wyatt, eds., *Handbook of Ugaritic Studies*,
   Handbook of Oriental Studies, Section 1: The Near and Middle East 39
   (Leiden: Brill). <https://brill.com/display/title/6633>
+- Harold W. Attridge and Robert A. Oden, Jr., *Philo of Byblos: The Phoenician
+  History*, CBQ Monograph Series 9 (Washington, DC: Catholic Biblical Association,
+  1981) — the comparative Phoenician source.
+- Frank Moore Cross, *Canaanite Myth and Hebrew Epic* (Cambridge, MA: Harvard
+  University Press, 1973) — Ugarit ↔ the Bible.
+- M. L. West, *The East Face of Helicon: West Asiatic Elements in Greek Poetry and
+  Myth* (Oxford: Clarendon, 1997) — Near Eastern roots of Greek myth.
+- Harry A. Hoffner, Jr., *Hittite Myths*, 2nd ed., Writings from the Ancient World 2
+  (Atlanta: Scholars Press, 1998) — the Kumarbi cycle and Illuyanka.
 
 ## TODO
 - [ ] Expand each bullet into prose.
