@@ -4,6 +4,9 @@
 
 > **Status:** outline stub.
 
+> **New term?** *Corpus, Text-Fabric, "graph of objects", JSONL* and other
+> computational terms are unpacked in plain language in [glossary.md](glossary.md).
+
 ## Excavations and archives
 - Excavations: **1928-1939**, resumed **1950-2008**. The Ras Shamra mound was
   identified after remains were exposed near Minet el-Beida; French excavations

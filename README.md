@@ -12,6 +12,30 @@ cells in order and read the comments.
 
 ---
 
+## Run it now (no install) ☁️
+
+Click a **Colab** badge to open a notebook in your browser — the first cell clones
+this repo and downloads the corpus automatically. Nothing to install.
+
+| Hour | Notebook | Open |
+|------|----------|------|
+| 1 | Corpora and data | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/1a_corpora_and_data.ipynb) |
+| 1 | Alphabet hypothesis | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/1b_alphabet_hypothesis.ipynb) |
+| 2 | Keywords & TF-IDF | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/2a_tfidf_keywords.ipynb) |
+| 2 | **The genre map** ⭐ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/2b_similarity_clustering.ipynb) |
+| 3 | Formulas (n-grams) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/3a_ngrams_formulas.ipynb) |
+| 3 | Letter networks | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/3b_letter_networks.ipynb) |
+| 3 | Divination trees | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/3c_divination_trees.ipynb) |
+
+Prefer the full repo in-browser? [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/alexsosn/ugarit-dh-workshop/main)
+launches everything on Binder. Each notebook also carries its own Colab + Binder
+badges at the top.
+
+> **Presenters:** the badges point at `github.com/alexsosn/ugarit-dh-workshop`,
+> `main` branch. They go live once the repo is pushed there.
+
+---
+
 ## Workshop structure
 
 | Hour | Theme | Readings | Notebooks |
@@ -52,7 +76,7 @@ cells in order and read the comments.
 │   ├── loader.py          ← CUC JSONL loader backed by HuggingFace cache
 │   ├── sample/            ← deprecated placeholder sample data
 │   └── README.md          ← data sources and citation map
-├── docs/                  ← readings (Markdown); see docs/00-resources.md for the resource catalogue
+├── docs/                  ← readings (Markdown); 00-resources.md = resource catalogue, glossary.md = jargon unpacked
 ├── notebooks/             ← Jupyter notebooks, one per exercise
 ├── images/                ← illustrations (maps, tablet photos, diagrams)
 └── slides/                ← optional presentation material

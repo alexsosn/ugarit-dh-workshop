@@ -4,6 +4,9 @@
 
 > **Status:** outline stub.
 
+> **New term?** *n-gram, bigram, trigram, SQL console* and other computational
+> terms are unpacked in plain language in [glossary.md](glossary.md).
+
 ## Formulas everywhere
 - **Mythological poetry** — repeated poetic formulas, parallelism, fixed epithets.
 - **Letters** — opening address and politeness formulas (e.g. *thm X / l Y rgm*,

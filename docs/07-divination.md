@@ -4,6 +4,9 @@
 
 > **Status:** outline stub.
 
+> **New term?** *decision tree, JSON, LLM* and other computational terms are
+> unpacked in plain language in [glossary.md](glossary.md).
+
 ## Divination as conditional structure
 Divination texts typically follow an **"if … then …"** pattern:
 

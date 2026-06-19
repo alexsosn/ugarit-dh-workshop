@@ -4,6 +4,9 @@
 
 > **Status:** outline stub.
 
+> **New term?** *TF-IDF, keyword, vector, clustering* and other computational
+> terms are unpacked in plain language in [glossary.md](glossary.md).
+
 ## The main genres
 - **Mythological texts** — e.g. the Baal Cycle, Kirta, Aqhat (KTU 1.x).
 - **Ritual texts** — sacrifices, calendars, liturgies (KTU 1.4x).

@@ -4,6 +4,9 @@
 
 > **Status:** outline stub.
 
+> **New term?** *graph, node, edge, centrality* and other computational terms are
+> unpacked in plain language in [glossary.md](glossary.md).
+
 ## Letters beyond their content
 Ugaritic letters record administrative, diplomatic, and personal relationships.
 Beyond reading individual letters, we can study the **network** of correspondents,
@@ -12,7 +15,9 @@ places, and institutions they form.
 ## From corpus to graph
 - **Nodes:** senders, recipients, mentioned persons, places, institutions.
 - **Edges:** "wrote to", "mentions", administrative links.
-- **Analysis:** central vs peripheral nodes (degree/betweenness), components.
+- **Analysis:** which nodes are central vs peripheral — by **degree** (how many
+  connections a node has) or **betweenness** (how often it bridges others) — and
+  **components** (sub-networks that don't connect to the rest).
 
 > **Caveat:** fragmentary and uneven preservation biases the graph — absence of an
 > edge is not evidence of absence of a relationship.

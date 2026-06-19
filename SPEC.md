@@ -64,8 +64,10 @@ moment participants should remember.
 ### Hour-3 LLM/agents content **[settled — presenter demos]**
 1. **UgaritGPT live** — presenter drives the custom GPT (e.g. structure-extraction
    from an omen, corpus questions).
-2. **Agent + corpus (MCP)** — an agent using ContextFabric / Sefaria MCP, or a
-   coding agent writing a DH snippet live.
+2. **Agent + corpus (MCP)** — one agent querying **CUC + BHSA via ContextFabric
+   MCP** (local) and **Sefaria via its hosted MCP**, bridging Ugaritic ↔ Hebrew ↔
+   tradition live. Runbook: `docs/hour3-mcp-demo.md`. One-command setup package:
+   `~/projects/mcp-demo/` (`./setup.sh` → self-verifies all three; Python 3.13).
 3. **PDF → structured UDB** — ChatGPT-based transformation of PDF sources into a
    structured data format to build a UDB-style corpus (the real UgaritLab pipeline).
 4. **LLM morphological parsing of CUC** — using an LLM to add the POS/lemma layer
@@ -152,9 +154,22 @@ All design questions resolved across rounds 1–5. Remaining items are **content
 author will supply**, not blockers to building:
 
 - [ ] Group-chat invite link, public contact handle/email, and the self-study
-      Ugaritic resource list → for `docs/09-get-involved.md`.
+      Ugaritic resource list → for `docs/09-get-involved.md` (not yet written).
 - [ ] Spoken language of delivery (materials stay English regardless).
-- [ ] Author to confirm the exact agent prompt wording for the H3 build (I'll draft).
+- [x] H3 build prompts drafted → **`docs/hour3-agent-runbook.md`** (presenter script,
+      copy-paste prompts, fallback plan). Author to rehearse + record once, and
+      confirm the live free-tier agent on the day.
+
+## 7a. Implementation status
+
+- [x] Colab/Binder bootstrap + badges in all 7 notebooks; README launch table.
+- [x] Headline 2b rebuilt as interactive UMAP (Plotly hover) + PCA fallback.
+- [x] "Your turn" cells in H1–H2 notebooks.
+- [x] Hour-3 agent runbook (`docs/hour3-agent-runbook.md`).
+- [x] `docs/09-get-involved.md` (placeholders for chat link, contact, self-study list).
+- [x] Slides — first drafts of all 3 hours (`slides/hour1–3.md`, Marp), to co-refine.
+- [ ] Optional: de-risk the live HF data load (single-archive fetch / pre-seed cache).
+- [ ] Slides — refine wording/images/pacing together; render to PDF/PPTX.
 
 ---
 

@@ -7,6 +7,9 @@ manual-access items are flagged so nothing surprises you live.
 > **Legend:** ✅ verified · 🔑 needs login / manual access · ⚖️ check license before
 > redistributing · ▶️ ready to wire into a notebook.
 
+> **New term?** *Parquet, DuckDB, MCP, UMAP, FastText, embedding* and other
+> computational terms are unpacked in plain language in [glossary.md](glossary.md).
+
 ---
 
 ## 1. Live corpus data — the backbone ▶️
@@ -21,7 +24,7 @@ CUC JSONL files.
 | **`AlexWalhai/cuc`** (HuggingFace) ✅▶️ | 278 tablets, line-level JSONL: Latin + cuneiform + refs. | Primary data source used by `data/loader.py`. |
 | **`DT-UCPH/cuc`** (GitHub / Text-Fabric) ✅ | Source CUC Text-Fabric dataset, 278 KTU tablets, CACCHT project, CC BY-NC 4.0. | Full graph features: tablet, column, line, side, `g_cons`, trailer, language, sign, `emen`, `cert`, `cont`, `alt`. |
 | **UDB — Ugaritic Data Bank** 🔑⚖️ | Spanish-team electronic corpus, mostly using CAT/KTU numbers; see Cunchillos, Vita, and Zamora 2003. | Licensed package in Accordance; UDB PDFs and concordance files are listed on Juan-Pablo Vita's [Academia page](https://csic.academia.edu/JuanPabloVita). |
-| **ContextFabric** + `cfabric-mcp` | Graph engine + MCP server. | Hour 3 closing: LLM/agent access to the corpus. |
+| **ContextFabric** + `cfabric-mcp` | Graph engine + MCP server. Tested locally with Python 3.13 in `~/projects/mcp-demo/`. | Hour 3 closing: LLM/agent access to CUC + BHSA. |
 
 > ⚖️ **Licence correction:** the CUC Text-Fabric data is **CC BY-NC 4.0**
 > (`@licence` in the `.tf` headers, and the `cuc` repo README). The HuggingFace
@@ -106,7 +109,7 @@ These two are the backbone for the **"one tablet → nine representations"** dia
 |----------|-----|
 | **UgaritGPT** (custom GPT) | Hour 3 LLM demo — and a live example of the "where LLMs mislead" caution (`07`/`08`). |
 | **Regex: strong roots** `r"[^ʔʕyhwḥḫ]-[^ʔʕyhwḥḫ]-[^ʔʕyhwḥḫ]"` | Hour 2/3: finding tri-consonantal roots without weak radicals — a neat morphology mini-demo. |
-| **ContextFabric MCP / Sefaria MCP** | Reserve topics in `08-modern-toolkit.md`. |
+| **ContextFabric MCP / Sefaria Texts MCP** | Verified Hour 3 demo: local CUC+BHSA via `cfabric-mcp`; hosted Sefaria at `https://mcp.sefaria.org/sse`. |
 
 ---
 

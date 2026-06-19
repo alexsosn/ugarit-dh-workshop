@@ -10,8 +10,8 @@ env/
 .ipynb_checkpoints/
 */.ipynb_checkpoints/
 
-# Text-Fabric downloads (the bundled data/cuc/ JSONL IS committed; this is the
-# separate Text-Fabric cache, which is not)
+# Downloaded corpus/cache files. CUC JSONL is fetched by data/loader.py into
+# data/_cache/ and should not be committed.
 text-fabric-data/
 ~/text-fabric-data/
 data/_cache/

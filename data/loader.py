@@ -3,9 +3,10 @@ Data loader for the Ugarit DH workshop — backed by the REAL corpus.
 ===================================================================
 
 The notebooks use the **Copenhagen Ugaritic Corpus (CUC)** through line-level
-JSONL files hosted on HuggingFace (``AlexWalhai/cuc``). Every notebook calls
-``load_texts()`` and gets a uniform list of tablets back. The first run downloads
-the JSONL files into a local cache; later runs reuse that cache.
+JSONL files. The workshop repo normally bundles these files under ``data/cuc/``;
+if they are absent, the loader can fetch the same JSONL files from HuggingFace
+(``AlexWalhai/cuc``) into a local cache. Every notebook calls ``load_texts()``
+and gets a uniform list of tablets back.
 
   Source : CUC, CACCHT project (DT-UCPH/cuc), Text-Fabric export → JSONL
            at https://huggingface.co/datasets/AlexWalhai/cuc.
@@ -51,8 +52,10 @@ from collections import Counter
 from pathlib import Path
 
 _HERE = Path(__file__).resolve().parent
+_BUNDLED_CUC_DIR = _HERE / "cuc"
 _ALPHABET_PATH = _HERE / "alphabet.json"
 _OMEN_PATH = _HERE / "omens" / "sheep_birth_omens.json"
+_OMEN_TEXT_PATH = _HERE / "omens" / "ugaritic_birth_omens.txt"
 _HF_DATASET = "AlexWalhai/cuc"
 _HF_API_URL = f"https://huggingface.co/api/datasets/{_HF_DATASET}"
 _HF_RAW_BASE = f"https://huggingface.co/datasets/{_HF_DATASET}/resolve/main"
@@ -60,7 +63,7 @@ _CACHE_MANIFEST = ".cuc-jsonl-manifest.json"
 _CACHE_DIR = Path(
     os.environ.get(
         "UGARIT_CUC_CACHE",
-        Path.home() / ".cache" / "ugarit-dh-workshop" / "cuc-jsonl",
+        _HERE / "_cache" / "cuc-jsonl",
     )
 )
 
@@ -155,7 +158,11 @@ def _download_jsonl(filename: str, destination: Path):
 
 
 def _jsonl_paths():
-    """Return local cached paths for all remote CUC JSONL files."""
+    """Return local paths for CUC JSONL files, preferring bundled data."""
+    bundled = sorted(_BUNDLED_CUC_DIR.glob("*.jsonl"))
+    if bundled:
+        return bundled
+
     _CACHE_DIR.mkdir(parents=True, exist_ok=True)
     manifest_path = _CACHE_DIR / _CACHE_MANIFEST
 
@@ -227,8 +234,9 @@ def load_texts(genres=None, min_tokens=1, verbose=True):
 
     if verbose:
         n_tok = sum(len(t["tokens"]) for t in texts)
+        source = "bundled data/cuc" if _BUNDLED_CUC_DIR.exists() else f"{_HF_DATASET} JSONL cache"
         print(f"[loader] Loaded {len(texts)} CUC tablets, {n_tok} word tokens "
-              f"(source: {_HF_DATASET} JSONL cache, licence: CC BY-NC 4.0).")
+              f"(source: {source}, licence: CC BY-NC 4.0).")
     return texts
 
 
@@ -306,6 +314,11 @@ def load_omen_tree():
     """Return the sheep-birth omen tree as a nested dict (KTU 1.103 material)."""
     with open(_OMEN_PATH, encoding="utf-8") as f:
         return json.load(f)
+
+
+def load_omen_text():
+    """Return the teaching excerpt of the Ugaritic birth-omen text."""
+    return _OMEN_TEXT_PATH.read_text(encoding="utf-8")
 
 
 # ---------------------------------------------------------------------------
