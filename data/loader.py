@@ -18,6 +18,7 @@ Each tablet is returned as a dictionary with the same keys:
     {
         "ktu":      "1.3",                 # KTU text number
         "title":    "KTU 1.3",             # label
+        "name":     "Baal Myth Third Tablet",   # descriptive title (catalogue) or KTU fallback
         "genre":    "myth",                # see GENRE notes below
         "language": "ugaritic",
         "lines":    ["bʿl . sid . zbl . bʿl", ...],   # Latin transliteration
@@ -54,11 +55,14 @@ from pathlib import Path
 _HERE = Path(__file__).resolve().parent
 _BUNDLED_CUC_DIR = _HERE / "cuc"
 _ALPHABET_PATH = _HERE / "alphabet.json"
+_CATALOG_PATH = _HERE / "ugaritic_texts_catalog.tsv"
 _OMEN_PATH = _HERE / "omens" / "sheep_birth_omens.json"
 _OMEN_TEXT_PATH = _HERE / "omens" / "ugaritic_birth_omens.txt"
 _BABYLONIAN_IZBU_PATH = _HERE / "omens" / "babylonian_izbu_omens.json"
 _BABYLONIAN_FOETUS_PATH = _HERE / "omens" / "babylonian_foetus_omens.json"
 _BABYLONIAN_CELESTIAL_PATH = _HERE / "omens" / "babylonian_celestial_omens.json"
+_UGARITIC_LUNAR_PATH = _HERE / "omens" / "ugaritic_lunar_omens.json"
+_UGARITIC_DREAM_PATH = _HERE / "omens" / "ugaritic_dream_omens.json"
 _HF_DATASET = "AlexWalhai/cuc"
 _HF_API_URL = f"https://huggingface.co/api/datasets/{_HF_DATASET}"
 _HF_RAW_BASE = f"https://huggingface.co/datasets/{_HF_DATASET}/resolve/main"
@@ -74,6 +78,7 @@ _CACHE_DIR = Path(
 _STRIP_CHARS = "[]()<>!?*/\\"
 _DIVIDER = "."          # Ugaritic word divider in the Latin transliteration
 _BROKEN = re.compile(r"^x+$", re.IGNORECASE)   # x, xx, xxxxx … = broken signs
+_KTU_RE = re.compile(r"\bKTU (\d+\.\d+)")       # first KTU number in a catalogue note
 
 
 # ---------------------------------------------------------------------------
@@ -195,6 +200,34 @@ def _jsonl_paths():
     return [_CACHE_DIR / name for name in names]
 
 
+_CATALOG_TITLES = None
+
+
+def load_catalog_titles():
+    """Return ``{ktu: descriptive title}`` parsed from the texts-catalogue TSV.
+
+    The KTU number is embedded in the catalogue's publication-number note
+    (e.g. ``"KTU 1.1; CTA 1; …"``); the human-readable name is in
+    ``text_descriptive_title``. Result is cached after the first read; tablets
+    with no catalogue entry simply fall back to their KTU number in ``load_texts``.
+    """
+    global _CATALOG_TITLES
+    if _CATALOG_TITLES is not None:
+        return _CATALOG_TITLES
+    import csv
+    titles = {}
+    if _CATALOG_PATH.exists():
+        with open(_CATALOG_PATH, encoding="utf-8", newline="") as f:
+            for row in csv.DictReader(f, delimiter="\t"):
+                title = (row.get("text_descriptive_title") or "").strip()
+                if not title:
+                    continue
+                for ktu in _KTU_RE.findall(row.get("text_or_publication_number_note", "")):
+                    titles.setdefault(ktu, title)
+    _CATALOG_TITLES = titles
+    return titles
+
+
 def load_texts(genres=None, min_tokens=1, verbose=True):
     """Load the CUC corpus as a list of tablet dictionaries.
 
@@ -203,6 +236,7 @@ def load_texts(genres=None, min_tokens=1, verbose=True):
     verbose:    print a one-line summary.
     """
     texts = []
+    titles = load_catalog_titles()
     for path in _jsonl_paths():
         ktu = path.stem.replace("KTU ", "").strip()
         lines, ugaritic, refs, tokens = [], [], [], []
@@ -222,6 +256,7 @@ def load_texts(genres=None, min_tokens=1, verbose=True):
         texts.append({
             "ktu": ktu,
             "title": f"KTU {ktu}",
+            "name": titles.get(ktu, f"KTU {ktu}"),
             "genre": _genre_for(ktu),
             "language": "ugaritic",
             "lines": lines,
@@ -352,10 +387,31 @@ def load_babylonian_celestial_tree():
     """Return the Babylonian lunar-eclipse (celestial) omens as a nested dict.
 
     Enūma Anu Enlil tradition (cf. George 2013, nos. 13-14); parallels the
-    'celestial' branch of the Ugaritic omen tablet. Sourced from the companion
-    ``omens`` project.
+    Ugaritic lunar omens (``load_ugaritic_lunar_tree``). Sourced from the
+    companion ``omens`` project.
     """
     with open(_BABYLONIAN_CELESTIAL_PATH, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_ugaritic_lunar_tree():
+    """Return the Ugaritic lunar omens as a nested dict.
+
+    Pardee, *Ritual and Cult at Ugarit* (2002), text 44 = RIH 78/14
+    (KTU 1.163) — a *different* tablet from the animal birth-omens in
+    ``load_omen_tree``.
+    """
+    with open(_UGARITIC_LUNAR_PATH, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_ugaritic_dream_tree():
+    """Return the Ugaritic dream omens (oneiromancy) as a nested dict.
+
+    Pardee, *Ritual and Cult at Ugarit* (2002), text 45 = RS 18.041 —
+    fragmentary; the meaning of items/animals seen in a dream.
+    """
+    with open(_UGARITIC_DREAM_PATH, encoding="utf-8") as f:
         return json.load(f)
 
 

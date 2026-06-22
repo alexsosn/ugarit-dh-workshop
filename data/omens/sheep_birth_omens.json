@@ -1,6 +1,5 @@
 {
- "_source": "Translations from Dennis Pardee, Ritual and Cult at Ugarit (WAW 10, 2002), ch. VI: 'sheep birth' = Text 42, RS 24.247+ (KTU 1.103+1.145), Malformed Animal Fetuses; 'celestial' = Text 44, RIH 78/14 (KTU 1.163), Lunar Omens.",
- "_note": "These are TWO different tablets, bundled for convenience; notebook 3c draws them as separate trees.",
+ "_source": "Dennis Pardee, Ritual and Cult at Ugarit (WAW 10, 2002), Text 42 = RS 24.247+ (KTU 1.103+1.145), Malformed Animal Fetuses. English translation: Pardee 2002.",
  "omen": {
   "sheep birth": {
    "missing body part": {
@@ -52,22 +51,6 @@
     "B[--] and HR in temples": "the king will make peace with his enemy",
     "ʿ[--]": "the gods will destroy that land",
     "HR and [-]R": "the king will destroy his enemy"
-   }
-  },
-  "celestial": {
-   "moon appearance": {
-    "new moon [...]": "there will be poverty",
-    "color": {
-     "rises red 1": "prosperity during that month",
-     "rises yellow-green": "cattle will perish",
-     "rises red 2": "[...] assembly"
-    },
-    "newness of the moon": "personnel [...] and will be put down",
-    "YM YH YRH KSLM": "the kings will keep an eye on each other",
-    "three times a moon is seen in a month": "there will be rain"
-   },
-   "star falls": {
-    "on the thirtieth day": "the king [...]"
    }
   }
  }

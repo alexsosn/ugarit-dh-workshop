@@ -74,7 +74,6 @@ badges at the top.
 ├── requirements.txt       ← Python dependencies
 ├── data/
 │   ├── loader.py          ← CUC JSONL loader backed by HuggingFace cache
-│   ├── sample/            ← deprecated placeholder sample data
 │   └── README.md          ← data sources and citation map
 ├── docs/                  ← readings (Markdown); 00-resources.md = resource catalogue, glossary.md = jargon unpacked
 ├── notebooks/             ← Jupyter notebooks, one per exercise

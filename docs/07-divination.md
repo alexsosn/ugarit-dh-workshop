@@ -49,11 +49,11 @@ Pardee highlights what makes this corpus distinctive:
   diagnostic texts. The knowledge is mantic — not science in the modern sense — *"but for the
   ancients the data were as valid and useful as those in a modern scientific handbook"* (Pardee).
 
-> **Two tablets, not one.** Our sample data bundles the **animal** birth-omens (RS 24.247+) and
-> the **lunar** omens (RIH 78/14) together for convenience, but they are *different tablets* —
-> notebook `3c` draws them as separate trees. The **human** birth-omens (RS 24.302) and **dream**
-> omens (RS 18.041) are too fragmentary to model, but they complete the picture: Ugarit, like
-> Babylon, told animal from human teratomancy and read the sky and dreams besides.
+> **Four tablets, four files.** The **animal** birth-omens (RS 24.247+), the **lunar** omens
+> (RIH 78/14), and the **dream** omens (RS 18.041) each live in their own `data/omens/` file and
+> get their own tree in notebook `3c` (§5–§7). Only the **human** birth-omens (RS 24.302) are too
+> fragmentary to model — but together they show that Ugarit, like Babylon, told animal from human
+> teratomancy and read the sky and dreams besides.
 
 ## The Mesopotamian background
 Ugarit did not invent ominology. The genre's home was Mesopotamia, **one of the largest and most

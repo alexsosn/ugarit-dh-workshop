@@ -1,0 +1,1305 @@
+{
+ "_about": "Pass 2 — LLM (Claude) refinement of annotations_pass1.json: polarity judged from the client's (king's) perspective; the dream tablet's lost interpretations marked broken; death/disease split from natural disaster and land-ruin; tags multi-label.",
+ "_tags": [
+  "king",
+  "land",
+  "enemy/war",
+  "famine/harvest",
+  "dynasty/succession",
+  "people",
+  "cattle/livestock",
+  "death/disease",
+  "disaster"
+ ],
+ "Ug. animal birth": [
+  {
+   "outcome": "the land will perish",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "disaster"
+   ]
+  },
+  {
+   "outcome": "the king will sieze the lan[d of his enemy and?] the weapon of the king will lay the land low",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "land",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "the land [...]; there will be famine in the land",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "famine/harvest"
+   ]
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "the king will [...] his enemy",
+   "polarity": "neutral",
+   "tags": [
+    "king",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "the king will [...] his enemy",
+   "polarity": "neutral",
+   "tags": [
+    "king",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "huradu troops will turn against the king",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "the land of the enemy will perish",
+   "polarity": "favorable",
+   "tags": [
+    "land",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "the king will not obtain offspring",
+   "polarity": "unfavorable",
+   "tags": [
+    "king"
+   ]
+  },
+  {
+   "outcome": "the seed-grain will be affected",
+   "polarity": "unfavorable",
+   "tags": [
+    "famine/harvest"
+   ]
+  },
+  {
+   "outcome": "[...] will destroy the cattle",
+   "polarity": "unfavorable",
+   "tags": [
+    "cattle/livestock"
+   ]
+  },
+  {
+   "outcome": "[...] will not obtain offspring",
+   "polarity": "unfavorable",
+   "tags": []
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "the enemy will devastate and consume the land",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "the king will devastate the enemy's land and consume it",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "land",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "the seed-grain of that land will be consumed",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "famine/harvest"
+   ]
+  },
+  {
+   "outcome": "the weapon of the king will indeed be raised",
+   "polarity": "favorable",
+   "tags": [
+    "king"
+   ]
+  },
+  {
+   "outcome": "many will fall in the land",
+   "polarity": "unfavorable",
+   "tags": [
+    "land"
+   ]
+  },
+  {
+   "outcome": "ATR YLD, its cattle will be destroyed",
+   "polarity": "unfavorable",
+   "tags": [
+    "cattle/livestock"
+   ]
+  },
+  {
+   "outcome": "there will be [...] in the land",
+   "polarity": "neutral",
+   "tags": [
+    "land"
+   ]
+  },
+  {
+   "outcome": "days of our lord will be shortened, cattle affected",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "cattle/livestock",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "the gods will destroy the land, something will fly away",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "disaster"
+   ]
+  },
+  {
+   "outcome": "the enemy will devour the land",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "the land will be scattered",
+   "polarity": "unfavorable",
+   "tags": [
+    "land"
+   ]
+  },
+  {
+   "outcome": "the king will be more powerful than his Huptu-troops",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "our lord will confront the huradu troops and Rašap will consume the progeny",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "enemy/war",
+    "cattle/livestock",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "the Sun/Šapšu will abase that land",
+   "polarity": "unfavorable",
+   "tags": [
+    "land"
+   ]
+  },
+  {
+   "outcome": "the king will make peace with his enemy",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "the gods will destroy that land",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "disaster"
+   ]
+  },
+  {
+   "outcome": "the king will destroy his enemy",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "enemy/war"
+   ]
+  }
+ ],
+ "Ug. lunar": [
+  {
+   "outcome": "there will be poverty",
+   "polarity": "unfavorable",
+   "tags": []
+  },
+  {
+   "outcome": "prosperity during that month",
+   "polarity": "favorable",
+   "tags": []
+  },
+  {
+   "outcome": "cattle will perish",
+   "polarity": "unfavorable",
+   "tags": [
+    "cattle/livestock",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "[...] assembly",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "personnel [...] and will be put down",
+   "polarity": "unfavorable",
+   "tags": [
+    "people"
+   ]
+  },
+  {
+   "outcome": "the kings will keep an eye on each other",
+   "polarity": "neutral",
+   "tags": [
+    "king"
+   ]
+  },
+  {
+   "outcome": "there will be rain",
+   "polarity": "favorable",
+   "tags": [
+    "famine/harvest"
+   ]
+  },
+  {
+   "outcome": "the king [...]",
+   "polarity": "broken/missing",
+   "tags": []
+  }
+ ],
+ "Ug. dream": [
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "the word (interpretation?) [...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "the word (interpretation?) [...]; that arrives where the man is [...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "son(s) of Baʼlu? [...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "speak, servant [...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "the sons of the cup-bearers [...]; the personnel [...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "[...]",
+   "polarity": "broken/missing",
+   "tags": []
+  },
+  {
+   "outcome": "barley [...]",
+   "polarity": "broken/missing",
+   "tags": []
+  }
+ ],
+ "Bab. foetus": [
+  {
+   "outcome": "symbol of Sargon, who had no equal",
+   "polarity": "favorable",
+   "tags": [
+    "king"
+   ]
+  },
+  {
+   "outcome": "enemy will hem you in and take away your territory",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "there will be an all-powerful king in the land; alternative: the dynasty of the king and his sons is at an end",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "land",
+    "dynasty/succession"
+   ]
+  },
+  {
+   "outcome": "there will be an all-powerful king in the land",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "land"
+   ]
+  },
+  {
+   "outcome": "there will be an all-powerful king in the land",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "land"
+   ]
+  },
+  {
+   "outcome": "there will be an all-powerful king",
+   "polarity": "favorable",
+   "tags": [
+    "king"
+   ]
+  },
+  {
+   "outcome": "a populous land will gather in strongholds",
+   "polarity": "favorable",
+   "tags": [
+    "land",
+    "people"
+   ]
+  },
+  {
+   "outcome": "the king’s word will carry more weight than his enemy’s",
+   "polarity": "neutral",
+   "tags": [
+    "king",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "you will behave as your enemy’s subordinate",
+   "polarity": "neutral",
+   "tags": [
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "the king will have no equal",
+   "polarity": "neutral",
+   "tags": [
+    "king"
+   ]
+  },
+  {
+   "outcome": "end of dynasty, king’s rule ends; in war, enemy will defeat army, people will mourn",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "enemy/war",
+    "dynasty/succession",
+    "people",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "there will be an all-powerful king in the land",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "land"
+   ]
+  },
+  {
+   "outcome": "the town where it was born will be defiled, the land will be devoured",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "king’s son will occupy the throne",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "dynasty/succession"
+   ]
+  },
+  {
+   "outcome": "town will experience famine and be in dire straits",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "famine/harvest"
+   ]
+  },
+  {
+   "outcome": "town will be captured, razed, and people scattered",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "people"
+   ]
+  },
+  {
+   "outcome": "famine will grip the land",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "famine/harvest"
+   ]
+  },
+  {
+   "outcome": "famine will grip the enemy’s land",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "enemy/war",
+    "famine/harvest"
+   ]
+  },
+  {
+   "outcome": "starvation among livestock",
+   "polarity": "unfavorable",
+   "tags": [
+    "famine/harvest",
+    "cattle/livestock"
+   ]
+  },
+  {
+   "outcome": "man’s flock will increase",
+   "polarity": "favorable",
+   "tags": [
+    "cattle/livestock"
+   ]
+  },
+  {
+   "outcome": "Adad will devastate",
+   "polarity": "unfavorable",
+   "tags": [
+    "disaster"
+   ]
+  },
+  {
+   "outcome": "people will experience famine, will send their possessions to market",
+   "polarity": "unfavorable",
+   "tags": [
+    "famine/harvest",
+    "people"
+   ]
+  },
+  {
+   "outcome": "another people will carry off that people’s possessions",
+   "polarity": "neutral",
+   "tags": [
+    "people"
+   ]
+  },
+  {
+   "outcome": "there will be a strong king in the land",
+   "polarity": "neutral",
+   "tags": [
+    "king",
+    "land"
+   ]
+  },
+  {
+   "outcome": "portent of Sargon",
+   "polarity": "favorable",
+   "tags": [
+    "king"
+   ]
+  },
+  {
+   "outcome": "hardship will grip the land, barley-ration will diminish",
+   "polarity": "neutral",
+   "tags": [
+    "land",
+    "famine/harvest"
+   ]
+  },
+  {
+   "outcome": "palace will become empty, Adad will devastate the irrigated land",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "dynasty/succession"
+   ]
+  },
+  {
+   "outcome": "people will perish, will mourn",
+   "polarity": "unfavorable",
+   "tags": [
+    "people",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "there will be an all-powerful king in the land",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "land"
+   ]
+  },
+  {
+   "outcome": "dynasty of Enlil; land will prosper, king of Sumer will rule",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "land",
+    "dynasty/succession"
+   ]
+  },
+  {
+   "outcome": "strong king will mobilize the land; alternative: fatal epidemic",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "land",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "land will dwell in peace",
+   "polarity": "favorable",
+   "tags": [
+    "land"
+   ]
+  },
+  {
+   "outcome": "king’s days are over, another will sit on throne",
+   "polarity": "neutral",
+   "tags": [
+    "king",
+    "dynasty/succession"
+   ]
+  },
+  {
+   "outcome": "rule will be reign of wicked man, criminals will destroy the land",
+   "polarity": "neutral",
+   "tags": [
+    "king",
+    "land"
+   ]
+  },
+  {
+   "outcome": "the man will perish",
+   "polarity": "unfavorable",
+   "tags": [
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "there will be an all-powerful king in the land",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "land"
+   ]
+  },
+  {
+   "outcome": "Adad will devastate",
+   "polarity": "unfavorable",
+   "tags": [
+    "disaster"
+   ]
+  }
+ ],
+ "Bab. izbu (human)": [
+  {
+   "outcome": "that town will be taken, its king will be captured",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "land"
+   ]
+  },
+  {
+   "outcome": "the people's minds will become deranged",
+   "polarity": "unfavorable",
+   "tags": [
+    "people"
+   ]
+  },
+  {
+   "outcome": "the head of the household will die and that household will be scattered; the people's minds will become deranged; plague will devour",
+   "polarity": "unfavorable",
+   "tags": [
+    "people",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "a woman will occupy the throne",
+   "polarity": "unfavorable",
+   "tags": [
+    "dynasty/succession",
+    "people"
+   ]
+  },
+  {
+   "outcome": "there will be an all-powerful king in the land",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "land"
+   ]
+  },
+  {
+   "outcome": "there will be an all-powerful king in the land and the land will experience misery",
+   "polarity": "neutral",
+   "tags": [
+    "king",
+    "land"
+   ]
+  },
+  {
+   "outcome": "the king will encounter no equal",
+   "polarity": "neutral",
+   "tags": [
+    "king"
+   ]
+  },
+  {
+   "outcome": "that land will be abandoned",
+   "polarity": "unfavorable",
+   "tags": [
+    "land"
+   ]
+  },
+  {
+   "outcome": "there will be an all-powerful king in the land",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "land"
+   ]
+  },
+  {
+   "outcome": "the prince will encounter no equal",
+   "polarity": "neutral",
+   "tags": [
+    "king"
+   ]
+  },
+  {
+   "outcome": "the prince will encounter no equal",
+   "polarity": "neutral",
+   "tags": [
+    "king"
+   ]
+  },
+  {
+   "outcome": "the man's household will be flogged(?)",
+   "polarity": "unfavorable",
+   "tags": []
+  },
+  {
+   "outcome": "(it is) the portent of Ur; devastation will occur in the land",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "disaster"
+   ]
+  },
+  {
+   "outcome": "the man's household [...]",
+   "polarity": "neutral",
+   "tags": []
+  },
+  {
+   "outcome": "the man's household [...]",
+   "polarity": "neutral",
+   "tags": []
+  },
+  {
+   "outcome": "that people will be scattered; the dynasty will change",
+   "polarity": "unfavorable",
+   "tags": [
+    "dynasty/succession",
+    "people"
+   ]
+  },
+  {
+   "outcome": "that land will become more populous; the man's household will expand",
+   "polarity": "favorable",
+   "tags": [
+    "land",
+    "people"
+   ]
+  },
+  {
+   "outcome": "that land will become more populous; the king will conquer his foes",
+   "polarity": "favorable",
+   "tags": [
+    "king",
+    "land",
+    "enemy/war",
+    "people"
+   ]
+  },
+  {
+   "outcome": "rise of a rebel king; the people's minds will become deranged; people will sell their infant children for silver",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "dynasty/succession",
+    "people"
+   ]
+  },
+  {
+   "outcome": "a rebel king will arise and the land will become depopulated",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "land",
+    "dynasty/succession"
+   ]
+  },
+  {
+   "outcome": "the land will experience hardship",
+   "polarity": "neutral",
+   "tags": [
+    "land"
+   ]
+  },
+  {
+   "outcome": "the kor-measure will be in short supply; the man's household will be scattered",
+   "polarity": "unfavorable",
+   "tags": [
+    "famine/harvest",
+    "people"
+   ]
+  },
+  {
+   "outcome": "the palace will requisition the man's house",
+   "polarity": "neutral",
+   "tags": [
+    "dynasty/succession"
+   ]
+  },
+  {
+   "outcome": "a mighty enemy will arise and destroy the land; the enemy will consume its finest goods",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "enemy/war"
+   ]
+  }
+ ],
+ "Bab. eclipse": [
+  {
+   "outcome": "signifies a fatal epidemic",
+   "polarity": "unfavorable",
+   "tags": [
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "signifies the decline of commerce",
+   "polarity": "neutral",
+   "tags": []
+  },
+  {
+   "outcome": "signifies the end of a dynasty (or recovery from sickness)",
+   "polarity": "neutral",
+   "tags": [
+    "dynasty/succession"
+   ]
+  },
+  {
+   "outcome": "deluge will occur everywhere",
+   "polarity": "unfavorable",
+   "tags": [
+    "disaster"
+   ]
+  },
+  {
+   "outcome": "king will die; destruction of Elam",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "land",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "downfall of Subartu and Akkad",
+   "polarity": "unfavorable",
+   "tags": [
+    "land"
+   ]
+  },
+  {
+   "outcome": "eclipse pertaining to Amurru",
+   "polarity": "neutral",
+   "tags": [
+    "land"
+   ]
+  },
+  {
+   "outcome": "eclipse pertaining to Akkad",
+   "polarity": "neutral",
+   "tags": [
+    "land"
+   ]
+  },
+  {
+   "outcome": "eclipse pertaining to Subartu",
+   "polarity": "neutral",
+   "tags": [
+    "land"
+   ]
+  },
+  {
+   "outcome": "Elam and Gutium will perish",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "eclipse pertaining to the whole world",
+   "polarity": "neutral",
+   "tags": []
+  },
+  {
+   "outcome": "cataclysmic deluge",
+   "polarity": "unfavorable",
+   "tags": [
+    "disaster"
+   ]
+  },
+  {
+   "outcome": "downfall of the king of Akkad; city and people will be safe",
+   "polarity": "neutral",
+   "tags": [
+    "king",
+    "land",
+    "people"
+   ]
+  },
+  {
+   "outcome": "famine; people will trade their infant children for silver",
+   "polarity": "unfavorable",
+   "tags": [
+    "famine/harvest",
+    "people"
+   ]
+  },
+  {
+   "outcome": "redness of moon is orange-hued; abundance for the people",
+   "polarity": "favorable",
+   "tags": [
+    "famine/harvest",
+    "people"
+   ]
+  },
+  {
+   "outcome": "king will declare war on king",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "commerce will dwindle",
+   "polarity": "unfavorable",
+   "tags": []
+  },
+  {
+   "outcome": "all-powerful king will die; land will perish",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "land",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "king and people are safe; war declared; shortfall of barley",
+   "polarity": "neutral",
+   "tags": [
+    "king",
+    "enemy/war",
+    "famine/harvest",
+    "people"
+   ]
+  },
+  {
+   "outcome": "king of Amurru will die; his people will perish",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "land",
+    "people",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "famous king will die; a prince will seize the throne; cities depopulated",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "dynasty/succession",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "king of Amurru’s servants will kill him in revolt",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "land",
+    "enemy/war",
+    "people",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "king will fall in battle; watercourse will dry up",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "inundation reduces barley; large people seek refuge among smaller ones",
+   "polarity": "neutral",
+   "tags": [
+    "famine/harvest",
+    "people"
+   ]
+  },
+  {
+   "outcome": "rains removed; starvation",
+   "polarity": "unfavorable",
+   "tags": [
+    "famine/harvest"
+   ]
+  },
+  {
+   "outcome": "evil in the land; bounty lost",
+   "polarity": "neutral",
+   "tags": [
+    "land",
+    "famine/harvest"
+   ]
+  },
+  {
+   "outcome": "famine; king of Amurru will die",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "land",
+    "famine/harvest",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "Nergal will devour; fatalities in the land",
+   "polarity": "unfavorable",
+   "tags": [
+    "death/disease",
+    "land"
+   ]
+  },
+  {
+   "outcome": "ewes will not bring lambs to term",
+   "polarity": "unfavorable",
+   "tags": [
+    "cattle/livestock"
+   ]
+  },
+  {
+   "outcome": "king’s brother will seize throne in a revolt",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "enemy/war",
+    "dynasty/succession"
+   ]
+  },
+  {
+   "outcome": "king’s son will kill father and seize the throne",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "dynasty/succession",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "king of the upper land will enter deserted land",
+   "polarity": "neutral",
+   "tags": [
+    "king",
+    "land"
+   ]
+  },
+  {
+   "outcome": "attack by Elam on my land; agriculture will thrive",
+   "polarity": "neutral",
+   "tags": [
+    "land",
+    "enemy/war",
+    "famine/harvest"
+   ]
+  },
+  {
+   "outcome": "locust swarm will arise in spring and strike crops",
+   "polarity": "unfavorable",
+   "tags": [
+    "enemy/war",
+    "famine/harvest"
+   ]
+  },
+  {
+   "outcome": "king will die; dynasty over; land will be at war",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "land",
+    "enemy/war",
+    "dynasty/succession",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "attack by Gutian army; people will perish",
+   "polarity": "unfavorable",
+   "tags": [
+    "enemy/war",
+    "people",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "enemy will demolish fortifications",
+   "polarity": "unfavorable",
+   "tags": [
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "king’s auxiliaries and troops will turn hostile to him",
+   "polarity": "neutral",
+   "tags": [
+    "king",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "fog and constant rumbles of thunder",
+   "polarity": "neutral",
+   "tags": []
+  },
+  {
+   "outcome": "civil war",
+   "polarity": "unfavorable",
+   "tags": [
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "Adad will devastate men, livestock, and wild animals for one year",
+   "polarity": "unfavorable",
+   "tags": [
+    "cattle/livestock"
+   ]
+  },
+  {
+   "outcome": "rain removed; land’s crops lost",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "famine/harvest"
+   ]
+  },
+  {
+   "outcome": "king without claim will seize throne; war",
+   "polarity": "unfavorable",
+   "tags": [
+    "king",
+    "enemy/war",
+    "dynasty/succession"
+   ]
+  },
+  {
+   "outcome": "a people that experienced deportation will return home",
+   "polarity": "favorable",
+   "tags": [
+    "people"
+   ]
+  },
+  {
+   "outcome": "king of a lost people will return home",
+   "polarity": "neutral",
+   "tags": [
+    "king",
+    "people"
+   ]
+  },
+  {
+   "outcome": "dogs will go mad and bite people",
+   "polarity": "unfavorable",
+   "tags": [
+    "people",
+    "death/disease"
+   ]
+  },
+  {
+   "outcome": "lions will rampage and cut off traffic",
+   "polarity": "unfavorable",
+   "tags": []
+  },
+  {
+   "outcome": "an undefeated land will be defeated",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "defeat of Ur",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "Gutian army will conquer the land of Akkad",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "enemy/war"
+   ]
+  },
+  {
+   "outcome": "hard times; people will trade infant children for silver",
+   "polarity": "unfavorable",
+   "tags": [
+    "people"
+   ]
+  },
+  {
+   "outcome": "destruction of Ur",
+   "polarity": "unfavorable",
+   "tags": [
+    "land"
+   ]
+  },
+  {
+   "outcome": "land of Akkad will be resettled",
+   "polarity": "neutral",
+   "tags": [
+    "land"
+   ]
+  },
+  {
+   "outcome": "an important city will be conquered",
+   "polarity": "unfavorable",
+   "tags": [
+    "land",
+    "enemy/war"
+   ]
+  }
+ ]
+}
