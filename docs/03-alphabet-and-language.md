@@ -69,6 +69,33 @@ Latin transliterations used in this course:
 *Figure: a simplified placement of Ugaritic within the Semitic language family,
 after Huehnergard, Introduction to Ugaritic (2012).*
 
+### The alphabet beyond Ugarit
+
+The cuneiform alphabet did not stay in Ugarit. Tablets and inscriptions in the
+Ugaritic-style alphabetic cuneiform have turned up across the Levant and as far
+as Cyprus and the Aegean — evidence that the script (and the scribes and traders
+who used it) travelled. Joanna Töyräänvuori (2024) maps these out-of-Ugarit
+findspots and asks whether they trace an **overland trade network** in the Late
+Bronze Age Levant.
+
+![Map of the eastern Mediterranean: Ugarit marked with a star and ten numbered findspots of cuneiform alphabetic texts, from the Aegean and Cyprus to the southern Levant.](../images/ugaritic_outside_Ugarit.png)
+
+*Figure 1: Ugarit (★) and the findspots of cuneiform alphabetic texts outside of
+Ugarit. After Töyräänvuori 2024 (credit below).*
+
+![Close-up map of the Levant and Cyprus: Ugarit starred, with nine numbered findspots of cuneiform alphabetic texts.](../images/Ugaritic_outside_Ugarit_closeup.png)
+
+*Figure 2: a close-up of the same findspots in the Levantine area. After
+Töyräänvuori 2024.*
+
+> **Image credit.** Both maps are reproduced from Joanna Töyräänvuori,
+> "Cuneiform Alphabetic Texts Outside of Ugarit: Evidence for an Overland Trade
+> Network in the LBA Levant?", *Studia Antiqua et Archaeologica* 30, no. 2
+> (2024): 243–279. DOI:
+> [10.47743/saa-2024-30-2-2](https://doi.org/10.47743/saa-2024-30-2-2); handle:
+> <http://hdl.handle.net/10138/589861>. Publisher: Editura Universității
+> Al. I. Cuza Iași.
+
 ## The hypothesis we will test (Jared Diamond)
 In popular accounts (e.g. **Jared Diamond**) the Ugaritic alphabet is sometimes
 presented as a strikingly **rational / "optimally designed"** system.

@@ -34,6 +34,16 @@ from the `docs/` Markdown):
 - `semitic_context.svg` — simplified family-tree diagram placing Ugaritic in
   Semitic context; course redraw after Huehnergard, Introduction to Ugaritic
   (2012).
+- `ugaritic_outside_Ugarit.png` — map of the eastern Mediterranean: Ugarit (★)
+  and the findspots of cuneiform alphabetic texts outside Ugarit (Fig. 1).
+  Reproduced from Joanna Töyräänvuori, "Cuneiform Alphabetic Texts Outside of
+  Ugarit: Evidence for an Overland Trade Network in the LBA Levant?", *Studia
+  Antiqua et Archaeologica* 30/2 (2024): 243–279. DOI:
+  `10.47743/saa-2024-30-2-2`; handle: `http://hdl.handle.net/10138/589861`.
+  Publisher: Editura Universității Al. I. Cuza Iași.
+- `Ugaritic_outside_Ugarit_closeup.png` — close-up of the same findspots in the
+  Levantine area (Fig. 2). Same source: Töyräänvuori 2024, DOI:
+  `10.47743/saa-2024-30-2-2`.
 
 > Record **source and license/credit** for every image (especially museum/photo
 > archives such as USC Digital Library / InscriptiFact or the Louvre).
