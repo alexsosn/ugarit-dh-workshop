@@ -20,4 +20,6 @@ Other primary data (ContextFabric, UDB, KTU editions, DUL/DULAT, tablet
 photographs, museum catalogue entries) likewise remains under the terms of its
 original provider. See data/README.md before redistributing any corpus material.
 
-[TODO: confirm final license choice with the workshop organizers.]
+The code-only UDB parser under `workshop_tools/` is covered by the Python/MIT
+option above. That code license does not license the UDB source work, a
+participant-supplied PDF, or any generated database.

@@ -79,7 +79,7 @@ these scattered representations. The minimal record we use:
 |----------|-----------|---------------|
 | **CUC — Cuneiform Ugaritic Corpus** | Work-in-progress Text-Fabric dataset, 278 KTU tablets, CACCHT project, CC BY-NC 4.0 | Original: `DT-UCPH/cuc` on GitHub; JSONL mirror used here: `AlexWalhai/cuc` on HuggingFace |
 | **ContextFabric** | Graph corpus engine on the Text-Fabric model; `cfabric-mcp` MCP server for LLM/agents | `Context-Fabric` on GitHub |
-| **UDB — Ugaritic Data Bank** | Spanish-team corpus of CAT texts, mostly with the same numbers; Latin transliteration + bibliography + commentary. Cite Cunchillos, Vita, and Zamora 2003. | Licensed Accordance package; UDB texts and concordance PDFs are listed on Juan-Pablo Vita's Academia page: <https://csic.academia.edu/JuanPabloVita> |
+| **UDB — Ugaritic Data Bank** | Corpus by Jesús-Luis Cunchillos, Juan-Pablo Vita, José-Ángel Zamora, and Raquel Cervigón; Latin transliteration + bibliography + commentary. The 2003 source notice requires citation and reserves reproduction, computerized processing, and distribution without written authorization. | The workshop distributes parser code only. Participants must obtain any source through an authorized channel, process it locally, and not share the PDF or derived database. |
 | **KTU** | *Die keilalphabetischen Texte aus Ugarit* — standard numbering | print + mapped in digital editions |
 | **DUL / DULAT** | *Dictionary of the Ugaritic Language in the Alphabetic Tradition* | print / licensed digital |
 | **Oracc (UGA)** | Open Richly Annotated Cuneiform Corpus, Ugaritic annotation | oracc.museum.upenn.edu |
@@ -88,9 +88,9 @@ these scattered representations. The minimal record we use:
 Reference schemes (KTU / CTA / UT) are cross-mapped in the major digital editions,
 so texts can be cited and linked regardless of the original scheme.
 
-> **TODO for organizers:** confirm licenses before redistributing any primary
-> data. The repo does not ship CUC JSONL files; it points to the original CUC
-> source and the HuggingFace JSONL mirror.
+The repo does not ship CUC JSONL files; it points to the original CUC source
+and the HuggingFace JSONL mirror. It also does not ship a UDB PDF or derived
+UDB database.
 
 ## Licenses
 

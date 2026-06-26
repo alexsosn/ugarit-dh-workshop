@@ -111,9 +111,11 @@ Each piece you saw today is one layer of a real research stack.
 
 **A PDF is not data. Watch us make it data.** *(see hour3-agent-runbook.md)*
 
-- A coding agent turns a public **UDB** PDF → a queryable **SQLite**.
+- A coding agent turns a participant-supplied **UDB** PDF → a local,
+  queryable **SQLite**.
 - Then we **ask it research questions** in plain language.
-- Free tool, public source: *you could do this tonight.*
+- Free tool, local workflow: *you could repeat the method on a source you are
+  authorized to process.*
 
 <!-- 10 min. Screen-share the agent (Antigravity free tier). Recording ready as fallback. -->
 

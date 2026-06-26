@@ -16,6 +16,16 @@ text-fabric-data/
 ~/text-fabric-data/
 data/_cache/
 
+# Participant-supplied restricted sources and generated local databases.
+# The PDF-to-SQLite exercise writes only here.
+local_data/
+Ugaritic_data_bank.pdf
+udb.pdf
+udb.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+
 # OS / editor
 .DS_Store
 Thumbs.db

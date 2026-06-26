@@ -132,10 +132,13 @@ The agent demo converts ***The Texts of the Ugaritic Data Bank***, produced by t
 Spanish UDB team (Cunchillos, Vita, and Zamora 2003). UDB was formerly accessible
 online and is now sold as an Accordance Bible Software package; PDFs of the UDB
 texts and concordance are listed on Juan-Pablo Vita's Academia page
-(`https://csic.academia.edu/JuanPabloVita`). **Redistribution-safe model:** each
-person who builds the tool **downloads the PDF themselves and converts it to
-SQLite themselves**; the workshop repo ships **only the instructions + the agent
-prompt**, **never** the PDF or the resulting database.
+(`https://csic.academia.edu/JuanPabloVita`). **Code-only/local model:** each
+participant obtains the PDF through a source they are authorized to access and
+converts it locally. The workshop repo ships the parser, instructions, and agent
+prompt, but **never** the PDF or resulting database. Participants are told not
+to upload, commit, or redistribute either file. This separation reduces the
+workshop repository's redistribution risk but does not itself grant source-use
+rights.
 
 ## 6a. Timeline **[settled]**
 

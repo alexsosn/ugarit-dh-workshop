@@ -23,7 +23,7 @@ CUC JSONL files.
 |----------|-----------|-----|
 | **`AlexWalhai/cuc`** (HuggingFace) ✅▶️ | 278 tablets, line-level JSONL: Latin + cuneiform + refs. | Primary data source used by `data/loader.py`. |
 | **`DT-UCPH/cuc`** (GitHub / Text-Fabric) ✅ | Source CUC Text-Fabric dataset, 278 KTU tablets, CACCHT project, CC BY-NC 4.0. | Full graph features: tablet, column, line, side, `g_cons`, trailer, language, sign, `emen`, `cert`, `cont`, `alt`. |
-| **UDB — Ugaritic Data Bank** 🔑⚖️ | Spanish-team electronic corpus, mostly using CAT/KTU numbers; see Cunchillos, Vita, and Zamora 2003. | Licensed package in Accordance; UDB PDFs and concordance files are listed on Juan-Pablo Vita's [Academia page](https://csic.academia.edu/JuanPabloVita). Also in JSON format at [HuggingFace](https://huggingface.co/datasets/AlexWalhai/UDB).|
+| **UDB — Ugaritic Data Bank** 🔑⚖️ | Spanish-team electronic corpus, mostly using CAT/KTU numbers; see Cunchillos, Vita, and Zamora 2003. | Licensed package in Accordance; UDB PDFs and concordance files are listed on Juan-Pablo Vita's [Academia page](https://csic.academia.edu/JuanPabloVita).|
 | **ContextFabric** + `cfabric-mcp` | Graph engine + MCP server. Tested locally with Python 3.13 in `~/projects/mcp-demo/`. | Hour 3 closing: LLM/agent access to CUC + BHSA. |
 
 > ⚖️ **Licence correction:** the CUC Text-Fabric data is **CC BY-NC 4.0**

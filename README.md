@@ -26,6 +26,7 @@ this repo and downloads the corpus automatically. Nothing to install.
 | 3 | Formulas (n-grams) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/3a_ngrams_formulas.ipynb) |
 | 3 | Letter networks | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/3b_letter_networks.ipynb) |
 | 3 | Divination trees | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/3c_divination_trees.ipynb) |
+| 3 | PDF → local SQLite | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/3d_udb_pdf_to_sqlite.ipynb) |
 
 Prefer the full repo in-browser? [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/alexsosn/ugarit-dh-workshop/main)
 launches everything on Binder. Each notebook also carries its own Colab + Binder
@@ -42,7 +43,7 @@ badges at the top.
 |------|-------|----------|-----------|
 | **1** | Ugarit: corpora and data | `docs/01`–`03` | `notebooks/1a_corpora_and_data`, `notebooks/1b_alphabet_hypothesis` |
 | **2** | From words to genres | `docs/04` | `notebooks/2a_tfidf_keywords`, `notebooks/2b_similarity_clustering` |
-| **3** | From texts to structures | `docs/05`–`08` | `notebooks/3a_ngrams_formulas`, `notebooks/3b_letter_networks`, `notebooks/3c_divination_trees` |
+| **3** | From texts to structures | `docs/05`–`08` | `notebooks/3a_ngrams_formulas`, `notebooks/3b_letter_networks`, `notebooks/3c_divination_trees`, optional `notebooks/3d_udb_pdf_to_sqlite` |
 
 ### Hour 1 — Ugarit: corpora and data (60 min)
 - *20 min* — Ugarit: historical context of the Late Bronze Age, excavations, tablets, publications.
@@ -77,6 +78,8 @@ badges at the top.
 │   └── README.md          ← data sources and citation map
 ├── docs/                  ← readings (Markdown); 00-resources.md = resource catalogue, glossary.md = jargon unpacked
 ├── notebooks/             ← Jupyter notebooks, one per exercise
+├── workshop_tools/        ← code-only UDB parser + local SQLite builder
+├── local_data/            ← participant-supplied files; ignored, never committed
 ├── images/                ← illustrations (maps, tablet photos, diagrams)
 └── slides/                ← optional presentation material
 ```
@@ -97,6 +100,11 @@ hosted at HuggingFace (`AlexWalhai/cuc`). The first `load_texts()` call download
 the corpus into a local cache; later calls reuse the cache. No API keys are
 needed.
 
+The optional PDF-to-SQLite exercise uses a participant-supplied UDB PDF. The
+repository does not contain or download that PDF and does not contain a derived
+UDB database. Both remain under ignored `local_data/` (or in the participant's
+temporary Colab runtime).
+
 ### Optional — full Text-Fabric features
 The HuggingFace JSONL has transliteration + cuneiform + line references. For
 sign-level features (emendation, certainty, alternative readings) or to query the
@@ -113,7 +121,12 @@ pip install text-fabric        # then, in a notebook:  use("DT-UCPH/cuc")
 - **CUC — Cuneiform Ugaritic Corpus**: Text-Fabric dataset of the Ugaritic corpus (`DT-UCPH/cuc`), CACCHT project.
 - **AlexWalhai/cuc**: HuggingFace mirror of CUC line-level JSONL files used by the workshop loader.
 - **ContextFabric**: graph-based corpus engine on the Text-Fabric data model, with an MCP server (`cfabric-mcp`) for LLM/agent tools.
-- **UDB — Ugaritic Data Bank**: Spanish-team corpus of CAT texts, mostly with the same numbers; now sold as an Accordance package, with UDB/concordance PDFs listed on Juan-Pablo Vita's Academia page.
+- **UDB — Ugaritic Data Bank**: corpus by Jesús-Luis Cunchillos, Juan-Pablo
+  Vita, José-Ángel Zamora, and Raquel Cervigón. The source notice requires
+  citation and reserves reproduction, computerized processing, and
+  distribution without written authorization. The workshop publishes parser
+  code only; participants supply and process any source locally at their own
+  responsibility.
 - **USC Digital Library / InscriptiFact**: high-resolution tablet photographs from Bruce Zuckerman and the West Semitic Research Project; formerly at `inscriptifact.com`, now surfaced through USC Digital Library.
 - **KTU**: *Die keilalphabetischen Texte aus Ugarit* — the standard text-numbering scheme used throughout.
 - **DUL / DULAT**: *A Dictionary of the Ugaritic Language in the Alphabetic Tradition*.

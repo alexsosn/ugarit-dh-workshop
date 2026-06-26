@@ -18,6 +18,9 @@ graphviz
 jupyterlab
 ipykernel
 
+# Optional Hour-3 PDF → local SQLite exercise
+pdfminer.six>=20240706
+
 # OPTIONAL — full Text-Fabric access to the original CUC graph dataset.
 # The default loader uses HuggingFace JSONL via the Python standard library.
 # text-fabric

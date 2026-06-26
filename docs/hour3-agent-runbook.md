@@ -2,8 +2,8 @@
 
 > Presenter-only. Not a participant reading. This is the script + checklist +
 > copy-paste prompts for the closing live demo of Hour 3: a coding agent turns a
-> public **UDB** PDF into a queryable **SQLite** database, then we ask it research
-> questions in plain language.
+> participant-supplied **UDB** PDF into a local, queryable **SQLite** database,
+> then we ask it research questions in plain language.
 
 ---
 
@@ -60,27 +60,35 @@ Say: *"I'm using the free one on purpose — so you can repeat this tonight."*
 
 ---
 
-## 3. The data — UDB PDF (licence guardrails)
+## 3. The data — UDB PDF (rights guardrails)
 
-Source: **The Texts of the Ugaritic Data Bank** (Academia.edu, item `1442697`):
-<https://www.academia.edu/1442697/The_Texts_of_the_Ugaritic_Data_Bank>.
+Source work: **The Texts of the Ugaritic Data Bank** by Jesús-Luis Cunchillos,
+Juan-Pablo Vita, José-Ángel Zamora, and Raquel Cervigón (Madrid, 2003). Source
+locations are listed on Juan-Pablo Vita's
+[Academia page](https://csic.academia.edu/JuanPabloVita).
 
-**Redistribution-safe model — do not skip:**
+The source copyright page requires citation and reserves reproduction,
+computerized processing, and distribution without written authorization. The
+workshop does not interpret or expand participants' legal rights.
 
-- **Each builder downloads the PDF themselves** from Academia.edu and converts it
-  **on their own machine**.
-- The workshop repo ships **only this runbook + the prompts** — **never** the PDF
-  and **never** the resulting SQLite.
-- Say this on screen: *"I'm not handing you the data — I'm handing you the recipe.
-  You fetch the source yourself; that keeps everyone on the right side of the
-  licence."*
+**Code-only/local workshop model — do not skip:**
+
+- Each participant obtains the PDF through a source they are authorized to
+  access and supplies it themselves.
+- Processing happens on their own machine or temporary Colab runtime.
+- The workshop repo ships parser code, this runbook, and prompts, but **never**
+  the PDF or resulting SQLite.
+- Participants do not upload, commit, or redistribute either file.
+- Say this on screen: *"The repository contains the method, not the source or
+  its extracted data. Check your authority to process a source and keep local
+  outputs local."*
 
 **The realistic snag (use it as a teaching moment):** the UDB PDF uses a **custom
 font encoding** — naive text extraction yields glyph soup (`<` = ʿ, `≈` = š, `™` =
 ḥ, `∆` = ḫ, `©` = ṯ, `†` = ṭ, `@` = ġ, `ß` = ṣ …). When the agent's first extraction
 looks like garbage, **don't hide it** — that's the moment to show the audience that
-AI + human notices the problem and fixes it. (This mapping is real; UgaritLab's
-`udb_pdf_parser.py` carries the same `FONT2UG` table.)
+AI + human notices the problem and fixes it. The checked-in parser under
+`workshop_tools/` carries the same `FONT2UG` table.
 
 ---
 
@@ -126,6 +134,20 @@ SELECT udb_id, ref, text FROM lines WHERE text LIKE '%bʿl%' LIMIT 20;
 SELECT udb_id, ref, COUNT(DISTINCT text) AS variants
 FROM lines GROUP BY udb_id, ref HAVING variants > 1 ORDER BY variants DESC;
 ```
+
+### Repeatable participant path
+
+The workshop repository includes a known-good parser and richer SQLite builder:
+
+```bash
+python -m workshop_tools.build_udb_sqlite --overwrite
+```
+
+It reads `local_data/Ugaritic_data_bank.pdf` and writes the ignored
+`local_data/udb.sqlite`. Notebook `3d_udb_pdf_to_sqlite.ipynb` wraps the same
+workflow for Colab and local Jupyter. The live agent build below remains useful
+as a demonstration of commissioning and verifying code; participants do not
+need to recreate the parser from scratch.
 
 ---
 
@@ -220,7 +242,8 @@ philologist doesn't disappear — they move up a level, to asking and checking."
 **T‑1 week**
 - [ ] Install the agent IDE; sign in; confirm the **free tier still works** and note
       today's request limit.
-- [ ] Download the UDB PDF from Academia.edu to your demo machine as `udb.pdf`.
+- [ ] Obtain the UDB PDF through a source you are authorized to access and keep
+      it locally as `udb.pdf`.
 - [ ] Do a **full dry run** end-to-end; fix prompts that wander.
 - [ ] **Record a screen capture** of the successful run (§8).
 - [ ] Build and keep a **prebuilt `udb.sqlite`** locally (do not commit it).
@@ -261,7 +284,7 @@ Never debug live for more than ~60 seconds — cut to fallback and keep momentum
 | Agent loops / over-engineers | Prompts force *small steps + show samples*; you can paste a known-good parser from your dry run. |
 | PDF font glyph soup confuses room | It's scripted as the teaching beat — lean in, then apply the map. |
 | Custom-GPT path needs ChatGPT Plus | Default to the free agent as the NL-query tool; GPT is "optional polish". |
-| Licence worry | Never ship PDF/SQLite; "recipe not data" line; non-commercial CC BY-NC. |
+| Rights concern | Never ship PDF/SQLite; state that code-only distribution does not grant source-use rights; keep local files ignored. |
 | Cuneiform won't render on projector | Pre-test fonts; transliteration (Latin) is the fallback display. |
 
 ---
@@ -290,7 +313,8 @@ with these so you can run them directly if you fall back to the prebuilt DB.
 - *"A PDF is a picture of data. We're turning the picture back into data."*
 - *"I never wrote the parser — I described the goal and checked the result."*
 - *"The agent got it wrong once on purpose-ish. Catching that is the actual skill."*
-- *"Everything here used a free tool and a public PDF. You can redo it tonight."*
+- *"The parser is reusable code. Supply a source you are authorized to process,
+  keep the outputs local, and verify the result."*
 - Bridge to CTA: *"If that felt doable — here's how to actually learn Ugaritic and
   help build these corpora."* → `docs/09-get-involved.md`.
 

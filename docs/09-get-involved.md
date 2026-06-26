@@ -37,8 +37,9 @@ lightest to deepest:
   checking that is exactly the kind of task where a philologist + AI pair works
   well (see notebook `3c` and `docs/08-modern-toolkit.md`).
 - **Build a small tool.** You now have the recipe from
-  `docs/hour3-agent-runbook.md`. Convert a source you care about, share the method
-  (not licensed data).
+  `docs/hour3-agent-runbook.md` and the code-only parser in `workshop_tools/`.
+  Convert a source you are authorized to process; share the method, not
+  restricted source or derived data.
 - **Extend the resource map.** Found a corpus, image archive, or translation we
   missed? Add it to `docs/00-resources.md`.
 
