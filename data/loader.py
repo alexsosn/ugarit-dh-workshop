@@ -228,6 +228,63 @@ def load_catalog_titles():
     return titles
 
 
+_PUB_ALIASES = None
+
+
+def load_publication_aliases():
+    """Return ``{normalized_siglum: ktu}`` parsed from the texts-catalogue TSV.
+
+    Each tablet's catalogue note lists every publication/excavation siglum it is
+    known by (e.g. ``"KTU 1.4; CAT 1.4; CTU 1.4; RS 3.341; RS 3.347; ..."``).
+    This maps each of those sigla — RS excavation numbers, CTU/CAT/CTA editions,
+    museum numbers — to the tablet's KTU number, so a tablet can be looked up by
+    whichever label a reader has in hand. Sigla are upper-cased and their
+    internal whitespace collapsed, so ``"rs 3.341"`` and ``"RS  3.341"`` both
+    match. Cached after the first read.
+    """
+    global _PUB_ALIASES
+    if _PUB_ALIASES is not None:
+        return _PUB_ALIASES
+    import csv
+    aliases = {}
+    if _CATALOG_PATH.exists():
+        with open(_CATALOG_PATH, encoding="utf-8", newline="") as f:
+            for row in csv.DictReader(f, delimiter="\t"):
+                note = row.get("text_or_publication_number_note", "")
+                match = _KTU_RE.search(note)
+                if not match:
+                    continue
+                ktu = match.group(1)
+                for part in note.split(";"):
+                    key = " ".join(part.split()).upper()
+                    if key:
+                        aliases.setdefault(key, ktu)
+    _PUB_ALIASES = aliases
+    return aliases
+
+
+def resolve_to_ktu(query):
+    """Best-effort: turn a tablet reference a user typed into its KTU number.
+
+    Accepts a bare KTU number (``"1.4"``), a KTU-family siglum (``"KTU 1.4"``,
+    ``"CAT 1.4"``, ``"CTU 1.4"``), or any catalogued excavation/museum number
+    (``"RS 3.341"``). Returns the KTU number string (``"1.4"``), or ``None`` if
+    nothing matches. Lookup is case- and spacing-insensitive.
+    """
+    if not query:
+        return None
+    q = " ".join(str(query).split()).upper()
+    if re.fullmatch(r"\d+\.\d+", q):          # already a bare KTU number
+        return q
+    aliases = load_publication_aliases()
+    if q in aliases:                          # a known siglum (RS 3.341, CAT 1.4, …)
+        return aliases[q]
+    ktu_family = re.fullmatch(r"(?:KTU\d?|CAT|CTU|CTA)\s+(\d+\.\d+)", q)
+    if ktu_family:                            # an edition siglum we can read directly
+        return ktu_family.group(1)
+    return None
+
+
 def load_texts(genres=None, min_tokens=1, verbose=True):
     """Load the CUC corpus as a list of tablet dictionaries.
 
