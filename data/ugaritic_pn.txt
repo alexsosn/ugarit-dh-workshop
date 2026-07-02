@@ -1,8 +1,7 @@
 # Ugaritic personal-name (PN) gazetteer.
 # Bare transliteration forms (ayin normalized to ʿ; alternatives and
 # optional elements expanded) of entries tagged PN in the CUC lexicon
-# (cuc-origin/lexicon_and_grammar). Glosses, DULAT references, and
-# etymologies are NOT included. Regenerate with workshop_tools.build_pn_gazetteer.
+# (cuc-origin/lexicon_and_grammar). Regenerate with workshop_tools.build_pn_gazetteer.
 abbl
 abbly
 abbt

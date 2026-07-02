@@ -100,25 +100,6 @@ pip install text-fabric        # then, in a notebook:  use("DT-UCPH/cuc")
 
 ---
 
-## Data sources (overview)
-
-- **CUC — Cuneiform Ugaritic Corpus**: Text-Fabric dataset of the Ugaritic corpus (`DT-UCPH/cuc`), CACCHT project.
-- **AlexWalhai/cuc**: HuggingFace port of CUC used by the workshop loader.
-- **ContextFabric**: graph-based corpus engine on the Text-Fabric data model, with an MCP server (`cfabric-mcp`) for LLM/agent tools.
-- **UDB — Ugaritic Data Bank**: corpus by Jesús-Luis Cunchillos, Juan-Pablo
-  Vita, José-Ángel Zamora, and Raquel Cervigón. The source notice requires
-  citation and reserves reproduction, computerized processing, and
-  distribution without written authorization. The workshop publishes parser
-  code only; participants supply and process any source locally at their own
-  responsibility.
-- **USC Digital Library / InscriptiFact**: high-resolution tablet photographs from Bruce Zuckerman and the West Semitic Research Project; formerly at `inscriptifact.com`, now surfaced through USC Digital Library.
-- **KTU**: *Die keilalphabetischen Texte aus Ugarit* — the standard text-numbering scheme used throughout.
-- **DULAT**: *A Dictionary of the Ugaritic Language in the Alphabetic Tradition*.
-
-Full citation map and links: `data/README.md`.
-
----
-
 ## License
 
 See `LICENSE`. Workshop text and code are intended for educational use; primary

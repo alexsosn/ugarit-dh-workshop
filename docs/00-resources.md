@@ -165,7 +165,3 @@ and omen tree extracted; ✅ licence/feature facts corrected. Remaining:
 5. **Refine genre labels.** `loader.py:FINE_GENRE` is a conservative starter; extend
    it from KTU's own classification if you want sharper Hour-2 clustering.
 
----
-
-*See `data/README.md` for the citation map of CUC / ContextFabric / UDB / KTU /
-DUL-DULAT, and `README.md` for the workshop plan.*

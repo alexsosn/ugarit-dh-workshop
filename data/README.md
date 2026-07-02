@@ -28,7 +28,7 @@ the first run downloads them into a local cache.
 | **ContextFabric** | Graph corpus engine on the Text-Fabric model; `cfabric-mcp` MCP server for LLM/agents | `Context-Fabric` on GitHub |
 | **UDB — Ugaritic Data Bank** | Corpus by Jesús-Luis Cunchillos, Juan-Pablo Vita, José-Ángel Zamora, and Raquel Cervigón; Latin transliteration + bibliography + commentary. The 2003 source notice requires citation and reserves reproduction, computerized processing, and distribution without written authorization. | The workshop distributes parser code only. Participants must obtain any source through an authorized channel, process it locally, and not share the PDF or derived database. |
 | **KTU** | *Die keilalphabetischen Texte aus Ugarit* — standard numbering | print + mapped in digital editions |
-| **DUL / DULAT** | *Dictionary of the Ugaritic Language in the Alphabetic Tradition* | print / licensed digital |
+| **DULAT** | *Dictionary of the Ugaritic Language in the Alphabetic Tradition* | print / licensed digital |
 | **Oracc (UGA)** | Open Richly Annotated Cuneiform Corpus, Ugaritic annotation | oracc.museum.upenn.edu |
 | **USC Digital Library / InscriptiFact** | High-resolution tablet images produced by Bruce Zuckerman and the West Semitic Research Project | Formerly `inscriptifact.com`; now surfaced through USC Digital Library, e.g. <https://digitallibrary.usc.edu/asset-management/2A3BF1OL6PW?&WS=SearchResults&Flat=FP> |
 

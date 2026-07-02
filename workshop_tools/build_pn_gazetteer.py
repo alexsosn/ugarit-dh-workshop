@@ -85,8 +85,7 @@ def main() -> None:
         "# Ugaritic personal-name (PN) gazetteer.\n"
         "# Bare transliteration forms (ayin normalized to ʿ; alternatives and\n"
         "# optional elements expanded) of entries tagged PN in the CUC lexicon\n"
-        "# (cuc-origin/lexicon_and_grammar). Glosses, DULAT references, and\n"
-        "# etymologies are NOT included. Regenerate with workshop_tools.build_pn_gazetteer.\n"
+        "# (cuc-origin/lexicon_and_grammar). Regenerate with workshop_tools.build_pn_gazetteer.\n"
     )
     out.write_text(header + "\n".join(forms) + "\n", encoding="utf-8")
     print(f"wrote {len(forms)} PN forms -> {out}")
