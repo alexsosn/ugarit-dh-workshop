@@ -94,9 +94,7 @@ AI + human notices the problem and fixes it. The checked-in parser under
 
 ## 4. Target artifact — the SQLite schema
 
-Keep it small and legible on screen. Grounded in UgaritLab's real UDB model
-(`udb_models.py`: a tablet has correspondences + an info block + verses; a verse has
-per-reader readings and comments).
+Keep it small and legible on screen. A tablet has correspondences + an info block + verses; a verse has per-reader readings and comments.
 
 ```sql
 -- tablets: one row per UDB tablet

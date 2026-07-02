@@ -10,7 +10,7 @@ env/
 .ipynb_checkpoints/
 */.ipynb_checkpoints/
 
-# Downloaded corpus/cache files. CUC JSONL is fetched by data/loader.py into
+# Downloaded corpus/cache files. CUC is fetched by data/loader.py into
 # data/_cache/ and should not be committed.
 text-fabric-data/
 ~/text-fabric-data/

@@ -191,8 +191,7 @@ query it directly.
 **Embedding · FastText · gensim.** An **embedding** turns a word (or text) into a
 vector of numbers that captures meaning, so "similar" words sit near each other.
 **FastText** is one method for making word embeddings; **gensim** is a Python
-library that does this. (UgaritLab uses these for semantic search — finding
-related words beyond exact matches.)
+library that does this.
 
 **Hallucination.** When an LLM states something fluent but **false** — e.g.
 filling a broken `[…]` spot in an omen with an invented reading. This is the core

@@ -1,11 +1,7 @@
 # Resources
 
 A triaged index of the collected resources, sorted by type and mapped to the
-hours / notebooks they feed. Verified items are noted; gated or
-manual-access items are flagged.
-
-> **Legend:** ✅ verified · 🔑 needs login / manual access · ⚖️ check license before
-> redistributing · ▶️ ready to wire into a notebook.
+hours / notebooks they feed.
 
 > **New term?** *Parquet, DuckDB, MCP, UMAP, FastText, embedding* and other
 > computational terms are unpacked in plain language in [glossary.md](glossary.md).
@@ -14,14 +10,9 @@ manual-access items are flagged.
 
 ## 1. Live corpus data — the backbone ▶️
 
-**DONE:** the real corpus is now accessed through `data/loader.py`, which
-downloads/caches line-level JSONL from the HuggingFace mirror `AlexWalhai/cuc`.
-The original corpus remains `DT-UCPH/cuc`; the workshop repo no longer ships the
-CUC JSONL files.
-
 | Resource | What it is | Use |
 |----------|-----------|-----|
-| **`AlexWalhai/cuc`** (HuggingFace) ✅▶️ | 278 tablets, line-level JSONL: Latin + cuneiform + refs. | Primary data source used by `data/loader.py`. |
+| **`AlexWalhai/cuc`** (HuggingFace) ✅▶️ | 278 tablets, Parquet: Latin + cuneiform + refs. | Primary data source used by `data/loader.py`. |
 | **`DT-UCPH/cuc`** (GitHub / Text-Fabric) ✅ | Source CUC Text-Fabric dataset, 278 KTU tablets, CACCHT project, CC BY-NC 4.0. | Full graph features: tablet, column, line, side, `g_cons`, trailer, language, sign, `emen`, `cert`, `cont`, `alt`. |
 | **UDB — Ugaritic Data Bank** 🔑⚖️ | Spanish-team electronic corpus, mostly using CAT/KTU numbers; see Cunchillos, Vita, and Zamora 2003. | Licensed package in Accordance; UDB PDFs and concordance files are listed on Juan-Pablo Vita's [Academia page](https://csic.academia.edu/JuanPabloVita).|
 | **ContextFabric** + `cfabric-mcp` | Graph engine + MCP server. Tested locally with Python 3.13 in `~/projects/mcp-demo/`. | Hour 3 closing: LLM/agent access to CUC + BHSA. |
@@ -41,6 +32,39 @@ CUC JSONL files.
 > **CACCHT:** CUC is developed by Christian Canu Højgaard, Martijn Naaijer,
 > Martin Ehrensvärd, Robert Rezetko, Oliver Glanz, and Willem van Peursen as
 > part of *Creating Annotated Corpora of Classical Hebrew Texts*.
+
+### What CUC contains (and does not)
+
+CUC is the **Copenhagen Ugaritic Corpus**, a work-in-progress Text-Fabric dataset
+of KTU texts from the CACCHT project (*Creating Annotated Corpora of Classical
+Hebrew Texts*). CACCHT is a collaboration of Christian Canu Højgaard, Martijn
+Naaijer, Martin Ehrensvärd, Robert Rezetko, Oliver Glanz, and Willem van Peursen.
+The underlying corpus license is **CC BY-NC 4.0**.
+
+CUC currently contains **278 tablets** from KTU 1.x-3.x. Coverage includes:
+
+```text
+KTU 1.1-1.7, 1.14-1.25, 1.27-1.29, 1.31, 1.38-1.41, 1.43,
+1.45-1.50, 1.54-1.58, 1.61-1.63, 1.65, 1.67, 1.69, 1.71-1.76,
+1.78-1.98, 1.100-1.109, 1.111-1.119, 1.121-1.122, 1.124,
+1.126-1.127, 1.129-1.130, 1.132-1.134, 1.136-1.144,
+1.146-1.147, 1.149, 1.153-1.156, 1.158-1.177, 1.179-1.180;
+KTU 2.1, 2.3-2.18, 2.20-2.27, 2.30-2.44, 2.46-2.75,
+2.77-2.80, 2.82-2.105, 2.107-2.113;
+KTU 3.1-3.35.
+```
+
+CUC annotates: **tablet, column, line, side, word (`g_cons` = consonantal form),
+trailer** (word spacing/dividers), **language**, **sign**, **emen** (emendations,
+including reconstructed, missing, excised, or redundant signs/letters), **cert**
+(certainty, corresponding to KTU italics), **cont** (line continuation), and
+**alt** (alternative reading). It does **not** (yet) carry lemma or part-of-speech
+tags — so the TF-IDF / similarity notebooks work on **word forms**, not lemmas.
+Flag this when discussing homographs.
+
+> **Genre labels are heuristic** (KTU number + a curated list of well-known
+> tablets in `loader.py:FINE_GENRE`), not a scholarly classification.
+
 
 ### Saved CUC SQL-console queries (DuckDB) — ready-made demos 🔑*(share-links)*
 
@@ -96,7 +120,6 @@ These two are the backbone for the **"one tablet → nine representations"** dia
 
 | Source | Use |
 |--------|-----|
-| **Encyclopaedia Britannica — ["Ugarit"](https://www.britannica.com/place/Ugarit)** ✅ | Quick orientation: location, excavation history, stratigraphy, Late Bronze prosperity, archives, scripts/languages, destruction, and biblical-studies relevance. Local copy used for extraction: `../sources/Ugarit_Britannica.html`. |
 | **EUPT — Kirta** (Göttingen) ✅ | Scholarly edition + translation; Hour 2 genre/myth examples. |
 | **Sapiru — Baal Cycle pt. I** ✅ | Accessible English Baal-vs-Yam; quotable in `01`/`04` slides. |
 | **Interbible / intertextual.bible (KTU)** ✅ | KTU ↔ Bible cross-links; supports the "background to biblical tradition" thread (`01`, `05`). |
@@ -113,27 +136,6 @@ These two are the backbone for the **"one tablet → nine representations"** dia
 
 ---
 
-## 6. Your existing experiments → notebook mapping (explored & verified)
-
-I read the actual code. Status: ✅ = methods/data already folded into the
-notebooks; ↪ = referenced as the "production version" to port later.
-
-| Your code | What it actually does | Feeds | Status |
-|-----------|----------------------|-------|--------|
-| `ugaritic-nb/notebooks/letter_frequencies.ipynb` | Loads `DT-UCPH/cuc` via Text-Fabric; counts signs; **has the wedge/turn complexity table** for all 30 signs. | `1b` | ✅ complexity table extracted → `data/alphabet.json`; `1b` rewritten to test frequency vs **complexity** and vs **order**. |
-| `AlexWalhai/cuc` (HuggingFace JSONL, 278 tablets) | Line-level export: Latin + cuneiform + ref. | all | ✅ consumed by `data/loader.py`; not committed to the repo. |
-| Wolfram, *Ugaritic letter frequencies* (UDB) | Same hypothesis on UDB. | `1b` | ↪ "two corpora, same question" comparison slide. |
-| `ugaritic-nb/notebooks/script_translator.ipynb` | `unvocalized_to_ugaritic` / Latin↔cuneiform maps. | `03` / images | ↪ port for an abecedary figure + transliteration helper. |
-| `ugaritic-nb/notebooks/tf_idf.ipynb` | Hand-rolled TF-IDF over tablet lines. | `2a` | ✅ superseded by the scikit-learn version in `2a`. |
-| `omens/sheep_birth_omens.json` + `igaritic_omens.txt` + `ugaritic_omen_tree.png` | Real birth-omen text + nested decision tree + rendered image. | `3c` | ✅ copied to `data/omens/`; `3c` rewritten to load and draw the real tree. |
-| `dulat/scripts/build_name_graph.py` | Co-occurrence graph of **PN/DN/TN/RN** names from DULAT, matched in UDB tablets. | `3b` | ↪ production name graph; `3b` ships a simpler address-formula parser. |
-| `dulat/scripts/build_semantic_index.py` | **gensim** corpora/models/similarities index over DULAT entries + tablets. | `2b` | ↪ semantic (not just lexical) similarity. |
-| `dulat/scripts/semantic_search.py` | **FastText** word-embedding nearest neighbours (handles OOV via sub-words). | `2b` | ↪ embeddings beyond TF-IDF. |
-| `dulat/scripts/generate_stats.py` | Precomputes **TF-IDF + UMAP** 2-D/3-D projections + dendrogram + name graph → JSON. | `2a`/`2b` | ↪ the full pipeline `2a`/`2b` gesture at. |
-
-**UgaritLab (`dulat`)** clearly already covers similarity search, clustering,
-TF-IDF, and the name graph — Hour 2 and most of `3b` can be *demos of UgaritLab*
-rather than from-scratch code.
 
 ### UDB access note
 
@@ -156,10 +158,6 @@ and omen tree extracted; ✅ licence/feature facts corrected. Remaining:
 1. **Persist the SQL queries.** Copy the DuckDB query *text* (mḫṣ forms, duplicate
    lines, hapax, n-grams-with-refs) into the relevant notebooks so the live session
    doesn't depend on HuggingFace share-link tokens.
-2. **Port the UgaritLab depth (↪ rows above).** Optional Hour-2/3 "production"
-   demos: FastText `semantic_search.py`, gensim/UMAP `generate_stats.py`, and the
-   DULAT name graph `build_name_graph.py`. These need the `dulat` env (gensim,
-   sqlite DBs) — run them there and export figures/JSON into `images/`.
 3. **Port `script_translator.py`** maps into a small `data/translit.py` helper for
    the abecedary figure and any Latin↔cuneiform conversion in slides.
 4. **Lock image licences.** Decide the 3–5 slide images now (Persée is safest);

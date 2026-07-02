@@ -2,13 +2,10 @@
 
 Workshop materials for studying ancient texts with data science and digital
 humanities methods, using the Late Bronze Age corpus of **Ugarit** as a case
-study. The path we follow: **clay tablet → corpus → statistics → text similarity
-→ data structures → research hypotheses.**
+study.
 
-All materials are in English. The repository combines short historical/philological
-readings (Markdown), illustrations, and runnable Jupyter notebooks. Notebooks are
-written for **participants with little or no coding experience**: you mostly run
-cells in order and read the comments.
+The repository combines short historical/philological readings, illustrations, and runnable Jupyter notebooks. Notebooks are
+written for **participants with little or no coding experience**.
 
 ---
 
@@ -32,18 +29,15 @@ Prefer the full repo in-browser? [![Binder](https://mybinder.org/badge_logo.svg)
 launches everything on Binder. Each notebook also carries its own Colab + Binder
 badges at the top.
 
-> **Presenters:** the badges point at `github.com/alexsosn/ugarit-dh-workshop`,
-> `main` branch. They go live once the repo is pushed there.
-
 ---
 
 ## Workshop structure
 
 | Hour | Theme | Readings | Notebooks |
 |------|-------|----------|-----------|
-| **1** | Ugarit: corpora and data | `docs/01`–`03` | `notebooks/1a_corpora_and_data`, `notebooks/1b_alphabet_hypothesis` |
-| **2** | From words to genres | `docs/04` | `notebooks/2a_tfidf_keywords`, `notebooks/2b_similarity_clustering` |
-| **3** | From texts to structures | `docs/05`–`08` | `notebooks/3a_ngrams_formulas`, `notebooks/3b_letter_networks`, `notebooks/3c_divination_trees`, optional `notebooks/3d_udb_pdf_to_sqlite` |
+| **1** | Ugarit: corpora and data | `docs/00`–`01` | `notebooks/1a_corpora_and_data`, `notebooks/1b_alphabet_hypothesis` |
+| **2** | From words to genres |  | `notebooks/2a_tfidf_keywords`, `notebooks/2b_similarity_clustering` |
+| **3** | From texts to structures | `docs/08` | `notebooks/3a_ngrams_formulas`, `notebooks/3b_letter_networks`, `notebooks/3c_divination_trees`, optional `notebooks/3d_udb_pdf_to_sqlite` |
 
 ### Hour 1 — Ugarit: corpora and data (60 min)
 - *20 min* — Ugarit: historical context of the Late Bronze Age, excavations, tablets, publications.
@@ -60,7 +54,7 @@ badges at the top.
 
 ### Hour 3 — From texts to structures (60 min)
 - *10 min* — Social networks in Ugaritic texts.
-- *10 min* — Network analysis of letters and name lists.
+- *10 min* — Network analysis of letters.
 - *10 min* — Divination as ancient algorithms.
 - *10 min* — Visualizing decision trees.
 - *20 min* — The modern philologist's toolkit and the future of DH: CUC morphological tagging, other corpora, LLMs and agents.
@@ -74,7 +68,7 @@ badges at the top.
 ├── README.md              ← you are here
 ├── requirements.txt       ← Python dependencies
 ├── data/
-│   ├── loader.py          ← CUC JSONL loader backed by HuggingFace cache
+│   ├── loader.py          ← CUC loader backed by HuggingFace cache
 │   └── README.md          ← data sources and citation map
 ├── docs/                  ← readings (Markdown); 00-resources.md = resource catalogue, glossary.md = jargon unpacked
 ├── notebooks/             ← Jupyter notebooks, one per exercise
@@ -95,20 +89,10 @@ pip install -r requirements.txt
 jupyter lab                       # or: jupyter notebook
 ```
 
-The notebooks use the **real Copenhagen Ugaritic Corpus (CUC)** via JSONL files
-hosted at HuggingFace (`AlexWalhai/cuc`). The first `load_texts()` call downloads
-the corpus into a local cache; later calls reuse the cache. No API keys are
-needed.
-
-The optional PDF-to-SQLite exercise uses a participant-supplied UDB PDF. The
-repository does not contain or download that PDF and does not contain a derived
-UDB database. Both remain under ignored `local_data/` (or in the participant's
-temporary Colab runtime).
-
 ### Optional — full Text-Fabric features
-The HuggingFace JSONL has transliteration + cuneiform + line references. For
+The HuggingFace CUC port has transliteration + cuneiform + line references. For
 sign-level features (emendation, certainty, alternative readings) or to query the
-corpus as a graph, install Text-Fabric and use the original upstream dataset:
+corpus as a graph, install (Con)Text-Fabric and use the original upstream dataset:
 
 ```bash
 pip install text-fabric        # then, in a notebook:  use("DT-UCPH/cuc")
@@ -119,7 +103,7 @@ pip install text-fabric        # then, in a notebook:  use("DT-UCPH/cuc")
 ## Data sources (overview)
 
 - **CUC — Cuneiform Ugaritic Corpus**: Text-Fabric dataset of the Ugaritic corpus (`DT-UCPH/cuc`), CACCHT project.
-- **AlexWalhai/cuc**: HuggingFace mirror of CUC line-level JSONL files used by the workshop loader.
+- **AlexWalhai/cuc**: HuggingFace port of CUC used by the workshop loader.
 - **ContextFabric**: graph-based corpus engine on the Text-Fabric data model, with an MCP server (`cfabric-mcp`) for LLM/agent tools.
 - **UDB — Ugaritic Data Bank**: corpus by Jesús-Luis Cunchillos, Juan-Pablo
   Vita, José-Ángel Zamora, and Raquel Cervigón. The source notice requires
@@ -129,7 +113,7 @@ pip install text-fabric        # then, in a notebook:  use("DT-UCPH/cuc")
   responsibility.
 - **USC Digital Library / InscriptiFact**: high-resolution tablet photographs from Bruce Zuckerman and the West Semitic Research Project; formerly at `inscriptifact.com`, now surfaced through USC Digital Library.
 - **KTU**: *Die keilalphabetischen Texte aus Ugarit* — the standard text-numbering scheme used throughout.
-- **DUL / DULAT**: *A Dictionary of the Ugaritic Language in the Alphabetic Tradition*.
+- **DULAT**: *A Dictionary of the Ugaritic Language in the Alphabetic Tradition*.
 
 Full citation map and links: `data/README.md`.
 

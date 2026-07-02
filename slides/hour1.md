@@ -105,7 +105,7 @@ A single tablet exists at once as:
 
 ## The resources we'll use
 
-- **CUC** — Copenhagen Ugaritic Corpus (278 tablets, Text-Fabric → JSONL).
+- **CUC** — Copenhagen Ugaritic Corpus (278 tablets, Text-Fabric).
 - **ContextFabric** — graph engine + MCP server for AI agents.
 - **UDB** — Ugaritic Data Bank (transliteration + commentary).
 - **KTU** — the standard numbering; **DULAT** — the dictionary.

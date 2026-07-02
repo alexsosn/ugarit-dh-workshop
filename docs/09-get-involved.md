@@ -21,7 +21,6 @@ check.** Here is how to keep going.
 - **Follow the project on GitHub** and watch for updates:
   - Workshop materials: <https://github.com/alexsosn/ugarit-dh-workshop>
   - Copenhagen Ugaritic Corpus (CUC): <https://github.com/DT-UCPH/cuc>
-  - 〔UgaritLab / DULAT repo or site, if public〕
 
 ---
 

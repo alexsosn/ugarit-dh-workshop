@@ -2,13 +2,13 @@
 Data loader for the Ugarit DH workshop — backed by the REAL corpus.
 ===================================================================
 
-The notebooks use the **Copenhagen Ugaritic Corpus (CUC)** through line-level
-JSONL files. The workshop repo normally bundles these files under ``data/cuc/``;
-if they are absent, the loader can fetch the same JSONL files from HuggingFace
+The notebooks use the **Copenhagen Ugaritic Corpus (CUC)** through Parquet
+ files. The workshop repo normally bundles these files under ``data/cuc/``;
+if they are absent, the loader can fetch the same files from HuggingFace
 (``AlexWalhai/cuc``) into a local cache. Every notebook calls ``load_texts()``
 and gets a uniform list of tablets back.
 
-  Source : CUC, CACCHT project (DT-UCPH/cuc), Text-Fabric export → JSONL
+  Source : CUC, CACCHT project (DT-UCPH/cuc), Text-Fabric export → Parquet
            at https://huggingface.co/datasets/AlexWalhai/cuc.
   Licence: Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0).
            Educational / non-commercial use only — see data/README.md.

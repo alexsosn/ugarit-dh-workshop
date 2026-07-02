@@ -151,7 +151,7 @@ it:
 - **`data/intertextual_connections.json`** — 79 verse-level Bible ↔ Ugaritic links
   harvested from [intertextual.bible](https://intertextual.bible) (e.g. Gen 2:2 and
   Gen 10:5 ↔ the **Baal Cycle**).
-- **UgaritLab's biblical cross-reference layer** (the `TCS_refs` set for KTU 1.1–1.6)
+- **Biblical cross-reference layer** (the `TCS_refs` set for KTU 1.1–1.6)
   — the classic verse list keyed to the Baal Cycle: Ps 29, Ps 48, Isa 14:13,
   Isa 27:1, Ps 74:13–14, and more.
 

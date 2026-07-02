@@ -41,9 +41,6 @@ A successful session means participants:
 
 - **In scope:** the workshop repo only — `docs/` readings, `notebooks/`, the
   CUC/HuggingFace loader in `data/`, `images/`, `slides/`.
-- **Out of scope (referenced, not built here):** UgaritLab (`dulat`), `ugaritic-nb`,
-  the `omens` project, CUC packaging. These are *shown/credited* as "where this
-  goes next", not specified or modified.
 
 ## 5. Delivery model **[settled]**
 
@@ -57,8 +54,7 @@ A successful session means participants:
 moment participants should remember.
 
 - **Build:** **interactive UMAP** (Plotly) — scatter of tablets, coloured by genre,
-  **hover a point to read that tablet's text/ref**. Goal: *more interactive than
-  UgaritLab's current version* (which serves precomputed static projections).
+  **hover a point to read that tablet's text/ref**.
 - `umap-learn` installs fine in Colab; keep a PCA fallback so the cell never fails.
 
 ### Hour-3 LLM/agents content **[settled — presenter demos]**
@@ -69,7 +65,7 @@ moment participants should remember.
    tradition live. Runbook: `docs/hour3-mcp-demo.md`. One-command setup package:
    `~/projects/mcp-demo/` (`./setup.sh` → self-verifies all three; Python 3.13).
 3. **PDF → structured UDB** — ChatGPT-based transformation of PDF sources into a
-   structured data format to build a UDB-style corpus (the real UgaritLab pipeline).
+   structured data format to build a UDB-style corpus.
 4. **LLM morphological parsing of CUC** — using an LLM to add the POS/lemma layer
    that CUC 0.1.x lacks. Ties directly to `docs/08-modern-toolkit.md`.
 
@@ -98,7 +94,7 @@ the live build + the resulting custom GPT.
 Final slide + a repo page (`docs/09-get-involved.md`) covering:
 - **Contribute to the corpus** (CUC / UDB annotation & extension).
 - **Contact the author directly** (email/handle in repo + slide).
-- **Star/follow on GitHub** (workshop repo + CUC / UgaritLab).
+- **Star/follow on GitHub** (workshop repo + CUC).
 - **Join a group chat** (link TBD).
 - **Where to learn Ugaritic:** UCU, **Helsinki University**, **Polis**
   (polisjerusalem.org/language/ugaritic/), + a curated **self-study** resource list
@@ -109,7 +105,7 @@ Final slide + a repo page (`docs/09-get-involved.md`) covering:
 Target all three, in priority order:
 1. **Google Colab** — primary. **Bootstrap: first cell `!git clone` the public
    GitHub repo, then `%cd` into it.** The first notebook call to `load_texts()`
-   downloads CUC JSONL from HuggingFace into a local cache; no API key required.
+   downloads CUC from HuggingFace into a local cache; no API key required.
 2. **Binder** — launch the whole repo in-browser from GitHub.
 3. **Local venv** — `pip install -r requirements.txt` for power users.
 
@@ -187,7 +183,7 @@ author will supply**, not blockers to building:
 | 2 | Colab bootstrap = `!git clone` public repo. Hosting = public personal account. |
 | 2 | Headline = genre map (2b); polish hardest. |
 | 2 | H3 = presenter demos: UgaritGPT, agent+MCP, PDF→UDB, LLM morph-tagging of CUC. |
-| 3 | 2b = interactive UMAP + hover, beating UgaritLab's static version. |
+| 3 | 2b = interactive UMAP + hover. |
 | 3 | No font work — Ugaritic Unicode renders fine; use Plotly where it helps. |
 | 3 | CTA = contribute / contact / GitHub / group chat + "where to learn Ugaritic". |
 | 4 | H3 spine = "watch AI build a research tool" (coding agent: UDB PDF→SQLite→custom GPT). |
