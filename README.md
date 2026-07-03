@@ -9,21 +9,21 @@ written for **participants with little or no coding experience**.
 
 ---
 
-## Run it now (no install) ☁️
+## Run it now (no install)
 
 Click a **Colab** badge to open a notebook in your browser — the first cell clones
 this repo and downloads the corpus automatically. Nothing to install.
 
 | Hour | Notebook | Open |
 |------|----------|------|
-| 1 | Corpora and data | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/1a_corpora_and_data.ipynb) |
-| 1 | Alphabet hypothesis | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/1b_alphabet_hypothesis.ipynb) |
-| 2 | Keywords & TF-IDF | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/2a_tfidf_keywords.ipynb) |
-| 2 | **The genre map** ⭐ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/2b_similarity_clustering.ipynb) |
-| 3 | Formulas (n-grams) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/3a_ngrams_formulas.ipynb) |
-| 3 | Letter networks | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/3b_letter_networks.ipynb) |
-| 3 | Divination trees | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/3c_divination_trees.ipynb) |
-| 3 | PDF → local SQLite | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/main/notebooks/3d_udb_pdf_to_sqlite.ipynb) |
+| 1 | Corpora and data | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/1a_corpora_and_data.ipynb) |
+| 1 | Alphabet hypothesis | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/1b_alphabet_hypothesis.ipynb) |
+| 2 | Keywords & TF-IDF | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/2a_tfidf_keywords.ipynb) |
+| 2 | **The genre map** ⭐ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/2b_similarity_clustering.ipynb) |
+| 3 | Formulas (n-grams) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/3a_ngrams_formulas.ipynb) |
+| 3 | Letter networks | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/3b_letter_networks.ipynb) |
+| 3 | Divination trees | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/3c_divination_trees.ipynb) |
+| 3 | PDF → local SQLite | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/3d_udb_pdf_to_sqlite.ipynb) |
 
 Prefer the full repo in-browser? [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/alexsosn/ugarit-dh-workshop/main)
 launches everything on Binder. Each notebook also carries its own Colab + Binder
@@ -68,11 +68,11 @@ badges at the top.
 ├── README.md              ← you are here
 ├── requirements.txt       ← Python dependencies
 ├── data/
-│   ├── loader.py          ← CUC loader backed by HuggingFace cache
+│   ├── loader.py          ← CUC loader backed by HuggingFace Parquet cache
 │   └── README.md          ← data sources and citation map
 ├── docs/                  ← readings (Markdown); 00-resources.md = resource catalogue, glossary.md = jargon unpacked
 ├── notebooks/             ← Jupyter notebooks, one per exercise
-├── workshop_tools/        ← code-only UDB parser + local SQLite builder
+├── workshop_tools/        ← code-only UDB parser + local SQLite/Parquet builders
 ├── local_data/            ← participant-supplied files; ignored, never committed
 ├── images/                ← illustrations (maps, tablet photos, diagrams)
 └── slides/                ← optional presentation material
@@ -90,7 +90,7 @@ jupyter lab                       # or: jupyter notebook
 ```
 
 ### Optional — full Text-Fabric features
-The HuggingFace CUC port has transliteration + cuneiform + line references. For
+The HuggingFace CUC Parquet export has transliteration + cuneiform + line references. For
 sign-level features (emendation, certainty, alternative readings) or to query the
 corpus as a graph, install (Con)Text-Fabric and use the original upstream dataset:
 

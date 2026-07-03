@@ -2,14 +2,14 @@
 Data loader for the Ugarit DH workshop — backed by the REAL corpus.
 ===================================================================
 
-The notebooks use the **Copenhagen Ugaritic Corpus (CUC)** through Parquet
- files. The workshop repo normally bundles these files under ``data/cuc/``;
-if they are absent, the loader can fetch the same files from HuggingFace
-(``AlexWalhai/cuc``) into a local cache. Every notebook calls ``load_texts()``
-and gets a uniform list of tablets back.
+The notebooks use the **Copenhagen Ugaritic Corpus (CUC)** through Parquet files.
+By default the loader downloads the public HuggingFace Parquet export
+(``AlexWalhai/CUC``) into ``data/_cache/cuc-parquet/``. If ``data/cuc/`` or
+``UGARIT_CUC_DIR`` contains Parquet files, those local files are used instead.
+Every notebook calls ``load_texts()`` and gets a uniform list of tablets back.
 
   Source : CUC, CACCHT project (DT-UCPH/cuc), Text-Fabric export → Parquet
-           at https://huggingface.co/datasets/AlexWalhai/cuc.
+           https://huggingface.co/datasets/AlexWalhai/CUC
   Licence: Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0).
            Educational / non-commercial use only — see data/README.md.
 
@@ -45,15 +45,22 @@ from __future__ import annotations
 import json
 import os
 import re
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from urllib.error import URLError
-from urllib.parse import quote
-from urllib.request import urlopen
 from collections import Counter
 from pathlib import Path
+from urllib.error import HTTPError, URLError
+from urllib.parse import quote
+from urllib.request import Request, urlopen
+
+try:
+    import pyarrow.parquet as pq
+except ImportError:
+    pq = None
 
 _HERE = Path(__file__).resolve().parent
-_BUNDLED_CUC_DIR = _HERE / "cuc"
+_BUNDLED_CUC_DIR = Path(os.environ.get("UGARIT_CUC_DIR", _HERE / "cuc")).expanduser()
+_CACHE_DIR = Path(
+    os.environ.get("UGARIT_CUC_CACHE", _HERE / "_cache" / "cuc-parquet")
+).expanduser()
 _ALPHABET_PATH = _HERE / "alphabet.json"
 _CATALOG_PATH = _HERE / "ugaritic_texts_catalog.tsv"
 _OMEN_PATH = _HERE / "omens" / "sheep_birth_omens.json"
@@ -63,22 +70,19 @@ _BABYLONIAN_FOETUS_PATH = _HERE / "omens" / "babylonian_foetus_omens.json"
 _BABYLONIAN_CELESTIAL_PATH = _HERE / "omens" / "babylonian_celestial_omens.json"
 _UGARITIC_LUNAR_PATH = _HERE / "omens" / "ugaritic_lunar_omens.json"
 _UGARITIC_DREAM_PATH = _HERE / "omens" / "ugaritic_dream_omens.json"
-_HF_DATASET = "AlexWalhai/cuc"
-_HF_API_URL = f"https://huggingface.co/api/datasets/{_HF_DATASET}"
-_HF_RAW_BASE = f"https://huggingface.co/datasets/{_HF_DATASET}/resolve/main"
-_CACHE_MANIFEST = ".cuc-jsonl-manifest.json"
-_CACHE_DIR = Path(
-    os.environ.get(
-        "UGARIT_CUC_CACHE",
-        _HERE / "_cache" / "cuc-jsonl",
-    )
+_HF_DATASET = "AlexWalhai/CUC"
+_HF_PARQUET = "data/cuc.parquet"
+_HF_RAW_URL = (
+    f"https://huggingface.co/datasets/{_HF_DATASET}/resolve/main/"
+    f"{quote(_HF_PARQUET, safe='/')}?download=true"
 )
 
 # Characters that are not part of a word form (restorations, breaks, dividers).
 _STRIP_CHARS = "[]()<>!?*/\\"
 _DIVIDER = "."          # Ugaritic word divider in the Latin transliteration
 _BROKEN = re.compile(r"^x+$", re.IGNORECASE)   # x, xx, xxxxx … = broken signs
-_KTU_RE = re.compile(r"\bKTU (\d+\.\d+)")       # first KTU number in a catalogue note
+_KTU_RE = re.compile(r"\bKTU\s+(\d+\.\d+)", re.IGNORECASE)
+_KTU_ANY_RE = re.compile(r"\b(\d+\.\d+)\b")
 
 
 # ---------------------------------------------------------------------------
@@ -133,71 +137,103 @@ def clean_tokens(latin_line: str):
 # Public API
 # ---------------------------------------------------------------------------
 
-def _remote_jsonl_filenames():
-    """Return the JSONL filenames available in the HuggingFace CUC dataset."""
+def _download_cuc_parquet(destination: Path) -> None:
+    """Download the public CUC Parquet export from HuggingFace."""
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    tmp = destination.with_suffix(destination.suffix + ".tmp")
+    request = Request(
+        _HF_RAW_URL,
+        headers={"User-Agent": "ugarit-dh-workshop/1.0"},
+    )
     try:
-        with urlopen(_HF_API_URL, timeout=30) as response:
-            meta = json.loads(response.read().decode("utf-8"))
-    except URLError as exc:
+        with urlopen(request, timeout=120) as response:
+            with open(tmp, "wb") as f:
+                while True:
+                    chunk = response.read(1024 * 1024)
+                    if not chunk:
+                        break
+                    f.write(chunk)
+        if tmp.stat().st_size == 0:
+            raise RuntimeError(f"downloaded empty CUC parquet file from {_HF_RAW_URL}")
+        tmp.replace(destination)
+    except (HTTPError, URLError, TimeoutError, OSError) as exc:
+        if tmp.exists():
+            tmp.unlink()
         raise RuntimeError(
-            "Could not fetch the CUC file list from HuggingFace. "
-            "Check your internet connection or set UGARIT_CUC_CACHE to a "
-            "directory containing the CUC JSONL files."
+            "Could not download the CUC Parquet file from HuggingFace.\n"
+            f"URL: {_HF_RAW_URL}\n"
+            f"Place a CUC parquet file in {_BUNDLED_CUC_DIR}/, or set "
+            "UGARIT_CUC_DIR to a directory containing it."
         ) from exc
 
-    names = [
-        item["rfilename"]
-        for item in meta.get("siblings", [])
-        if item.get("rfilename", "").endswith(".jsonl")
-    ]
-    if not names:
-        raise RuntimeError(f"No JSONL files found in HuggingFace dataset {_HF_DATASET}.")
-    return sorted(names)
+
+def _parquet_paths():
+    """Return CUC Parquet paths and a human-readable source label."""
+    local = sorted(_BUNDLED_CUC_DIR.glob("*.parquet"))
+    if local:
+        return local, str(_BUNDLED_CUC_DIR)
+
+    cached = _CACHE_DIR / Path(_HF_PARQUET).name
+    if not cached.exists() or cached.stat().st_size == 0:
+        _download_cuc_parquet(cached)
+    return [cached], f"{_HF_DATASET} parquet cache"
 
 
-def _download_jsonl(filename: str, destination: Path):
-    """Download one JSONL file from HuggingFace into the local cache."""
-    url = f"{_HF_RAW_BASE}/{quote(filename)}"
-    try:
-        with urlopen(url, timeout=60) as response:
-            destination.write_bytes(response.read())
-    except URLError as exc:
-        raise RuntimeError(f"Could not download CUC file {filename!r} from {url}.") from exc
+def _string(value) -> str:
+    """Coerce optional scalar Parquet values to plain strings."""
+    return "" if value is None else str(value)
 
 
-def _jsonl_paths():
-    """Return local paths for CUC JSONL files, preferring bundled data."""
-    bundled = sorted(_BUNDLED_CUC_DIR.glob("*.jsonl"))
-    if bundled:
-        return bundled
+def _as_list(value) -> list:
+    """Coerce optional scalar/list Parquet values to a Python list."""
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return value
+    if isinstance(value, tuple):
+        return list(value)
+    return [value]
 
-    _CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    manifest_path = _CACHE_DIR / _CACHE_MANIFEST
 
-    names = None
-    if manifest_path.exists():
-        with open(manifest_path, encoding="utf-8") as f:
-            names = json.load(f).get("files", [])
-        if names and all((_CACHE_DIR / name).exists() for name in names):
-            return [_CACHE_DIR / name for name in names]
+def _normalize_ktu(value) -> str:
+    """Extract a bare KTU number from values such as 'KTU 1.1' or '1.1'."""
+    text = _string(value).strip()
+    match = _KTU_RE.search(text)
+    if match:
+        return match.group(1)
+    match = _KTU_ANY_RE.search(text)
+    return match.group(1) if match else text
 
-    names = _remote_jsonl_filenames()
-    missing = [
-        name for name in names
-        if not (_CACHE_DIR / name).exists() or (_CACHE_DIR / name).stat().st_size == 0
-    ]
-    if missing:
-        with ThreadPoolExecutor(max_workers=16) as pool:
-            futures = {
-                pool.submit(_download_jsonl, name, _CACHE_DIR / name): name
-                for name in missing
-            }
-            for future in as_completed(futures):
-                future.result()
 
-    with open(manifest_path, "w", encoding="utf-8") as f:
-        json.dump({"dataset": _HF_DATASET, "files": names}, f, indent=2)
-    return [_CACHE_DIR / name for name in names]
+def _record_for(records: dict, ktu: str) -> dict:
+    return records.setdefault(ktu, {"lines": [], "ugaritic": [], "refs": []})
+
+
+def _add_line_table_rows(records: dict, rows: list[dict]) -> None:
+    """Add HuggingFace CUC line-table rows to tablet records."""
+    for row in rows:
+        ktu = _normalize_ktu(row.get("tablet"))
+        if not ktu:
+            continue
+        record = _record_for(records, ktu)
+        record["lines"].append(_string(row.get("text")))
+        record["ugaritic"].append(_string(row.get("ugaritic_text")))
+        record["refs"].append(_string(row.get("ref")))
+
+
+def _add_tablet_rows(records: dict, rows: list[dict]) -> None:
+    """Add tablet-level parquet rows to tablet records."""
+    for row in rows:
+        ktu = _normalize_ktu(row.get("ktu") or row.get("tablet"))
+        if not ktu:
+            continue
+        record = _record_for(records, ktu)
+        record["lines"].extend(_string(value) for value in _as_list(row.get("lines")))
+        record["ugaritic"].extend(
+            _string(value)
+            for value in _as_list(row.get("ugaritic") or row.get("ugaritic_text"))
+        )
+        record["refs"].extend(_string(value) for value in _as_list(row.get("refs")))
 
 
 _CATALOG_TITLES = None
@@ -292,24 +328,51 @@ def load_texts(genres=None, min_tokens=1, verbose=True):
     min_tokens: drop tablets with fewer than this many word tokens (skip scraps).
     verbose:    print a one-line summary.
     """
+    if pq is None:
+        raise RuntimeError(
+            "pyarrow is required to load CUC parquet files. "
+            "Install it with: pip install pyarrow"
+        )
+
+    paths, source = _parquet_paths()
+    records = {}
     texts = []
     titles = load_catalog_titles()
-    for path in _jsonl_paths():
-        ktu = path.stem.replace("KTU ", "").strip()
-        lines, ugaritic, refs, tokens = [], [], [], []
-        with open(path, encoding="utf-8") as f:
-            for raw in f:
-                raw = raw.strip()
-                if not raw:
-                    continue
-                rec = json.loads(raw)
-                latin = rec.get("text", "")
-                lines.append(latin)
-                ugaritic.append(rec.get("ugaritic_text", ""))
-                refs.append(rec.get("ref", ""))
-                tokens.extend(clean_tokens(latin))
+
+    for parquet_path in paths:
+        try:
+            table = pq.read_table(parquet_path)
+            rows = table.to_pylist()
+        except Exception as e:
+            raise RuntimeError(
+                f"Failed to read parquet file {parquet_path}: {e}"
+            ) from e
+
+        columns = set(table.schema.names)
+        if {"tablet", "text"}.issubset(columns):
+            _add_line_table_rows(records, rows)
+        elif (
+            {"ktu", "lines"}.issubset(columns)
+            or {"tablet", "lines"}.issubset(columns)
+        ):
+            _add_tablet_rows(records, rows)
+        else:
+            raise RuntimeError(
+                f"Unsupported CUC parquet schema in {parquet_path}. "
+                "Expected line-level columns 'tablet' and 'text', or "
+                f"tablet-level columns 'ktu' and 'lines'. Found: {sorted(columns)}"
+            )
+
+    for ktu, record in records.items():
+        lines = record["lines"]
+        tokens = []
+        for line in lines:
+            if isinstance(line, str):
+                tokens.extend(clean_tokens(line))
+
         if len(tokens) < min_tokens:
             continue
+
         texts.append({
             "ktu": ktu,
             "title": f"KTU {ktu}",
@@ -317,8 +380,8 @@ def load_texts(genres=None, min_tokens=1, verbose=True):
             "genre": _genre_for(ktu),
             "language": "ugaritic",
             "lines": lines,
-            "ugaritic": ugaritic,
-            "refs": refs,
+            "ugaritic": record["ugaritic"],
+            "refs": record["refs"],
             "tokens": tokens,
             "source": "cuc",
         })
@@ -329,7 +392,6 @@ def load_texts(genres=None, min_tokens=1, verbose=True):
 
     if verbose:
         n_tok = sum(len(t["tokens"]) for t in texts)
-        source = "bundled data/cuc" if _BUNDLED_CUC_DIR.exists() else f"{_HF_DATASET} JSONL cache"
         print(f"[loader] Loaded {len(texts)} CUC tablets, {n_tok} word tokens "
               f"(source: {source}, licence: CC BY-NC 4.0).")
     return texts

@@ -107,7 +107,7 @@ A single tablet exists at once as:
 
 - **KTU** — the standard edition and numbering. 
 - **DULAT** — the dictionary.
-- **CUC** — Copenhagen Ugaritic Corpus (278 tablets, Text-Fabric).
+- **CUC** — Copenhagen Ugaritic Corpus (279 tablets, Text-Fabric).
 - **ContextFabric** — graph engine + MCP server for AI agents.
 - **UDB** — Ugaritic Data Bank (transliteration + commentary).
 
@@ -119,7 +119,7 @@ A single tablet exists at once as:
 
 **Notebook:** `1a_corpora_and_data` · *Open in Colab from the README.*
 
-- Load 278 real tablets with one line.
+- Load 279 real tablets with one line.
 - See each line in **Latin + cuneiform**.
 - Ask the corpus questions: find a word, count tablets, browse genres.
 

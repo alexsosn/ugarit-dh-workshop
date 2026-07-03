@@ -12,18 +12,16 @@ hours / notebooks they feed.
 
 | Resource | What it is | Use |
 |----------|-----------|-----|
-| **`AlexWalhai/cuc`** (HuggingFace) ✅▶️ | 278 tablets, Parquet: Latin + cuneiform + refs. | Primary data source used by `data/loader.py`. |
-| **`DT-UCPH/cuc`** (GitHub / Text-Fabric) ✅ | Source CUC Text-Fabric dataset, 278 KTU tablets, CACCHT project, CC BY-NC 4.0. | Full graph features: tablet, column, line, side, `g_cons`, trailer, language, sign, `emen`, `cert`, `cont`, `alt`. |
-| **UDB — Ugaritic Data Bank** 🔑⚖️ | Spanish-team electronic corpus, mostly using CAT/KTU numbers; see Cunchillos, Vita, and Zamora 2003. | Licensed package in Accordance; UDB PDFs and concordance files are listed on Juan-Pablo Vita's [Academia page](https://csic.academia.edu/JuanPabloVita).|
+| **`DT-UCPH/cuc`** (GitHub / Text-Fabric) ✅▶️ | Source CUC Text-Fabric dataset, 279 KTU tablets, CACCHT project, CC BY-NC 4.0. The notebooks use the `AlexWalhai/CUC` HuggingFace Parquet export. | Primary data source used by `data/loader.py`. Full graph features in Text-Fabric: tablet, column, line, side, `g_cons`, trailer, language, sign, `emen`, `cert`, `cont`, `alt`. |
+| **UDB — Ugaritic Data Bank** 🔑⚖️ | Spanish-team electronic corpus, mostly using CAT/KTU numbers; see Cunchillos, Vita, and Zamora 2003. Generate Parquet tables locally using `python -m workshop_tools.build_udb_parquet`. | Workshop provides parser code only. Participants must obtain the PDF through an authorized channel and generate tables locally. |
 | **ContextFabric** + `cfabric-mcp` | Graph engine + MCP server. Tested locally with Python 3.13 in `~/projects/mcp-demo/`. | Hour 3 closing: LLM/agent access to CUC + BHSA. |
 
-> ⚖️ **Licence correction:** the CUC Text-Fabric data is **CC BY-NC 4.0**
-> (`@licence` in the `.tf` headers, and the `cuc` repo README). The HuggingFace
-> page tags the *packaging* as MIT — the **underlying corpus is CC BY-NC 4.0**, so
-> treat the data as non-commercial + attribution. The workshop repo notes this in
+> ⚖️ **Licence note:** the CUC Text-Fabric data is **CC BY-NC 4.0**
+> (`@licence` in the `.tf` headers, and the `cuc` repo README).
+> **Attribution required; non-commercial use only.** The workshop repo notes this in
 > `LICENSE` and `data/README.md`.
 >
-> ⚙️ **Feature correction:** CUC 0.1.x has **no lemma / part-of-speech** layer —
+> ⚙️ **Feature note:** CUC 0.1.x has **no lemma / part-of-speech** layer —
 > only `g_cons` (consonantal word form) and sign-level features. The TF-IDF /
 > similarity notebooks therefore work on **forms, not lemmas** (homographs blur
 > the signal). "Morphological tagging" in `08-modern-toolkit.md` is the *future*
@@ -41,7 +39,7 @@ Hebrew Texts*). CACCHT is a collaboration of Christian Canu Højgaard, Martijn
 Naaijer, Martin Ehrensvärd, Robert Rezetko, Oliver Glanz, and Willem van Peursen.
 The underlying corpus license is **CC BY-NC 4.0**.
 
-CUC currently contains **278 tablets** from KTU 1.x-3.x. Coverage includes:
+CUC currently contains **279 tablets** from KTU 1.x-3.x. Coverage includes:
 
 ```text
 KTU 1.1-1.7, 1.14-1.25, 1.27-1.29, 1.31, 1.38-1.41, 1.43,
@@ -66,10 +64,10 @@ Flag this when discussing homographs.
 > tablets in `loader.py:FINE_GENRE`), not a scholarly classification.
 
 
-### Saved CUC SQL-console queries (DuckDB) — ready-made demos 🔑*(share-links)*
+### CUC data analysis notes
 
-These map directly onto exercises. Re-create them as notebook cells against the
-HF Parquet so they don't depend on the share-link surviving.
+Students can analyze CUC using the downloaded Parquet table in pandas, DuckDB, or
+other data tools. Example queries for the exercises:
 
 | Query | Workshop slot |
 |-------|---------------|
@@ -81,8 +79,8 @@ HF Parquet so they don't depend on the share-link surviving.
 | N-grams **with references** | Hour 3 `3a` (cite the formula's attestations) |
 | "Similar places" search | Hour 3 `3b` name/place graph |
 
-> The share-token URLs (`…/sql-console/<id>`) are personal/session links — keep the
-> **SQL text** in the repo, not just the link.
+These can be implemented as notebook cells using pandas `.query()`, groupby, or
+DuckDB via the locally-loaded Parquet files.
 
 ---
 
@@ -141,27 +139,31 @@ These two are the backbone for the **"one tablet → nine representations"** dia
 
 The **Ugaritic Data Bank** was produced by a Spanish team of scholars and includes
 the texts in CAT, mostly under the same numbers; cite Cunchillos, Vita, and
-Zamora 2003. It was formerly accessible online, but is now distributed commercially
-as an Accordance Bible Software package. For the workshop/demo pipeline, do not
-redistribute UDB data: direct participants to Juan-Pablo Vita's
-[Academia page](https://csic.academia.edu/JuanPabloVita), where PDF files of the
-UDB texts and concordance are listed.
+Zamora 2003. For the workshop pipeline, do not download or redistribute UDB data
+from HuggingFace or any repository. Participants must obtain the PDF through an
+authorized channel, run `python -m workshop_tools.build_udb_parquet`, and keep the
+PDF plus generated Parquet tables local.
 
 ---
 
 ## 7. Gaps & recommended next actions
 
-Done in this pass: ✅ real CUC loader wired to HuggingFace JSONL; ✅ all 7
-notebooks now run on real data after the first cache fill; ✅ alphabet complexity
-and omen tree extracted; ✅ licence/feature facts corrected. Remaining:
+Done in this pass: ✅ real CUC loader wired to the HuggingFace Parquet export; ✅
+all 7 notebooks now run on real CUC data after automatic cache download; ✅ UDB
+parser generates Parquet tables from PDF; ✅ alphabet complexity and omen tree extracted; ✅ licence/feature
+facts corrected. Remaining:
 
-1. **Persist the SQL queries.** Copy the DuckDB query *text* (mḫṣ forms, duplicate
-   lines, hapax, n-grams-with-refs) into the relevant notebooks so the live session
-   doesn't depend on HuggingFace share-link tokens.
-3. **Port `script_translator.py`** maps into a small `data/translit.py` helper for
+1. **Set up CUC locally.** Usually no manual setup is needed; first notebook run
+   downloads `AlexWalhai/CUC` Parquet into `data/_cache/cuc-parquet/`. For
+   offline use, place CUC Parquet files in `data/cuc/`.
+2. **Set up UDB locally.** Students must obtain the UDB PDF through an authorized
+   channel and run `python -m workshop_tools.build_udb_parquet` to generate Parquet
+   tables in `local_data/udb/`.
+3. **Implement CUC queries as notebook cells.** Add pandas/DuckDB queries to the
+   notebooks for mḫṣ forms, duplicate lines, hapax, n-grams-with-refs (mapped to
+   the exercises above).
    the abecedary figure and any Latin↔cuneiform conversion in slides.
 4. **Lock image licences.** Decide the 3–5 slide images now (Persée is safest);
    record credit lines in `images/README.md`.
 5. **Refine genre labels.** `loader.py:FINE_GENRE` is a conservative starter; extend
    it from KTU's own classification if you want sharper Hour-2 clustering.
-

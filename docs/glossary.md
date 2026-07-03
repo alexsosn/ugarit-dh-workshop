@@ -15,7 +15,7 @@ coding knowledge assumed. Grouped to follow the workshop's arc; skim or search.
 **DH — Digital Humanities.** Using computational methods (counting, searching,
 mapping, modelling) to study humanities material — here, ancient texts.
 
-**Corpus.** A body of texts treated as data. Our corpus is **CUC**, 278 Ugaritic
+**Corpus.** A body of texts treated as data. Our corpus is **CUC**, 279 Ugaritic
 tablets. Crucially, a digital corpus is *not* an e-book: it is a structured set of
 objects (tablets, lines, words, signs) you can query, not just read.
 
@@ -122,11 +122,12 @@ draws them out.
 fields nested inside braces `{ }`. We use it to write an omen down as
 `{"sign": …, "outcome": …, "polarity": …}`.
 
-**JSONL ("JSON lines").** A file with one JSON record per line. The CUC corpus
-ships this way: one line = one tablet-line, with its transliteration and reference.
+**JSONL ("JSON lines").** A file with one JSON record per line. Some corpora and
+annotation exports use this format, but the workshop CUC loader now reads Parquet.
 
 **Parquet.** A compact, columnar file format for tabular data; the HuggingFace
-copy of CUC uses it so it can be queried fast.
+copy of CUC uses it so it can be queried fast. The UDB parser also writes local
+Parquet tables from a participant-supplied PDF.
 
 **SQL · SQLite · DuckDB.** **SQL** is the standard language for asking questions of
 a table ("how many lines mention *mlk*?"). **SQLite** and **DuckDB** are
@@ -144,8 +145,8 @@ PDF, then asks it questions.
 objects and features** (tablet → line → word → sign) and querying it. CUC is a
 Text-Fabric dataset; **ContextFabric** is a newer engine built on the same model.
 
-**HuggingFace.** A popular website for sharing datasets and AI models; our CUC
-copy lives there.
+**HuggingFace.** A popular website for sharing datasets and AI models; the
+workshop downloads the CUC Parquet export from `AlexWalhai/CUC` there.
 
 **Repository ("repo") · GitHub.** A repo is a versioned project folder (code +
 data + docs). **GitHub** hosts repos online; the workshop repo lives there.

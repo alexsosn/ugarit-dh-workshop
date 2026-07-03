@@ -59,19 +59,12 @@ tasks” list, or a direct ask. What help do you most want?〕
 ### Self-study — textbooks
 - **John Huehnergard, *An Introduction to Ugaritic*** — the standard teaching
   grammar (the transliteration key in `docs/03` follows it).
-- **Pierre Bordreuil & Dennis Pardee, *A Manual of Ugaritic*** — grammar + texts +
-  glossary.
+- **Pierre Bordreuil & Dennis Pardee, *A Manual of Ugaritic*** — grammar + texts + glossary.
 - 〔Author: add any others you recommend (e.g. Sivan, Schniedewind & Hunt).〕
 
 ### Self-study — online & tools
 - **This repo** — re-run the notebooks, read the `docs/`, follow the links in
   `docs/00-resources.md`.
-- **CUC on HuggingFace** (browse + SQL console):
-  <https://huggingface.co/datasets/AlexWalhai/cuc>
-- **Translations to read alongside:** EUPT *Kirta* (Göttingen); the *Sapiru* Baal
-  Cycle series; KTU ↔ Bible cross-links at <https://intertextual.bible>.
-- **Type Ugaritic yourself:** install the **Noto Sans Ugaritic** font; cuneiform is
-  in Unicode and works in any modern editor.
 - 〔Author: drop in your own curated self-study list / reading order here.〕
 
 ---

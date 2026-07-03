@@ -22,12 +22,12 @@ SOFTWARE.
 
 IMPORTANT — third-party data:
 The workshop loader points to the Copenhagen Ugaritic Corpus (CACCHT project,
-DT-UCPH/cuc), mirrored at HuggingFace (`AlexWalhai/cuc`). 
+DT-UCPH/cuc), mirrored at HuggingFace (`AlexWalhai/CUC`).
 CUC is NOT covered by this repository's license.
 
 Other primary data (UDB, tablet photographs, museum catalogue entries, etc.) likewise remains under the terms of its
 original provider. See data/README.md before redistributing any corpus material.
 
-The code-only UDB parser under `workshop_tools/` is covered by the MIT above. 
+The code-only UDB parser under `workshop_tools/` is covered by the MIT above.
 That code license does not license the UDB source work, a
 participant-supplied PDF, or any generated database.
