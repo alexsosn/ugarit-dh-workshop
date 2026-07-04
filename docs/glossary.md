@@ -57,8 +57,7 @@ but rare **across the whole corpus**, and down-weights words that are everywhere
 (notebook `2a`). Think of it as: *distinctive = common here, but not common
 generally.*
 
-**Keyword (TF-IDF sense).** Not a hashtag — just the top-scoring words from TF-IDF
-for a given text.
+**Keyword (TF-IDF sense).** The top-scoring words from TF-IDF for a given text.
 
 ---
 
@@ -121,9 +120,6 @@ draws them out.
 **JSON.** A simple, human-readable text format for structured data — labelled
 fields nested inside braces `{ }`. We use it to write an omen down as
 `{"sign": …, "outcome": …, "polarity": …}`.
-
-**JSONL ("JSON lines").** A file with one JSON record per line. Some corpora and
-annotation exports use this format, but the workshop CUC loader now reads Parquet.
 
 **Parquet.** A compact, columnar file format for tabular data; the HuggingFace
 copy of CUC uses it so it can be queried fast. The UDB parser also writes local

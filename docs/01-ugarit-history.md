@@ -61,37 +61,13 @@ Trade routes help explain why Ugarit was multilingual and text-rich. Its coastal
 position linked inland Syria, Anatolia, Cyprus, Egypt, and the Aegean, so its
 archives preserve local concerns in an international setting.
 
-![Map of the Levant in the Late Bronze Age, showing Ugarit and Tel Beth-Shemesh.](../images/map_lba_ugarit_beth_shemesh.png)
+![Ugarit's location](../images/Ugarits-location.png)
 
-*Figure: map of the Levant in the Late Bronze Age, showing the location of
-Ugarit and Tel Beth-Shemesh. Prepared by I. Ben-Ezra; reproduced from Cécile
-Fossé, Jonathan Yogev, José Mirão, Nicola Schiavon, and Yuval Goren,
-"Archaeo-Material Study of the Cuneiform Tablet from Tel Beth-Shemesh,"
-Tel Aviv 51.1 (2024): 3-17. DOI:
-[10.1080/03344355.2024.2327796](https://doi.org/10.1080/03344355.2024.2327796).*
+*Figure: Ugarit's location and discovered areas. Google Maps illustration
+showing the location of Ugarit. 
 
-The map makes two points at once: Ugarit belonged to the northern Syrian coastal
-world of Hatti, Amurru, Mitanni, Cyprus, and Egypt, while cuneiform writing also
-circulated farther south in the Levant. Tel Beth-Shemesh is not Ugarit, but its
-cuneiform tablet helps show the wider Late Bronze Age scribal landscape in which
-Ugaritic archives should be understood.
 
-![Ugarit's location and discovered areas, including the royal area, city quarters, temples, and local sanctuaries.](../images/Ugarits-location-and-discovered-areas-A-Google-Maps-illustration-showing-the-location.png)
 
-*Figure: Ugarit's location and discovered areas. Top: Google Maps illustration
-showing the location of Ugarit, with author analysis added in Photoshop. Bottom:
-plan of the city of Ugarit showing the main temples and local sanctuaries,
-produced by the author using AutoCAD and based on fieldwork in 2013. Reproduced
-from Tarek Teba, "Culture as a drive for art and architecture: Ugarit's
-religious architecture as cultural and societal manifestations," Arts &
-Communication (2024), DOI:
-[10.36922/ac.3132](https://doi.org/10.36922/ac.3132), CC BY-NC 4.0.*
-
-For this workshop, the city plan is especially useful because it shifts the
-question from "Where was Ugarit?" to "How was Ugarit organized?" The royal area,
-residential quarters, acropolis, temples of Baal and Dagan, and smaller local
-sanctuaries show that the textual archives were embedded in a dense urban and
-ritual landscape.
 
 ![The Acropolis area at Ugarit, with the temples of Baal and Dagan marked.](../images/The-Acropolis-area-Ugarit-Produced-by-the-author-using-AutoCAD-software-and-based-on.png)
 
@@ -245,8 +221,6 @@ prestigious international style*, not direct import.
 - Map: Ugarit and neighbouring coastal cities (`images/ugarit_and_neighbours.jpg`).
 - Trade-route map of the Late Bronze eastern Mediterranean
   (`images/trade_routes.jpg`).
-- Map: Ugarit and Tel Beth-Shemesh in the LBA Levant
-  (`images/map_lba_ugarit_beth_shemesh.png`).
 - Site and temple plans of Ugarit
   (`images/Ugarits-location-and-discovered-areas-A-Google-Maps-illustration-showing-the-location.png`,
   `images/The-Acropolis-area-Ugarit-Produced-by-the-author-using-AutoCAD-software-and-based-on.png`).

@@ -36,8 +36,6 @@ Today's promise: by the end you'll have run real analysis on a 3,000-year-old co
 
 ## Where and when
 
-![bg right:45%](../images/map_lba_ugarit_beth_shemesh.png)
-
 - **Ras Shamra**, north Syrian coast.
 - Flourished **c. 1450–1185 BCE**.
 - A hub between **Egypt, Hatti, Mesopotamia, Cyprus, the Levant**.

@@ -3,16 +3,12 @@
 Illustrations for the readings and slides. Suggested files (add and reference
 from the `docs/` Markdown):
 
-- `map_lba_ugarit_beth_shemesh.png` — map of the Levant in the Late Bronze Age
-  showing Ugarit and Tel Beth-Shemesh; prepared by I. Ben-Ezra, reproduced from
-  Fossé, Yogev, Mirão, Schiavon, and Goren 2024, DOI:
-  `10.1080/03344355.2024.2327796`.
 - `ugarit_and_neighbours.jpg` — Ugarit and its Phoenician neighbours; © Noam
   Aharon, Rutgers University (2023), published at
   <https://www.reddit.com/r/PhoeniciaHistoryFacts/comments/14romx4/ugarit_and_its_phoenician_neighbors/>.
 - `trade_routes.jpg` — Late Bronze Age trade routes in the eastern
   Mediterranean; source: World History Encyclopedia.
-- `Ugarits-location-and-discovered-areas-A-Google-Maps-illustration-showing-the-location.png`
+- `Ugarits-location.png` and `City_map.png`
   — Ugarit's location and discovered areas; reproduced from Tarek Teba,
   "Culture as a drive for art and architecture: Ugarit's religious architecture
   as cultural and societal manifestations" (2024), DOI: `10.36922/ac.3132`,
