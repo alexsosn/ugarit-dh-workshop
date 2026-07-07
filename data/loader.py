@@ -493,6 +493,23 @@ def _udb_genre_by_rs():
     return genre_by_rs
 
 
+def _udb_ktu_by_rs():
+    """Map RS excavation number -> UDB/KTU number, from the local UDB tables."""
+    import pandas as pd
+
+    if not _UDB_TEXTS_PATH.exists():
+        return {}
+    texts = pd.read_parquet(_UDB_TEXTS_PATH)
+    ktu_by_rs = {}
+    for ktu, corr in zip(texts["ktu"], texts["correspondences"]):
+        if not isinstance(ktu, str) or not ktu.strip():
+            continue
+        label = ktu if ktu.upper().startswith("KTU") else f"KTU {ktu}"
+        for major, minor in _RS_RE.findall(str(corr)):
+            ktu_by_rs[f"{int(major)}.{minor}"] = label
+    return ktu_by_rs
+
+
 def load_find_spots(with_genre=False):
     """Return one row per tablet find spot as a DataFrame.
 
@@ -509,6 +526,66 @@ def load_find_spots(with_genre=False):
         genre_by_rs = _udb_genre_by_rs()
         df["genre"] = df["name"].map(lambda n: genre_by_rs.get(_rs_key(n), ""))
     return df
+
+
+_LOUVRE_PATH = _HERE / "Louvre_artifacts.csv"
+
+
+def load_louvre():
+    """Return the Louvre Ras Shamra/Ugarit catalogue as a DataFrame.
+
+    1515 objects (tablets, vases, seals, figurines, ...) exported from
+    collections.louvre.fr. Each row has an ``ARK`` id used to fetch the object
+    page and its photos. An ``rs`` column with the RS excavation number is added
+    where present, so Louvre objects can be joined to the find-spot data.
+    """
+    import pandas as pd
+
+    df = pd.read_csv(_LOUVRE_PATH, sep=";", dtype=str, encoding="utf-8-sig").fillna("")
+    df.columns = [c.strip() for c in df.columns]
+    df["rs"] = df["Inventory number"].str.extract(
+        r"(RS\s*\d+[.\s]\d+[A-Za-z']*)", expand=False)
+    return df
+
+
+def rs_keys(text):
+    """All RS excavation numbers in a string, normalised to '<major>.<minor>'."""
+    return {f"{int(a)}.{b}" for a, b in _RS_RE.findall(str(text or ""))}
+
+
+_CATALOG_INDEX = None
+
+
+def load_texts_catalog_index():
+    """Map RS excavation number -> catalogue entry for quick tablet lookups.
+
+    Each value is ``{ktu, title, description, category}`` parsed from the ISF
+    ``ugaritic_texts_catalog.tsv`` (whose note field lists every siglum a tablet
+    is known by, including its RS number). Lets any RS-bearing record — e.g. a
+    Louvre object — be annotated with its KTU number, descriptive title, and a
+    one-line description. Cached after the first read.
+    """
+    global _CATALOG_INDEX
+    if _CATALOG_INDEX is not None:
+        return _CATALOG_INDEX
+    import csv
+
+    index = {}
+    if _CATALOG_PATH.exists():
+        with open(_CATALOG_PATH, encoding="utf-8", newline="") as f:
+            for row in csv.DictReader(f, delimiter="\t"):
+                note = row.get("text_or_publication_number_note", "")
+                m = _KTU_RE.search(note)
+                info = {
+                    "ktu": f"KTU {m.group(1)}" if m else "",
+                    "title": (row.get("text_descriptive_title") or "").strip(),
+                    "description": (row.get("text_description") or "").strip(),
+                    "category": (row.get("category") or "").strip(),
+                }
+                for key in rs_keys(note):
+                    index.setdefault(key, info)
+    _CATALOG_INDEX = index
+    return index
 
 
 def sign_counts(texts):
