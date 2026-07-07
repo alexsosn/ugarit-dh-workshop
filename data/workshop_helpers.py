@@ -200,3 +200,93 @@ def genre_alphabet_test(texts: list[dict], genre: str, alpha: pd.DataFrame) -> p
         "position_vs_frequency": alpha["position"].corr(frequency),
         "complexity_vs_frequency": alpha["complexity"].corr(frequency),
     })
+
+
+# ---------------------------------------------------------------------------
+# Interactive Ugarit map (notebooks 1a / 1b)
+# ---------------------------------------------------------------------------
+
+# Esri World Imagery — the same satellite tiles the online RSTI viewer uses.
+# Free to use, no API key/token required.
+_ESRI_IMAGERY = ("https://server.arcgisonline.com/ArcGIS/rest/services/"
+                 "World_Imagery/MapServer/tile/{z}/{y}/{x}")
+
+
+def _plan_outline(site_plan: dict) -> tuple[list, list]:
+    """Flatten every polygon ring into lon/lat lists, separated by None.
+
+    One None-separated trace draws all 432 excavation outlines at once.
+    """
+    lons: list = []
+    lats: list = []
+    for feature in site_plan.get("features", []):
+        geom = feature.get("geometry") or {}
+        polys = geom.get("coordinates", [])
+        if geom.get("type") == "Polygon":
+            polys = [polys]
+        for poly in polys:
+            for ring in poly:
+                for lon, lat in ring:
+                    lons.append(lon)
+                    lats.append(lat)
+                lons.append(None)      # break between rings
+                lats.append(None)
+    return lons, lats
+
+
+def finds_map(find_spots, color="language", site_plan=None, basemap="satellite",
+              title=None, top=8, drop_blank=True, zoom=15.2, height=560):
+    """Interactive map of Ugarit tablet find spots, coloured by one column.
+
+    Parameters
+    ----------
+    find_spots : DataFrame from ``loader.load_find_spots()`` (needs lon, lat,
+        name and the ``color`` column).
+    color      : which column decides the point colour — "language", "script",
+        "area", or "genre" (load with ``with_genre=True`` first).
+    site_plan  : optional GeoJSON from ``loader.load_site_plan()`` to draw the
+        excavation outlines under the points.
+    basemap    : "satellite" (Esri imagery) or "light" (plain Carto map).
+
+    Returns a plotly figure — call ``.show()`` on it.
+    """
+    import plotly.express as px
+    import plotly.graph_objects as go
+
+    data = find_spots.copy()
+    data[color] = data[color].fillna("").astype(str).str.strip()
+    if drop_blank:
+        data = data[data[color] != ""]
+    # Keep the legend readable: fold the long tail into "other".
+    keep = data[color].value_counts().head(top).index
+    data[color] = data[color].where(data[color].isin(keep), "other")
+
+    hover_cols = list(dict.fromkeys(c for c in [color, "area", "script"]
+                                    if c in data.columns))
+    fig = px.scatter_map(
+        data, lat="lat", lon="lon", color=color,
+        hover_name="name", hover_data=hover_cols,
+        center=dict(lat=data["lat"].mean(), lon=data["lon"].mean()),
+        zoom=zoom, height=height,
+        title=title or f"Ugarit find spots by {color}  ({len(data)} tablets)",
+    )
+    fig.update_traces(marker=dict(size=7, opacity=0.85))
+
+    if site_plan is not None:
+        lons, lats = _plan_outline(site_plan)
+        fig.add_trace(go.Scattermap(
+            lon=lons, lat=lats, mode="lines", name="excavation plan",
+            line=dict(width=1, color="rgba(255,235,180,0.7)"),
+            hoverinfo="skip"))
+
+    # Basemap: satellite imagery, or a plain light map (switch with basemap=).
+    if basemap == "satellite":
+        fig.update_layout(map=dict(style="white-bg", layers=[dict(
+            below="traces", sourcetype="raster", source=[_ESRI_IMAGERY],
+            sourceattribution="Esri, Maxar, Earthstar Geographics")]))
+    else:
+        fig.update_layout(map=dict(style="carto-positron"))
+
+    fig.update_layout(legend_title_text=color,
+                      margin=dict(l=0, r=0, t=45, b=0))
+    return fig

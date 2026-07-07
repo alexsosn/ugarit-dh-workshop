@@ -445,6 +445,72 @@ def load_alphabet():
         return json.load(f)["alphabet"]
 
 
+# ---------------------------------------------------------------------------
+# Ugarit map data (notebooks 1a / 1b) — public ArcGIS find spots + site plan.
+# Rebuild the two files with: python -m workshop_tools.build_ugarit_map
+# ---------------------------------------------------------------------------
+
+_FIND_SPOTS_PATH = _HERE / "ugarit_find_spots.csv"
+_SITE_PLAN_PATH = _HERE / "ugarit_site_plan.geojson"
+_UDB_TEXTS_PATH = _HERE.parent / "local_data" / "udb" / "texts.parquet"
+
+_RS_RE = re.compile(r"RS\s*\.?\s*(\d+)\s*\.?\s*\[?(\d+[A-Za-z]?)\]?")
+
+
+def _rs_key(text):
+    """Normalise an RS excavation number, e.g. 'RS 1.001' -> '1.001'."""
+    m = _RS_RE.search(str(text or ""))
+    return f"{int(m.group(1))}.{m.group(2)}" if m else None
+
+
+def load_site_plan():
+    """Return the Ugarit excavation site plan as a GeoJSON dict (432 polygons).
+
+    Coordinates are WGS84 lon/lat, ready for plotly / any web map.
+    """
+    with open(_SITE_PLAN_PATH, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _udb_genre_by_rs():
+    """Map RS excavation number -> UDB genre, from the local UDB tables.
+
+    Returns {} (with a hint) when the participant has not built UDB yet.
+    """
+    import pandas as pd
+
+    if not _UDB_TEXTS_PATH.exists():
+        print("UDB genres not found. Build them first with:\n"
+              "  python -m workshop_tools.build_udb_parquet --pdf <your UDB pdf>")
+        return {}
+    texts = pd.read_parquet(_UDB_TEXTS_PATH)
+    genre_by_rs = {}
+    for genre, corr in zip(texts["genre"], texts["correspondences"]):
+        if not isinstance(genre, str) or not genre.strip():
+            continue
+        for major, minor in _RS_RE.findall(str(corr)):
+            genre_by_rs[f"{int(major)}.{minor}"] = genre
+    return genre_by_rs
+
+
+def load_find_spots(with_genre=False):
+    """Return one row per tablet find spot as a DataFrame.
+
+    Columns: name, lon, lat, language, script, area, uuid — the public ArcGIS
+    fields the labs use. With ``with_genre=True`` a ``genre`` column is joined
+    from the participant's local UDB tables (blank where unknown).
+    """
+    import pandas as pd
+
+    df = pd.read_csv(_FIND_SPOTS_PATH, dtype=str)
+    df["lon"] = df["lon"].astype(float)
+    df["lat"] = df["lat"].astype(float)
+    if with_genre:
+        genre_by_rs = _udb_genre_by_rs()
+        df["genre"] = df["name"].map(lambda n: genre_by_rs.get(_rs_key(n), ""))
+    return df
+
+
 def sign_counts(texts):
     """Count cuneiform signs across the corpus (exact, from the unicode text).
 
