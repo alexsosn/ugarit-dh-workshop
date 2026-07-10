@@ -15,7 +15,7 @@ The AI-build demo follows docs/hour3-agent-runbook.md. Notebook cues marked ▶.
 # Ugarit & Digital Humanities
 ## Hour 3 — From texts to structures
 
-Formulas, social networks, decision trees — and AI as a builder.
+From repeated language to modeled structures—and back to sources.
 
 <!-- 1 min. We move from counting words to recovering structure. -->
 
@@ -25,7 +25,7 @@ Formulas, social networks, decision trees — and AI as a builder.
 
 ![bg right:40%](../images/baal_stele_louvre_ao15775.jpeg)
 
-- Myth: fixed epithets — *aliyn bʿl* "Mighty Baal", *rkb ʿrpt* "Rider on the Clouds".
+- Myth: recurring epithets — *aliyn bʿl* "Mighty Baal", *rkb ʿrpt* "Rider on the Clouds".
 - Letters: *tḥm X · l Y rgm* (address), *yšlm lk* (greeting).
 - Ritual & admin: repeated instructions and templates.
 
@@ -37,9 +37,11 @@ Formulas, social networks, decision trees — and AI as a builder.
 
 **Notebook:** `3a_ngrams_formulas`
 
-- Count repeated 2- and 3-word clusters across the corpus.
+- Count repeated 2- and 3-word sequences across the corpus.
 - Real results pop out: **kṯr w ḫss** (the god Kothar-wa-Hasis),
   **rbt aṯrt ym** ("Lady Athirat of the Sea"), **yšu gh w yṣḥ** ("he lifted his voice and cried").
+
+**Check:** recurrence across texts + KWIC context + editorial reading.
 
 <!-- 9 min including slide. The machine surfaces genuine epithets/formulas from raw text. -->
 
@@ -47,10 +49,10 @@ Formulas, social networks, decision trees — and AI as a builder.
 
 ## Letters as social data
 
-- A letter records a relationship: **sender → recipient**, plus mentioned people and places.
+- An address formula can encode a relationship: **sender → recipient**.
 - Beyond reading one letter, study the **network** of correspondents.
 
-<!-- 3 min. docs/06. The address formula is structured data hiding in plain sight. -->
+<!-- 3 min. The address formula is structured data hiding in plain sight. -->
 
 ---
 
@@ -58,20 +60,23 @@ Formulas, social networks, decision trees — and AI as a builder.
 
 **Notebook:** `3b_letter_networks`
 
-- Parse *tḥm X / l Y* into **sender → recipient** edges (~40 from the letters).
+- Parse *tḥm X / l Y* into candidate **sender → recipient** edges.
 - Build and draw the graph; find central figures (*mlk* the king, *umy* "my lady").
-- Caveat: titles ≠ unique persons; broken tablets bias the graph.
+- Caveat: titles ≠ unique persons; preservation and formula recognition bias the graph.
+
+**Check:** inspect every extracted edge before interpreting centrality.
 
 <!-- 9 min including slide. -->
 
 ---
 
-## Divination = ancient algorithms
+## Omen texts as conditional structures
 
-- Omens follow a strict pattern: **observed sign → interpretation → outcome**.
-- That's an **if → then** tree — a data structure, three millennia early.
+- Omen manuals often pair a **protasis** (observed condition) with an
+  **apodosis** (predicted consequence).
+- A tree is our analytical model of that structure—not an ancient flowchart.
 
-<!-- 3 min. docs/07. The birth-omen series (KTU 1.103) as our case. -->
+<!-- 3 min. RS 24.247+ / KTU 1.103+1.145 is the case. -->
 
 ---
 
@@ -79,8 +84,9 @@ Formulas, social networks, decision trees — and AI as a builder.
 
 **Notebook:** `3c_divination_trees`
 
-- A real birth-omen text → a nested JSON tree → a drawn decision tree (~98 nodes).
-- Sets up the AI question: *can a model extract this structure for us?*
+- RS 24.247+ / KTU 1.103+1.145 → nested JSON → a visual tree.
+- Compare Ugaritic and Mesopotamian organization without treating them as identical.
+- Sets up the AI question: *can a model extract structure without erasing uncertainty?*
 
 <!-- 9 min including slide. Bridge straight into the LLM block. -->
 
@@ -90,7 +96,8 @@ Formulas, social networks, decision trees — and AI as a builder.
 
 - **Help:** extract structure, validate JSON, compare trees, explain in plain language.
 - **Danger:** invent missing branches (`[…]` gaps), smooth over ambiguity, drop philology.
-- The philologist doesn't disappear — they move **up a level**: asking and checking.
+- Keep **raw text, normalization, model output, and human corrections** separate.
+- The philologist remains responsible for readings, uncertainty, and interpretation.
 
 <!-- 3 min. The honest core of the AI message. -->
 
@@ -101,7 +108,7 @@ Formulas, social networks, decision trees — and AI as a builder.
 > corpus **+** dictionary **+** images **+** bibliography **+** morphology
 > **+** Python **+** ContextFabric **+** LLM / agents **+** **human validation**
 
-Each piece you saw today is one layer of a real research stack.
+Each layer has provenance, assumptions, and a point where it can fail.
 
 <!-- 2 min. docs/08. Pull the three hours together into one architecture. -->
 
@@ -113,7 +120,7 @@ Each piece you saw today is one layer of a real research stack.
 
 - A coding agent turns a participant-supplied **UDB** PDF → a local,
   queryable **SQLite**.
-- Then we **ask it research questions** in plain language.
+- Then we run checked SQL and translate results into plain language.
 - Free tool, local workflow: *you could repeat the method on a source you are
   authorized to process.*
 
@@ -123,9 +130,9 @@ Each piece you saw today is one layer of a real research stack.
 
 ## The catch
 
-- Ask it something the tablet leaves broken — it answers **confidently anyway**.
-- Check against the actual text: invented certainty, lost brackets.
-- **That catch is the actual skill.** Direct the AI; verify like a scholar.
+- Keep one **gold-standard record** and a small regression test.
+- Compare every extracted field with the PDF page and preserve brackets/gaps.
+- Treat fluent answers as interfaces to evidence, never as evidence themselves.
 
 <!-- 2 min. The caution beat — do not cut this. -->
 

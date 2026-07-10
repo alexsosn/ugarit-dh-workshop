@@ -107,7 +107,7 @@ clear; USC/InscriptiFact only where you have permission. Drop chosen files into
 
 | Source | Use |
 |--------|-----|
-| **CDLI** (`language=Ugaritic`) ✅ | Canonical IDs, transliterations, provenance — the "many forms of one tablet" point in `02-corpora-and-data.md`. |
+| **CDLI** (`language=Ugaritic`) ✅ | Canonical IDs, transliterations, provenance — the "many forms of one tablet" point in notebook [`1a`](../notebooks/1a_corpora_and_data.ipynb). |
 | **Ras Shamra Tablet Inventory (RSTI / OCHRE)** ✅ | Excavation-level inventory; ties KTU ↔ RS numbers ↔ findspot. |
 
 These two are the backbone for the **"one tablet → nine representations"** diagram.

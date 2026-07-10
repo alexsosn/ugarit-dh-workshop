@@ -320,6 +320,6 @@ with these so you can run them directly if you fall back to the prebuilt DB.
 
 *Companion docs: `docs/hour3-mcp-demo.md` (the other Hour-3 agent demo — one agent
 querying CUC + Sefaria live via MCP), `docs/00-resources.md` (tools/corpora),
-`docs/07-divination.md` and notebook `3c` (the omen-tree LLM beat),
+notebook `3c` (the omen-tree LLM beat),
 `docs/08-modern-toolkit.md` (the architecture this demo instantiates), `SPEC.md` §5
 (Hour-3 design decisions).*
