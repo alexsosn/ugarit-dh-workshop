@@ -21,6 +21,8 @@ cache and UDB through locally-generated Parquet tables.
   See setup instructions below.
 - **`alphabet.json`** — the 30 signs in abecedary order with cuneiform codepoints
   and a **complexity** score (wedges + turns), for the alphabet hypothesis (`1b`).
+- **`fonts/NotoSansUgaritic-Regular.ttf`** — bundled Ugaritic glyph fallback,
+  distributed under the SIL Open Font License in `fonts/OFL.txt`.
 - **`omens/`** — a real Ugaritic birth-omen text + a hand-built decision tree
   (`sheep_birth_omens.json`) and rendered image, for the divination notebook (`3c`).
 
@@ -66,4 +68,4 @@ from each participant's own PDF.
 
 Workshop-authored material follows the root `LICENSE`. **Primary corpus data is
 not covered by it** — each source keeps its provider's license. Check before
-redistributing.
+redistributing. The bundled Noto font remains under the SIL Open Font License.

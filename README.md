@@ -42,6 +42,10 @@ Facilitators: start with [`docs/teaching-throughline.md`](docs/teaching-throughl
 It aligns every exercise as **source → representation → computation → validation
 → interpretation** and supplies a consistent discussion pattern.
 
+Experienced programmers can use the optional advanced track in
+[`docs/star-tasks-spec.md`](docs/star-tasks-spec.md). These extensions are
+segregated from the non-coder path and should be introduced only when useful.
+
 ### Hour 1 — Ugarit: from objects to texts (60 min)
 - *10 min* — Ugarit: historical context of the Late Bronze Age (presenter + `docs/01`).
 - *20 min* — **`1a`, tablets as objects:** where the data comes from, building UDB

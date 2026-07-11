@@ -87,7 +87,9 @@ calls (audience has no paid subs). Notebook code for H3 is minimal; the artifact
 the live build + the resulting custom GPT.
 
 ### Presentation / rendering **[settled]**
-- **Ugaritic is Unicode** and renders fine everywhere — **no font bundling needed.**
+- **Ugaritic is Unicode**, but installed glyph coverage varies. Bundle the SIL-OFL
+  Noto Sans Ugaritic font and register it when available; retain system-font
+  fallback so the notebooks still run everywhere.
 - Use **interactive Plotly** for the headline Hour-2 map (and where it clearly helps);
   matplotlib is fine elsewhere.
 

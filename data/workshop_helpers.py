@@ -117,6 +117,86 @@ def barh(series: pd.Series, title: str, n: int = 12):
     return ax
 
 
+def metadata_bar(counts: pd.Series, title: str, n: int = 12, color: str = "#4c78a8"):
+    """Interactive horizontal bar chart of a count Series (e.g. a value_counts()).
+
+    The notebook does the *counting* in a visible cell (``value_counts()``) and
+    passes the result here; this helper only handles the Plotly styling so the
+    teaching cell stays about the numbers, not the plotting syntax.
+    """
+    import plotly.express as px
+
+    top = counts.head(n)[::-1]                       # largest bar on top
+    fig = px.bar(x=top.values, y=top.index, orientation="h", title=title,
+                 color_discrete_sequence=[color])
+    fig.update_layout(height=380, width=760, xaxis_title="texts", yaxis_title="",
+                      margin=dict(l=210, r=40, t=50, b=30),
+                      paper_bgcolor="white", plot_bgcolor="white")
+    return fig
+
+
+def metadata_stacked_bar(table: pd.DataFrame, title: str, top_cols: int = 8,
+                         height=470):
+    """Interactive stacked horizontal bars from a crosstab (rows × categories).
+
+    ``table`` is a ``pd.crosstab`` (e.g. archive × language) built in the
+    notebook; this helper only styles it. Archives are ordered by total size and
+    rare categories fold into "other" so the legend stays readable — the point is
+    the *composition* of each location, which a point-map cannot show.
+    """
+    import plotly.express as px
+
+    tbl = table.copy()
+    if tbl.shape[1] > top_cols:                       # fold the long tail
+        keep = tbl.sum().sort_values(ascending=False).head(top_cols).index
+        other = tbl.drop(columns=keep).sum(axis=1)
+        tbl = tbl[keep]
+        tbl["other"] = other
+    tbl = tbl.loc[tbl.sum(axis=1).sort_values().index]      # largest on top
+    long = tbl.reset_index().melt(id_vars=tbl.index.name or "index",
+                                  var_name="category", value_name="texts")
+    ycol = tbl.index.name or "index"
+    fig = px.bar(long, x="texts", y=ycol, color="category", orientation="h",
+                 title=title)
+    fig.update_layout(barmode="stack", height=height, width=900,
+                      yaxis_title="", xaxis_title="texts",
+                      margin=dict(l=215, r=30, t=50, b=40),
+                      paper_bgcolor="white", plot_bgcolor="white")
+    return fig
+
+
+def tablet_size_scatter(udb_texts: pd.DataFrame, color: str = "genre",
+                        top: int = 8, height=520):
+    """Scatter of tablet width vs height (cm), coloured by genre — from UDB.
+
+    Uses the ``height``/``width`` columns of the locally-built UDB ``texts``
+    table. Non-numeric or missing measurements are dropped. Only the ``top``
+    most common genres are coloured; the rest fold into "other" so the legend
+    stays readable.
+    """
+    import plotly.express as px
+
+    df = udb_texts.copy()
+    for col in ("height", "width"):
+        df[col] = pd.to_numeric(df[col], errors="coerce")
+    df = df.dropna(subset=["height", "width"])
+    df = df[(df["height"] > 0) & (df["width"] > 0)]
+    df[color] = df[color].fillna("").astype(str).str.strip().replace("", "unlabelled")
+    keep = df[color].value_counts().head(top).index
+    df["_c"] = df[color].where(df[color].isin(keep), "other")
+
+    fig = px.scatter(
+        df, x="width", y="height", color="_c",
+        hover_data={"tablet": True, "ktu": True, "_c": False},
+        title=f"Ugarit tablets: width vs height  ({len(df)} measured, coloured by {color})",
+    )
+    fig.update_traces(marker=dict(size=8, opacity=0.8))
+    fig.update_layout(height=height, xaxis_title="width (cm)", yaxis_title="height (cm)",
+                      legend_title_text=color,
+                      paper_bgcolor="white", plot_bgcolor="white")
+    return fig
+
+
 def archive_by(meta: pd.DataFrame, column: str, top: int = 10) -> pd.DataFrame:
     """Cross-tabulate the main archives by language or genre."""
     main_archives = meta["archive"].value_counts().head(top).index
@@ -209,7 +289,7 @@ def plot_complexity(alpha: pd.DataFrame):
     plt.figure(figsize=(7, 5))
     plt.scatter(alpha["complexity"], alpha["frequency"])
     for row in alpha.itertuples():
-        plt.annotate(row.sign, (row.complexity, row.frequency))
+        plt.annotate(row.char, (row.complexity, row.frequency))
     plt.xlabel("complexity (wedges + turns)")
     plt.ylabel("frequency")
     plt.title("Are frequent signs simpler?")
