@@ -6,6 +6,7 @@ repeated data preparation and plotting details out of beginner-facing cells.
 
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 
@@ -17,12 +18,123 @@ from data.loader import load_alphabet, sign_counts, texts_by_genre
 
 DATA_DIR = Path(__file__).resolve().parent
 UGARIT_DATABASE = DATA_DIR / "UGARIT_TEXTS_DATABASE.csv"
+SOUND_CORRESPONDENCES = DATA_DIR / "sound_correspondences.json"
 
 SOUTH_SEMITIC_ORDER = [
     "h", "l", "ḥ", "m", "q", "w", "š", "r", "t", "s",
     "k", "n", "ḫ", "b", "p", "a", "ʿ", "ẓ", "g", "d",
     "ġ", "ṭ", "z", "ḏ", "y", "ṯ", "ṣ", "i", "u", "ś",
 ]
+
+
+def sound_correspondence_figure(lang: str = "Hb", show_gaps: bool = False):
+    """Interactive Ugaritic-to-cognate-language correspondence diagram.
+
+    The bundled snapshot contains aggregate aligned-column counts only; lexical
+    examples from DULAT are intentionally not redistributed with the workshop.
+    """
+    import plotly.graph_objects as go
+
+    data = json.loads(SOUND_CORRESPONDENCES.read_text(encoding="utf-8"))
+    if lang not in data["languages"]:
+        choices = ", ".join(data["order"])
+        raise ValueError(f"unknown language {lang!r}; choose one of: {choices}")
+
+    target = data["languages"][lang]
+    edges = [
+        edge for edge in target["edges"]
+        if show_gaps or edge["type"] not in {"ins", "del"}
+    ]
+    uga_order = list(data["uga_order"])
+    target_order = list(target["tgt_order"])
+    if show_gaps and any(edge["u"] == "-" for edge in edges):
+        uga_order.append("-")
+    if show_gaps and any(edge["h"] == "-" for edge in edges):
+        target_order.append("-")
+
+    def positions(order):
+        scale = max(len(order) - 1, 1)
+        return {item: 1 - i / scale for i, item in enumerate(order)}
+
+    uy, ty = positions(uga_order), positions(target_order)
+    colors = {"id": "#9aa0a6", "merge": "#BA7517",
+              "ins": "#2F7DC4", "del": "#C0392B"}
+    descriptions = {
+        "id": "same consonant", "merge": "regular sound shift",
+        "ins": "insertion in cognate", "del": "Ugaritic consonant dropped",
+    }
+    uga_display = {"ả": "a", "ỉ": "i", "ủ": "u", "ʕ": "ʿ", "-": "∅"}
+    target_display = {"ʔ": "ʾ", "ʕ": "ʿ", "-": "∅"}
+
+    fig = go.Figure()
+    midpoint_x, midpoint_y, midpoint_text = [], [], []
+    midpoint_color, midpoint_size = [], []
+    for edge in edges:
+        u, h, kind, count = edge["u"], edge["h"], edge["type"], edge["count"]
+        width = min(10, max(1.3, 0.28 * count ** 0.5))
+        fig.add_trace(go.Scatter(
+            x=[0, 1], y=[uy[u], ty[h]], mode="lines",
+            line={"color": colors[kind], "width": width, "shape": "spline"},
+            opacity=0.28 if kind == "id" else 0.78,
+            hoverinfo="skip", showlegend=False,
+        ))
+        ug = f"{data['uga_glyph'].get(u, '')} {uga_display.get(u, u)}".strip()
+        tg = f"{target['tgt_glyph'].get(h, '')} {target_display.get(h, h)}".strip()
+        midpoint_x.append(0.5)
+        midpoint_y.append((uy[u] + ty[h]) / 2)
+        midpoint_text.append(
+            f"{ug} → {tg}<br>{count:,} aligned columns<br>{descriptions[kind]}"
+        )
+        midpoint_color.append(colors[kind])
+        midpoint_size.append(min(18, max(7, count ** 0.5)))
+
+    fig.add_trace(go.Scatter(
+        x=midpoint_x, y=midpoint_y, mode="markers", text=midpoint_text,
+        marker={"color": midpoint_color, "size": midpoint_size,
+                "line": {"color": "white", "width": 0.8}},
+        hovertemplate="%{text}<extra></extra>", showlegend=False,
+    ))
+
+    uga_labels = [
+        f"{data['uga_glyph'].get(sign, '')}  {uga_display.get(sign, sign)}".strip()
+        for sign in uga_order
+    ]
+    target_labels = [
+        f"{target['tgt_glyph'].get(sign, '')}  {target_display.get(sign, sign)}".strip()
+        for sign in target_order
+    ]
+    fig.add_trace(go.Scatter(
+        x=[0] * len(uga_order), y=[uy[s] for s in uga_order], mode="markers+text",
+        marker={"size": 7, "color": "#667085"}, text=uga_labels,
+        textposition="middle left", hoverinfo="skip", showlegend=False,
+    ))
+    fig.add_trace(go.Scatter(
+        x=[1] * len(target_order), y=[ty[s] for s in target_order], mode="markers+text",
+        marker={"size": 7, "color": "#667085"}, text=target_labels,
+        textposition="middle right", hoverinfo="skip", showlegend=False,
+    ))
+
+    for kind in ["id", "merge"] + (["ins", "del"] if show_gaps else []):
+        fig.add_trace(go.Scatter(
+            x=[None], y=[None], mode="lines", name=descriptions[kind],
+            line={"color": colors[kind], "width": 5},
+        ))
+
+    fig.update_layout(
+        title=(f"Ugaritic → {target['name']} sound correspondences "
+               f"({target['n']:,} cognate pairs)"),
+        height=760, margin={"l": 95, "r": 95, "t": 75, "b": 35},
+        paper_bgcolor="white", plot_bgcolor="white",
+        font={"family": "Noto Sans Ugaritic, Noto Sans Hebrew, DejaVu Sans, sans-serif"},
+        legend={"orientation": "h", "y": 1.03, "x": 0.5, "xanchor": "center"},
+        xaxis={"visible": False, "range": [-0.18, 1.18], "fixedrange": True},
+        yaxis={"visible": False, "range": [-0.04, 1.04], "fixedrange": True},
+        annotations=[
+            {"x": 0, "y": 1.045, "text": "<b>Ugaritic</b>", "showarrow": False},
+            {"x": 1, "y": 1.045, "text": f"<b>{target['name']}</b>", "showarrow": False},
+        ],
+    )
+    return fig
 
 
 def find_tablet(texts: list[dict], ktu: str) -> dict:

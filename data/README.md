@@ -21,6 +21,11 @@ cache and UDB through locally-generated Parquet tables.
   See setup instructions below.
 - **`alphabet.json`** — the 30 signs in abecedary order with cuneiform codepoints
   and a **complexity** score (wedges + turns), for the alphabet hypothesis (`1b`).
+- **`sound_correspondences.json`** — aggregate aligned-consonant counts exported
+  from the DULAT app for the comparative diagram in `1b`. The source pipeline
+  aligns consonantal cognate forms with Needleman–Wunsch and iteratively refines
+  the alignment scores. This workshop snapshot omits lexical examples and DULAT
+  entry identifiers; edge weight is an aligned-column count, not a probability.
 - **`ugaritic_wiktionary.json`** — an offline snapshot of 792 English Wiktionary
   Ugaritic records (731 unique cuneiform headwords), including POS, definitions,
   and source-page URLs. Used only for the dictionary-audit exercise in `3a`.
