@@ -301,7 +301,7 @@ and the MCP. Same input → output → check → tier format.
   matches / total ≥ threshold. `EXPECTED` = the gold pairs (BHSA lookups done at build).
 - **Pitfalls / teaching points:** not every Ugaritic word has a cognate; vowels
   aren't written; exclude metathesis/irregulars from the gold set; the ṯ→š, ḏ→z,
-  ġ→ʿ, ḫ→ḥ merges are the "aha." Mention the subtle s²: Ug š can also → Heb ś
+  ġ→ʿ, ḫ→ḥ merges are the "aha." Mention the subtle ś: Ug š can also → Heb ś
   (šd → śādeh "field") — keep it out of the graded set.
 
 ### S-LUA — Ugaritic inflection module for Wiktionary (Lua)  ⭐⭐⭐

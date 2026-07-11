@@ -21,7 +21,7 @@ UGARIT_DATABASE = DATA_DIR / "UGARIT_TEXTS_DATABASE.csv"
 SOUTH_SEMITIC_ORDER = [
     "h", "l", "ḥ", "m", "q", "w", "š", "r", "t", "s",
     "k", "n", "ḫ", "b", "p", "a", "ʿ", "ẓ", "g", "d",
-    "ġ", "ṭ", "z", "ḏ", "y", "ṯ", "ṣ", "i", "u", "s2",
+    "ġ", "ṭ", "z", "ḏ", "y", "ṯ", "ṣ", "i", "u", "ś",
 ]
 
 

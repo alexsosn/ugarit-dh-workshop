@@ -1545,14 +1545,14 @@ def _format_block_html(block: str, force_italic: bool = False) -> str:
             i += 1
             group_items: List[str] = []
             while i < len(lines):
-                s2 = lines[i].strip()
-                if not s2:
+                next_line = lines[i].strip()
+                if not next_line:
                     # blank ends sub-list
                     break
-                if s2.startswith("• "):
+                if next_line.startswith("• "):
                     # next group; stop here to outer loop
                     break
-                if s2.startswith("- ") or s2.startswith("_- "):
+                if next_line.startswith("- ") or next_line.startswith("_- "):
                     li, i = collect_item(i)
                     group_items.append(li)
                     continue
