@@ -99,6 +99,14 @@ pip install -r requirements.txt
 jupyter lab                       # or: jupyter notebook
 ```
 
+### Google Colab
+
+Every notebook is self-bootstrapping when opened from its Colab badge: its
+setup cell clones this repository, switches to the cloned `notebooks/`
+directory, and makes `workshop_tools/` plus bundled `data/` files available.
+No workshop-authored file needs to be uploaded manually. The UDB PDF is the
+intentional exception because the repository cannot redistribute it.
+
 ### Optional — full Text-Fabric features
 The HuggingFace CUC Parquet export has transliteration + cuneiform + line references. For
 sign-level features (emendation, certainty, alternative readings) or to query the
