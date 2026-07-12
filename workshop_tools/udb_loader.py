@@ -22,14 +22,19 @@ Tables (all joinable on ``tablet``):
 
 from __future__ import annotations
 
+import os
 import re
+import subprocess
+import sys
 from pathlib import Path
+from typing import Iterable
 
 import pandas as pd
 
 _REPO_ROOT = Path(__file__).resolve().parent.parent
 _UDB_DIR = _REPO_ROOT / "local_data" / "udb"
 _PN_PATH = _REPO_ROOT / "data" / "ugaritic_pn.txt"
+_UDB_PDF_NAME = "Ugaritic_data_bank.pdf"
 
 _TABLES = ("texts", "readings", "sources", "literature", "tablet_comments")
 
@@ -45,6 +50,72 @@ _BUILD_HINT = (
 def udb_available() -> bool:
     """Return True when the local UDB Parquet tables have been built."""
     return all((_UDB_DIR / f"{name}.parquet").exists() for name in _TABLES)
+
+
+def find_udb_pdf(extra_paths: Iterable[str | Path] = ()) -> Path | None:
+    """Find a participant-supplied UDB PDF in supported local/Colab locations.
+
+    The repository-local location is preferred.  ``/content/local_data`` is
+    also accepted because Colab's file browser naturally encourages uploads
+    there.  Set ``UDB_PDF_PATH`` to use any other location.
+    """
+    candidates: list[Path] = []
+    if os.environ.get("UDB_PDF_PATH"):
+        candidates.append(Path(os.environ["UDB_PDF_PATH"]).expanduser())
+    candidates.extend(Path(path).expanduser() for path in extra_paths)
+    candidates.extend([
+        _REPO_ROOT / "local_data" / _UDB_PDF_NAME,
+        Path("/content/local_data") / _UDB_PDF_NAME,
+    ])
+    return next(
+        (path.resolve() for path in candidates if path.is_file()),
+        None,
+    )
+
+
+def build_udb_parquet(
+    pdf_path: str | Path,
+    output_dir: str | Path | None = None,
+) -> Path:
+    """Run the checked-in UDB builder with unambiguous absolute paths."""
+    pdf = Path(pdf_path).expanduser().resolve()
+    if not pdf.is_file():
+        raise FileNotFoundError(f"UDB PDF not found: {pdf}")
+    destination = Path(output_dir or _UDB_DIR).expanduser().resolve()
+    command = [
+        sys.executable,
+        "-m",
+        "workshop_tools.build_udb_parquet",
+        "--pdf",
+        str(pdf),
+        "--output-dir",
+        str(destination),
+    ]
+    result = subprocess.run(
+        command,
+        cwd=str(_REPO_ROOT),
+        text=True,
+        capture_output=True,
+    )
+    if result.stdout:
+        print(result.stdout, end="")
+    if result.returncode:
+        details = result.stderr.strip() or "builder produced no error output"
+        raise RuntimeError(
+            f"UDB Parquet build failed for {pdf}\n{details}"
+        )
+    return destination
+
+
+def ensure_udb_parquet(pdf_path: str | Path | None = None) -> bool:
+    """Build the local UDB tables if needed; return whether they are ready."""
+    if udb_available():
+        return True
+    pdf = Path(pdf_path).expanduser().resolve() if pdf_path else find_udb_pdf()
+    if pdf is None:
+        return False
+    build_udb_parquet(pdf)
+    return udb_available()
 
 
 def _read(name: str) -> pd.DataFrame:

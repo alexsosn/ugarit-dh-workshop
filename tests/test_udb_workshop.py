@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sqlite3
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -11,6 +12,7 @@ from workshop_tools.build_udb_sqlite import (
     split_measurements,
     split_verse_ref,
 )
+from workshop_tools.udb_loader import build_udb_parquet, find_udb_pdf
 
 
 SYNTHETIC_PDF_TEXT = """
@@ -59,7 +61,29 @@ class UDBWorkshopTests(unittest.TestCase):
                 ("R1", "abc . dgf", "R1 checks a synthetic reading."),
             )
 
+    def test_colab_pdf_discovery_and_builder_use_absolute_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            pdf = root / "Ugaritic_data_bank.pdf"
+            pdf.write_bytes(b"%PDF test placeholder")
+            output = root / "udb"
+
+            self.assertEqual(find_udb_pdf([pdf]), pdf.resolve())
+            completed = subprocess.CompletedProcess(
+                args=[], returncode=0, stdout="built\n", stderr=""
+            )
+            with patch(
+                "workshop_tools.udb_loader.subprocess.run",
+                return_value=completed,
+            ) as run:
+                self.assertEqual(build_udb_parquet(pdf, output), output.resolve())
+
+            command = run.call_args.args[0]
+            self.assertEqual(command[command.index("--pdf") + 1], str(pdf.resolve()))
+            self.assertEqual(
+                command[command.index("--output-dir") + 1], str(output.resolve())
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
-

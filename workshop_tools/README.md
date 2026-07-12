@@ -24,6 +24,10 @@ The package contains no UDB PDF, extracted text, or generated database.
 2. Save it as `local_data/Ugaritic_data_bank.pdf`.
 3. Install the workshop requirements.
 
+In Colab, both `/content/local_data/Ugaritic_data_bank.pdf` and
+`/content/ugarit-dh-workshop/local_data/Ugaritic_data_bank.pdf` are detected
+automatically. Set `UDB_PDF_PATH` for another location.
+
 ## SQLite (Hour 3 — PDF → queryable database)
 
 ```bash
