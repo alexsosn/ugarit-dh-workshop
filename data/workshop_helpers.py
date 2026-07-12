@@ -41,6 +41,7 @@ def sound_correspondence_figure(lang: str = "Hb", show_gaps: bool = False):
         raise ValueError(f"unknown language {lang!r}; choose one of: {choices}")
 
     target = data["languages"][lang]
+    target_glyph = target.get("tgt_glyph") or {}
     edges = [
         edge for edge in target["edges"]
         if show_gaps or edge["type"] not in {"ins", "del"}
@@ -79,7 +80,7 @@ def sound_correspondence_figure(lang: str = "Hb", show_gaps: bool = False):
             hoverinfo="skip", showlegend=False,
         ))
         ug = f"{data['uga_glyph'].get(u, '')} {uga_display.get(u, u)}".strip()
-        tg = f"{target['tgt_glyph'].get(h, '')} {target_display.get(h, h)}".strip()
+        tg = f"{target_glyph.get(h, '')} {target_display.get(h, h)}".strip()
         midpoint_x.append(0.5)
         midpoint_y.append((uy[u] + ty[h]) / 2)
         midpoint_text.append(
@@ -100,7 +101,7 @@ def sound_correspondence_figure(lang: str = "Hb", show_gaps: bool = False):
         for sign in uga_order
     ]
     target_labels = [
-        f"{target['tgt_glyph'].get(sign, '')}  {target_display.get(sign, sign)}".strip()
+        f"{target_glyph.get(sign, '')}  {target_display.get(sign, sign)}".strip()
         for sign in target_order
     ]
     fig.add_trace(go.Scatter(

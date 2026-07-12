@@ -24,6 +24,15 @@ class SoundCorrespondenceDataTests(unittest.TestCase):
                 self.assertIn(edge["type"], {"id", "merge", "ins", "del"})
                 self.assertGreater(edge["count"], 0)
 
+    def test_renderer_accepts_every_language_with_or_without_gaps(self):
+        from data.workshop_helpers import sound_correspondence_figure
+
+        payload = json.loads(DATA.read_text(encoding="utf-8"))
+        for code in payload["order"]:
+            for show_gaps in (False, True):
+                figure = sound_correspondence_figure(code, show_gaps=show_gaps)
+                self.assertTrue(figure.data, (code, show_gaps))
+
 
 if __name__ == "__main__":
     unittest.main()
