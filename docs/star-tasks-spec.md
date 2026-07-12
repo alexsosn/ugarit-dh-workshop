@@ -54,19 +54,19 @@ assert abs(answer - EXPECTED) < TOL
 ```
 
 **Optional shared helper (recommended).** Add `star_check(problem_id, answer)` to
-`data/loader.py` (or a small `data/star.py`) backed by `data/star_answers.json`,
+`workshop_tools/loader.py` (or a small `data/star.py`) backed by `data/star_answers.json`,
 so every inline cell ends with one tidy line and a friendly ✅/❌. Self-contained
 fallback: inline the `EXPECTED` constant directly in the cell.
 
 > **⚠️ Source-of-truth rule [settled].** The bundled loader reads the
 > HuggingFace CUC Parquet export and returns **279 tablets**. **All offline
-> expected answers MUST be precomputed from the workshop's `data.loader` and the
+> expected answers MUST be precomputed from the workshop's `workshop_tools.loader` and the
 > same downloaded/cached CUC Parquet file** that participants use. The Boss task
 > (§5) is the only one graded against the MCP.
 
 ## 4. The tasks **[draft]**
 
-Available data API (all in `data/loader.py`): `load_texts`, `texts_by_genre`,
+Available data API (all in `workshop_tools/loader.py`): `load_texts`, `texts_by_genre`,
 `token_counts`, `all_tokens`, `corpus_as_documents`, `text_as_string`,
 `clean_tokens`, `load_alphabet`, `sign_counts`, `load_catalog_titles`,
 `load_omen_tree`, `load_omen_text`, `load_babylonian_izbu_tree`,
@@ -154,7 +154,7 @@ Available data API (all in `data/loader.py`): `load_texts`, `texts_by_genre`,
 ### S3b — Robust address parser → correspondence graph  ⭐⭐
 - **Lives in:** `3b_letter_networks.ipynb`
 - **Difficulty:** linguistics (real formula parsing) + graph
-- **Input:** the 105 tablets currently labelled `letter` by `data.loader`.
+- **Input:** the 105 tablets currently labelled `letter` by `workshop_tools.loader`.
 - **Task:** parse the Ugaritic epistolary address formula — `tḥm PN l PN`
   ("message of SENDER to RECIPIENT") and the `l PN rgm` / `tḥm PN` variants —
   more robustly than the guided cell, build the **directed sender→recipient

@@ -16,7 +16,7 @@ writes two small committable files under ``data/``:
                                     name, lon, lat, language, script, area, uuid
 
 Genre is deliberately NOT written here: the labs join UDB genre at run time from
-the participant-built ``local_data/udb/texts.parquet`` (see data.loader), so no
+the participant-built ``local_data/udb/texts.parquet`` (see workshop_tools.loader), so no
 UDB-derived content is redistributed.
 
 Usage:

@@ -12,7 +12,7 @@ hours / notebooks they feed.
 
 | Resource | What it is | Use |
 |----------|-----------|-----|
-| **`DT-UCPH/cuc`** (GitHub / Text-Fabric) ✅▶️ | Source CUC Text-Fabric dataset, 279 KTU tablets, CACCHT project, CC BY-NC 4.0. The notebooks use the `AlexWalhai/CUC` HuggingFace Parquet export. | Primary data source used by `data/loader.py`. Full graph features in Text-Fabric: tablet, column, line, side, `g_cons`, trailer, language, sign, `emen`, `cert`, `cont`, `alt`. |
+| **`DT-UCPH/cuc`** (GitHub / Text-Fabric) ✅▶️ | Source CUC Text-Fabric dataset, 279 KTU tablets, CACCHT project, CC BY-NC 4.0. The notebooks use the `AlexWalhai/CUC` HuggingFace Parquet export. | Primary data source used by `workshop_tools/loader.py`. Full graph features in Text-Fabric: tablet, column, line, side, `g_cons`, trailer, language, sign, `emen`, `cert`, `cont`, `alt`. |
 | **UDB — Ugaritic Data Bank** 🔑⚖️ | Spanish-team electronic corpus, mostly using CAT/KTU numbers; see Cunchillos, Vita, and Zamora 2003. Generate Parquet tables locally using `python -m workshop_tools.build_udb_parquet`. | Workshop provides parser code only. Participants must obtain the PDF through an authorized channel and generate tables locally. |
 | **ContextFabric** + `cfabric-mcp` | Graph engine + MCP server. Tested locally with Python 3.13 in `~/projects/mcp-demo/`. | Hour 3 closing: LLM/agent access to CUC + BHSA. |
 

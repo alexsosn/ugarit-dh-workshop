@@ -20,7 +20,7 @@ ipykernel
 
 # UDB exercises — build local SQLite / Parquet tables from a participant-supplied
 # PDF (workshop_tools.build_udb_sqlite / build_udb_parquet). pyarrow also lets
-# the earlier lessons read the generated Parquet (data/udb_loader.py).
+# the earlier lessons read the generated Parquet (workshop_tools/udb_loader.py).
 pdfminer.six>=20240706
 pyarrow
 

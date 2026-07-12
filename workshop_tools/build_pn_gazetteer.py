@@ -3,7 +3,7 @@
 Reads the lexicon (tab-separated; part-of-speech in column 4) and writes the
 *bare, normalized* transliteration forms of every entry tagged ``PN`` to
 ``data/ugaritic_pn.txt`` — one form per line, no glosses, DULAT references, or
-etymologies. The list is used by ``data/udb_loader.load_pn_gazetteer`` to
+etymologies. The list is used by ``workshop_tools.udb_loader.load_pn_gazetteer`` to
 recognise personal names in letters.
 
 Normalization / expansion:

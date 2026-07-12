@@ -79,11 +79,10 @@ segregated from the non-coder path and should be introduced only when useful.
 ├── README.md              ← you are here
 ├── requirements.txt       ← Python dependencies
 ├── data/
-│   ├── loader.py          ← CUC loader backed by HuggingFace Parquet cache
-│   └── README.md          ← data sources and citation map
+│   └── README.md          ← data files, sources, and citation map (no Python code)
 ├── docs/                  ← readings (Markdown); 00-resources.md = resource catalogue, glossary.md = jargon unpacked
 ├── notebooks/             ← Jupyter notebooks, one per exercise
-├── workshop_tools/        ← code-only UDB parser + local SQLite/Parquet builders
+├── workshop_tools/        ← loaders, teaching helpers, graph tools, and UDB builders
 ├── local_data/            ← participant-supplied files; ignored, never committed
 ├── images/                ← illustrations (maps, tablet photos, diagrams)
 └── slides/                ← optional presentation material

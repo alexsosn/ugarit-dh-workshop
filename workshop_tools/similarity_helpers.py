@@ -7,7 +7,7 @@ import re
 import pandas as pd
 import plotly.graph_objects as go
 
-from data.loader import load_catalog_titles, resolve_to_ktu
+from workshop_tools.loader import load_catalog_titles, resolve_to_ktu
 
 HOVER_FIELDS = ["title", "genre", "ktu_genre", "words", "preview"]
 HOVER_LABELS = {

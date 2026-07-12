@@ -25,7 +25,7 @@ class SoundCorrespondenceDataTests(unittest.TestCase):
                 self.assertGreater(edge["count"], 0)
 
     def test_renderer_accepts_every_language_with_or_without_gaps(self):
-        from data.workshop_helpers import TARGET_GLYPHS, sound_correspondence_figure
+        from workshop_tools.workshop_helpers import TARGET_GLYPHS, sound_correspondence_figure
 
         payload = json.loads(DATA.read_text(encoding="utf-8"))
         expected_alephs = {

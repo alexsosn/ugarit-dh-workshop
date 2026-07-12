@@ -1,24 +1,14 @@
 # Data — sources, structure, and citation map
 
-This folder holds the data layer for the workshop. Notebooks never read raw
-files directly; they call `loader.py`, which returns a uniform list of tablets.
-The notebooks use the real CUC corpus through a downloaded HuggingFace Parquet
-cache and UDB through locally-generated Parquet tables.
+This folder contains **data files only**: bundled teaching datasets, metadata,
+fonts, and ignored local caches. Python loaders and teaching helpers live in
+`workshop_tools/`, so data provenance is not mixed with implementation code.
+
+Notebooks use `workshop_tools.loader` for the CUC corpus and
+`workshop_tools.udb_loader` for locally generated UDB tables.
 
 ## Files
 
-- **`loader.py`** — downloads/caches the line-level CUC Parquet file from the
-  HuggingFace dataset `AlexWalhai/CUC` and returns tablet dicts. If `data/cuc/`
-  or `UGARIT_CUC_DIR` contains Parquet files, those local files are used instead.
-  The Parquet is exported from the Text-Fabric dataset `DT-UCPH/cuc`.
-  **Underlying corpus licence: CC BY-NC 4.0** — educational / non-commercial use,
-  attribution required. API: `load_texts`, `texts_by_genre`, `token_counts`,
-  `corpus_as_documents`,
-  `load_alphabet`, `sign_counts`, `load_omen_tree`.
-- **`udb_loader.py`** — loads UDB data from locally-generated Parquet tables in
-  `../local_data/udb/`. Students must generate these tables by running
-  `python -m workshop_tools.build_udb_parquet` with a locally-supplied PDF.
-  See setup instructions below.
 - **`alphabet.json`** — the 30 signs in abecedary order with cuneiform codepoints
   and a **complexity** score (wedges + turns), for the alphabet hypothesis (`1b`).
 - **`sound_correspondences.json`** — aggregate aligned-consonant counts exported
@@ -38,7 +28,7 @@ cache and UDB through locally-generated Parquet tables.
 
 ### CUC Parquet files
 
-1. Run any notebook; `loader.py` downloads `data/cuc.parquet` from
+1. Run any notebook; `workshop_tools.loader` downloads the CUC Parquet export from
    <https://huggingface.co/datasets/AlexWalhai/CUC> into
    `data/_cache/cuc-parquet/`.
 2. Optional offline setup: place one or more CUC Parquet files in `data/cuc/`, or
