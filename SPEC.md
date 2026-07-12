@@ -77,7 +77,7 @@ message for non-coders: *you could commission this yourself — you don't have t
 write the code.* Ends on the caution beat (hallucination / lost philology).
 
 **Agent tool [settled — with caveat]:** feature **Google Antigravity (free tier)**
-— no credit card, ~20 agent requests/day (plenty for one rehearsed demo), strong
+— no credit card, ≈20 agent requests/day (plenty for one rehearsed demo), strong
 "zero-cost" story. Mention **OpenAI Codex, Cursor, Claude Code** as alternatives.
 ⚠️ Free tiers shifted repeatedly through 2025–26, so **record a screen capture of
 the full build in advance** as a fallback if limits/network fail live.
@@ -107,8 +107,9 @@ Final slide + a repo page (`docs/09-get-involved.md`) covering:
 
 Target all three, in priority order:
 1. **Google Colab** — primary. **Bootstrap: first cell `!git clone` the public
-   GitHub repo, then `%cd` into it.** The first notebook call to `load_texts()`
-   downloads CUC from HuggingFace into a local cache; no API key required.
+   GitHub repo, then `%cd` into it.** The teaching CUC snapshot and all other
+   workshop data are bundled in the repository; only the restricted UDB PDF is
+   supplied separately by the participant.
 2. **Binder** — launch the whole repo in-browser from GitHub.
 3. **Local venv** — `pip install -r requirements.txt` for power users.
 
@@ -141,7 +142,7 @@ rights.
 
 ## 6a. Timeline **[settled]**
 
-- **Workshop date: 17 July 2026** (~5 weeks from spec date 11 Jun 2026).
+- **Workshop date: 17 July 2026** (≈5 weeks from spec date 11 Jun 2026).
 - **Build target:** dry-run-ready by **early July** to leave rehearsal slack —
   critical for the H3 live agent demo + screen-capture fallback.
 - **Priority order under the deadline:** (1) hands-on H1–H2 notebooks + Colab

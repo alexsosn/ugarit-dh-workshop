@@ -2,10 +2,9 @@
 Data loader for the Ugarit DH workshop — backed by the REAL corpus.
 ===================================================================
 
-The notebooks use the **Copenhagen Ugaritic Corpus (CUC)** through Parquet files.
-By default the loader downloads the public HuggingFace Parquet export
-(``AlexWalhai/CUC``) into ``data/_cache/cuc-parquet/``. If ``data/cuc/`` or
-``UGARIT_CUC_DIR`` contains Parquet files, those local files are used instead.
+The notebooks use the **Copenhagen Ugaritic Corpus (CUC)** through the Parquet
+snapshot bundled under ``data/cuc/``. Set ``UGARIT_CUC_DIR`` to use another
+local Parquet directory. No corpus download is required at notebook runtime.
 Every notebook calls ``load_texts()`` and gets a uniform list of tablets back.
 
   Source : CUC, CACCHT project (DT-UCPH/cuc), Text-Fabric export → Parquet
@@ -47,9 +46,6 @@ import os
 import re
 from collections import Counter
 from pathlib import Path
-from urllib.error import HTTPError, URLError
-from urllib.parse import quote
-from urllib.request import Request, urlopen
 
 try:
     import pyarrow.parquet as pq
@@ -59,9 +55,6 @@ except ImportError:
 _REPO_ROOT = Path(__file__).resolve().parent.parent
 _DATA_DIR = _REPO_ROOT / "data"
 _BUNDLED_CUC_DIR = Path(os.environ.get("UGARIT_CUC_DIR", _DATA_DIR / "cuc")).expanduser()
-_CACHE_DIR = Path(
-    os.environ.get("UGARIT_CUC_CACHE", _DATA_DIR / "_cache" / "cuc-parquet")
-).expanduser()
 _ALPHABET_PATH = _DATA_DIR / "alphabet.json"
 _CATALOG_PATH = _DATA_DIR / "ugaritic_texts_catalog.tsv"
 _OMEN_PATH = _DATA_DIR / "omens" / "sheep_birth_omens.json"
@@ -71,12 +64,6 @@ _BABYLONIAN_FOETUS_PATH = _DATA_DIR / "omens" / "babylonian_foetus_omens.json"
 _BABYLONIAN_CELESTIAL_PATH = _DATA_DIR / "omens" / "babylonian_celestial_omens.json"
 _UGARITIC_LUNAR_PATH = _DATA_DIR / "omens" / "ugaritic_lunar_omens.json"
 _UGARITIC_DREAM_PATH = _DATA_DIR / "omens" / "ugaritic_dream_omens.json"
-_HF_DATASET = "AlexWalhai/CUC"
-_HF_PARQUET = "data/cuc.parquet"
-_HF_RAW_URL = (
-    f"https://huggingface.co/datasets/{_HF_DATASET}/resolve/main/"
-    f"{quote(_HF_PARQUET, safe='/')}?download=true"
-)
 
 # Characters that are not part of a word form (restorations, breaks, dividers).
 _STRIP_CHARS = "[]()<>!?*/\\"
@@ -138,46 +125,20 @@ def clean_tokens(latin_line: str):
 # Public API
 # ---------------------------------------------------------------------------
 
-def _download_cuc_parquet(destination: Path) -> None:
-    """Download the public CUC Parquet export from HuggingFace."""
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    tmp = destination.with_suffix(destination.suffix + ".tmp")
-    request = Request(
-        _HF_RAW_URL,
-        headers={"User-Agent": "ugarit-dh-workshop/1.0"},
-    )
-    try:
-        with urlopen(request, timeout=120) as response:
-            with open(tmp, "wb") as f:
-                while True:
-                    chunk = response.read(1024 * 1024)
-                    if not chunk:
-                        break
-                    f.write(chunk)
-        if tmp.stat().st_size == 0:
-            raise RuntimeError(f"downloaded empty CUC parquet file from {_HF_RAW_URL}")
-        tmp.replace(destination)
-    except (HTTPError, URLError, TimeoutError, OSError) as exc:
-        if tmp.exists():
-            tmp.unlink()
-        raise RuntimeError(
-            "Could not download the CUC Parquet file from HuggingFace.\n"
-            f"URL: {_HF_RAW_URL}\n"
-            f"Place a CUC parquet file in {_BUNDLED_CUC_DIR}/, or set "
-            "UGARIT_CUC_DIR to a directory containing it."
-        ) from exc
-
-
 def _parquet_paths():
-    """Return CUC Parquet paths and a human-readable source label."""
+    """Return bundled/local CUC Parquet paths and a source label."""
     local = sorted(_BUNDLED_CUC_DIR.glob("*.parquet"))
     if local:
-        return local, str(_BUNDLED_CUC_DIR)
-
-    cached = _CACHE_DIR / Path(_HF_PARQUET).name
-    if not cached.exists() or cached.stat().st_size == 0:
-        _download_cuc_parquet(cached)
-    return [cached], f"{_HF_DATASET} parquet cache"
+        source = (
+            "bundled data/cuc"
+            if _BUNDLED_CUC_DIR == _DATA_DIR / "cuc"
+            else str(_BUNDLED_CUC_DIR)
+        )
+        return local, source
+    raise FileNotFoundError(
+        f"No CUC Parquet snapshot found under {_BUNDLED_CUC_DIR}. "
+        "Re-clone the workshop repository or set UGARIT_CUC_DIR."
+    )
 
 
 def _string(value) -> str:

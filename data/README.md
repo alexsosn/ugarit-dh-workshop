@@ -28,12 +28,12 @@ Notebooks use `workshop_tools.loader` for the CUC corpus and
 
 ### CUC Parquet files
 
-1. Run any notebook; `workshop_tools.loader` downloads the CUC Parquet export from
-   <https://huggingface.co/datasets/AlexWalhai/CUC> into
-   `data/_cache/cuc-parquet/`.
-2. Optional offline setup: place one or more CUC Parquet files in `data/cuc/`, or
-   set `UGARIT_CUC_DIR` to a directory containing them.
-3. Do not use the older JSONL cache; the loader reads Parquet only.
+The teaching snapshot is bundled as `data/cuc/cuc.parquet`; notebooks do not
+download corpus data at runtime. To use another local snapshot, set
+`UGARIT_CUC_DIR` to a directory containing Parquet files.
+
+The reviewed KTU 1.1–1.6 annotation and its onomastic descriptions are bundled
+under `data/baal_cycle/` for the divine-name network lab.
 
 ### UDB Parquet tables
 

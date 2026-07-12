@@ -9,7 +9,7 @@
 
 ## 0. TL;DR
 
-In ~6–8 minutes you ask one AI agent a comparative question that **no single
+In ≈6–8 minutes you ask one AI agent a comparative question that **no single
 database can answer**, and watch it query the Ugaritic **CUC**, the Hebrew-Bible
 **BHSA** corpus, and the **Sefaria** library on its own, then lay the results side
 by side **with citations**. It makes Hour 1's claim — *Ugarit is the backdrop to
@@ -148,7 +148,7 @@ Observed results:
 
 ---
 
-## 3. The demo storyboard (~6–8 min)
+## 3. The demo storyboard (≈6–8 min)
 
 Pick **one** research bridge (options in §5). Worked example: **Athirat → Asherah.**
 
@@ -220,7 +220,7 @@ Each is one swap in prompt 2–3. Rehearse whichever you choose.
 3. **Screenshots.** 4–5 captures: tool list → CUC hits → Sefaria citations →
    side-by-side → the correction.
 
-Never debug the local server live for more than ~60 seconds — cut to fallback.
+Never debug the local server live for more than ≈60 seconds — cut to fallback.
 
 ---
 

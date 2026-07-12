@@ -17,10 +17,7 @@ from __future__ import annotations
 
 import html
 import json
-import os
 import re
-import subprocess
-import tempfile
 import warnings
 from collections import defaultdict
 from dataclasses import dataclass
@@ -31,17 +28,12 @@ from typing import Iterable, Mapping
 import networkx as nx
 import pandas as pd
 
+from workshop_tools.network_viz import vis_network_javascript
+
 
 _REPO_ROOT = Path(__file__).resolve().parent.parent
-_DEFAULT_LOCAL_SOURCE = Path(
-    "/Users/alexandersosnovschenko/projects/cuc-origin/reviewed"
-)
-_DEFAULT_LOCAL_OVERRIDES = Path(
-    "/Users/alexandersosnovschenko/projects/cuc-origin/agent/data_sources/"
-    "onomastic_gloss_overrides.tsv"
-)
-_CUC_REPOSITORY = "https://github.com/DT-UCPH/cuc.git"
-_CUC_REVIEW_BRANCH = "review/claude-fable-5"
+_BUNDLED_SOURCE = _REPO_ROOT / "data" / "baal_cycle"
+_BUNDLED_OVERRIDES = _BUNDLED_SOURCE / "onomastic_gloss_overrides.tsv"
 _REF_RE = re.compile(
     r"^KTU (?P<tablet>\d+\.\d+) (?P<column>[IVX]+):(?P<line>\d+)[a-z]?$"
 )
@@ -105,29 +97,14 @@ def _find_source_dir(
     candidates: list[Path] = []
     if data_dir is not None:
         candidates.append(Path(data_dir).expanduser())
-    if os.environ.get("CUC_REVIEWED_DIR"):
-        candidates.append(Path(os.environ["CUC_REVIEWED_DIR"]).expanduser())
-    candidates.extend([
-        _DEFAULT_LOCAL_SOURCE,
-        _REPO_ROOT / "data" / "baal_cycle",
-    ])
+    candidates.append(_BUNDLED_SOURCE)
     for candidate in candidates:
         if _has_files(candidate, filenames):
             return candidate
-
-    checkout = Path(tempfile.gettempdir()) / "cuc-baal-cycle-reviewed"
-    if not checkout.exists():
-        subprocess.run([
-            "git", "clone", "--depth", "1", "--branch", _CUC_REVIEW_BRANCH,
-            _CUC_REPOSITORY, str(checkout),
-        ], check=True)
-    reviewed = checkout / "reviewed"
-    if not _has_files(reviewed, filenames):
-        missing = ", ".join(
-            filename for filename in filenames if not (reviewed / filename).is_file()
-        )
-        raise FileNotFoundError(f"Missing reviewed CUC files: {missing}")
-    return reviewed
+    raise FileNotFoundError(
+        "The bundled Baal Cycle annotation is incomplete under "
+        f"{_BUNDLED_SOURCE}. Re-clone the workshop repository."
+    )
 
 
 def _find_overrides(
@@ -136,13 +113,9 @@ def _find_overrides(
     candidates: list[Path] = []
     if overrides_path is not None:
         candidates.append(Path(overrides_path).expanduser())
-    if os.environ.get("ONOMASTIC_GLOSS_OVERRIDES"):
-        candidates.append(
-            Path(os.environ["ONOMASTIC_GLOSS_OVERRIDES"]).expanduser()
-        )
     candidates.extend([
-        _DEFAULT_LOCAL_OVERRIDES,
-        source_dir.parent / "agent/data_sources/onomastic_gloss_overrides.tsv",
+        source_dir / "onomastic_gloss_overrides.tsv",
+        _BUNDLED_OVERRIDES,
     ])
     return next((path for path in candidates if path.is_file()), None)
 
@@ -613,8 +586,9 @@ def _network_document(
         }
         for left, right, data in displayed.edges(data=True)
     ]
+    vis_network = vis_network_javascript()
     document = """<!doctype html><html><head>
-<script src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+<script>__VIS_NETWORK__</script>
 <style>
 html,body{margin:0;height:100%;font-family:system-ui,sans-serif;background:#fff!important;color:#111827!important;color-scheme:light}
 #toolbar{height:38px;padding:6px 8px;box-sizing:border-box;background:#f8fafc!important;border-bottom:1px solid #cbd5e1;color:#111827}
@@ -636,6 +610,7 @@ function freeze(){network.setOptions({physics:{enabled:false}})}
 function resume(){network.setOptions({physics:{enabled:true}})}
 network.once('stabilizationIterationsDone',freeze);
 </script></body></html>"""
+    document = document.replace("__VIS_NETWORK__", vis_network)
     document = document.replace("__NODES__", json.dumps(nodes, ensure_ascii=False))
     document = document.replace("__EDGES__", json.dumps(edges, ensure_ascii=False))
     return document, displayed

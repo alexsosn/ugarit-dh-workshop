@@ -54,10 +54,36 @@ class NotebookColabPortabilityTests(unittest.TestCase):
                         self.assertTrue(target.exists())
 
     def test_notebook_source_has_no_developer_machine_paths(self):
+        machine_prefix = "/" + "Users" + "/"
         for path in sorted(NOTEBOOKS.glob("*.ipynb")):
             source = "\n".join(code for _, code in self._cells(path))
             with self.subTest(notebook=path.name):
-                self.assertNotIn("/Users/", source)
+                self.assertNotIn(machine_prefix, source)
+
+        for path in sorted((ROOT / "workshop_tools").rglob("*.py")):
+            with self.subTest(module=str(path.relative_to(ROOT))):
+                self.assertNotIn(
+                    machine_prefix, path.read_text(encoding="utf-8")
+                )
+
+    def test_bundled_corpus_assets_exist(self):
+        self.assertTrue((ROOT / "data/cuc/cuc.parquet").is_file())
+        baal = ROOT / "data/baal_cycle"
+        for number in range(1, 7):
+            self.assertTrue((baal / f"KTU 1.{number}.tsv").is_file())
+        self.assertTrue((baal / "onomastic_gloss_overrides.tsv").is_file())
+        self.assertTrue(
+            (ROOT / "workshop_tools/vendor/vis-network/vis-network.min.js").is_file()
+        )
+
+    def test_default_loaders_use_bundled_corpora(self):
+        from workshop_tools.divine_networks import load_baal_cycle
+        from workshop_tools.loader import load_texts
+
+        self.assertEqual(len(load_texts(verbose=False)), 279)
+        corpus = load_baal_cycle()
+        self.assertEqual(corpus.source_dir, ROOT / "data/baal_cycle")
+        self.assertEqual(len(corpus.occurrences), 612)
 
 
 if __name__ == "__main__":

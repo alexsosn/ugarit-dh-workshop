@@ -1,6 +1,6 @@
 # 8. The modern philologist's toolkit and the future of DH
 
-*Hour 3 · ~20 min · closing synthesis*
+*Hour 3 · ≈20 min · closing synthesis*
 
 > **Status:** outline stub.
 

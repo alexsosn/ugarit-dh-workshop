@@ -170,7 +170,7 @@ objects and features** (tablet → line → word → sign) and querying it. CUC 
 Text-Fabric dataset; **ContextFabric** is a newer engine built on the same model.
 
 **HuggingFace.** A popular website for sharing datasets and AI models; the
-workshop downloads the CUC Parquet export from `AlexWalhai/CUC` there.
+workshop bundles its teaching CUC Parquet snapshot under `data/cuc/`.
 
 **Repository ("repo") · GitHub.** A repo is a versioned project folder (code +
 data + docs). **GitHub** hosts repos online; the workshop repo lives there.

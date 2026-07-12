@@ -667,7 +667,7 @@ def _campaign_year(campaign) -> int:
     """RS campaign number -> calendar year (approximate for post-war campaigns).
 
     Ras Shamra was dug annually 1929-1939 (campaigns 1-11), interrupted by the
-    war, then resumed in 1948 (campaigns 12-34, C.F.A. Schaeffer, to ~1970).
+    war, then resumed in 1948 (campaigns 12-34, C.F.A. Schaeffer, to ≈1970).
     Later excavation numbers are already the year: RS 75 = 1975 ... RS 94 = 1994
     (Maison d'Ourtenou), and RS 2000-2002 are literal years.
     """

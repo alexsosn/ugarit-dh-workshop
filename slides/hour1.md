@@ -131,7 +131,7 @@ A single tablet exists at once as:
 ![bg right:38%](../images/semitic_context.svg)
 
 - A **cuneiform alphabet** — wedges, but alphabetic (not syllabic).
-- ~**30 signs**; order known from school **abecedaries**.
+- ≈**30 signs**; order known from school **abecedaries**.
 - One of the earliest attested alphabetic orders.
 
 <!-- 4 min. Bridge from corpus to script. Figure: Ugaritic within Semitic. -->
@@ -159,7 +159,7 @@ Three testable claims: **economy**, **simple = frequent**, **order ≈ frequency
 - Claim A: are *frequent* signs *simpler*? Claim B: do *earlier* signs occur more?
 - You compute the correlations and decide.
 
-<!-- 11 min including this slide. Don't pre-spoil the result — let them find that the correlations are ~0. -->
+<!-- 11 min including this slide. Don't pre-spoil the result — let them find that the correlations are ≈0. -->
 
 ---
 

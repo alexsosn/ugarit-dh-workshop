@@ -32,8 +32,8 @@ above it.
 
   | Tier | Meaning |
   |------|---------|
-  | ⭐ | Extend / harden an existing cell. ~10–20 min. |
-  | ⭐⭐ | Build an algorithm from scratch, match a reference output. ~20–40 min. |
+  | ⭐ | Extend / harden an existing cell. ≈10–20 min. |
+  | ⭐⭐ | Build an algorithm from scratch, match a reference output. ≈20–40 min. |
   | ⭐⭐⭐ | Research-grade or open-ended, graded against a measurable target. Take-home. |
 
 ## 3. Grading convention **[draft — confirm at build]**
@@ -61,7 +61,7 @@ fallback: inline the `EXPECTED` constant directly in the cell.
 > **⚠️ Source-of-truth rule [settled].** The bundled loader reads the
 > HuggingFace CUC Parquet export and returns **279 tablets**. **All offline
 > expected answers MUST be precomputed from the workshop's `workshop_tools.loader` and the
-> same downloaded/cached CUC Parquet file** that participants use. The Boss task
+> same bundled CUC Parquet file** that participants use. The Boss task
 > (§5) is the only one graded against the MCP.
 
 ## 4. The tasks **[draft]**
@@ -169,7 +169,7 @@ Available data API (all in `workshop_tools/loader.py`): `load_texts`, `texts_by_
   modularity. Deterministic by fixing the algorithm.
 
 ### S3c — Quantify two divination traditions  ⭐⭐
-- **Lives in:** `3c_divination_trees.ipynb`
+- **Lives in:** `3d_divination_trees.ipynb`
 - **Difficulty:** recursion / algorithm
 - **Input:** all six omen trees — Ugaritic `sheep`, `lunar`, `dream`; Babylonian
   `izbu`, `foetus`, `celestial`.
@@ -296,7 +296,7 @@ and the MCP. Same input → output → check → tier format.
   consonant skeleton (emit in ETCBC ASCII to match BHSA), then **validate against
   attested BHSA lexemes** (`lex` / `g_cons` via the MCP).
 - **Output:** per form, predicted Hebrew skeleton + whether it is an attested lexeme.
-- **Check:** on a curated gold set (~20 secure cognates: bʿl, arṣ, ṯlṯ, ḏhb, ḫmš,
+- **Check:** on a curated gold set (≈20 secure cognates: bʿl, arṣ, ṯlṯ, ḏhb, ḫmš,
   šmm, yd, mlk, bn, ym, bt, ṯr, ʿbd …), predicted == attested Hebrew; score =
   matches / total ≥ threshold. `EXPECTED` = the gold pairs (BHSA lookups done at build).
 - **Pitfalls / teaching points:** not every Ugaritic word has a cognate; vowels

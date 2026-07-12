@@ -10,8 +10,7 @@ env/
 .ipynb_checkpoints/
 */.ipynb_checkpoints/
 
-# Downloaded corpus/cache files. CUC is fetched by data/loader.py into
-# data/_cache/ and should not be committed.
+# Temporary caches. The teaching CUC snapshot itself is bundled under data/cuc/.
 text-fabric-data/
 ~/text-fabric-data/
 data/_cache/

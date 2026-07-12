@@ -13,6 +13,8 @@ contains data files and caches only.
 - `similarity_helpers.py` — helpers for the similarity/clustering lab.
 - `analyse.py` — metadata normalization and legacy statistical utilities.
 - `build_*.py` — command-line builders for local or derived resources.
+- `vendor/vis-network/` — pinned browser renderer for the draggable graph,
+  bundled with its MIT licence so the lab does not depend on a CDN.
 
 The package contains no UDB PDF, extracted text, or generated database.
 

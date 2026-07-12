@@ -1,6 +1,6 @@
 # 1. What is Ugarit? — historical introduction
 
-*Hour 1 · ~10 min core introduction · optional comparative reading*
+*Hour 1 · ≈10 min core introduction · optional comparative reading*
 
 The short opening below supplies the minimum historical frame needed for the
 metadata work in notebook `1a`. The longer comparative section is a reference,
@@ -109,7 +109,7 @@ architecture gives those texts a spatial counterpart.
 > (1) what are the dates, (2) what languages and genres are involved, (3) which
 > words or motifs actually correspond, and (4) what route of transmission is
 > being proposed? Notebook [`3a`](../notebooks/3a_ngrams_formulas.ipynb) tests
-> verbal recurrence; notebook [`3c`](../notebooks/3c_divination_trees.ipynb)
+> verbal recurrence; notebook [`3c`](../notebooks/3d_divination_trees.ipynb)
 > compares the structure of omen collections.
 
 Because Ugarit sat at a Late Bronze Age crossroads, its archives preserve an

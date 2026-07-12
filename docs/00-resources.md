@@ -154,7 +154,7 @@ parser generates Parquet tables from PDF; ✅ alphabet complexity and omen tree 
 facts corrected. Remaining:
 
 1. **Set up CUC locally.** Usually no manual setup is needed; first notebook run
-   downloads `AlexWalhai/CUC` Parquet into `data/_cache/cuc-parquet/`. For
+   reads the bundled `data/cuc/cuc.parquet` snapshot. For
    offline use, place CUC Parquet files in `data/cuc/`.
 2. **Set up UDB locally.** Students must obtain the UDB PDF through an authorized
    channel and run `python -m workshop_tools.build_udb_parquet` to generate Parquet

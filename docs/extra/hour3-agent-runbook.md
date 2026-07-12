@@ -9,7 +9,7 @@
 
 ## 0. TL;DR
 
-In ~20 minutes you show non-coders that **you can commission a real research tool
+In ≈20 minutes you show non-coders that **you can commission a real research tool
 without writing code** — you *direct* an AI agent and *check* its work. The artifact
 is a small SQLite of the Ugaritic Data Bank, queried in natural language. The lesson
 lands twice: AI is an accessible builder **and** a fallible one that needs a human
@@ -23,7 +23,7 @@ learn to ask well and to check."*
 ## 1. Where this sits in Hour 3
 
 Hour 3 runs: 3b letter networks → 3c divination trees → **this closing block
-(~20 min)**. By now they've seen analyses *run*; now they see a tool get *built*.
+(≈20 min)**. By now they've seen analyses *run*; now they see a tool get *built*.
 
 **20-minute storyboard**
 
@@ -270,7 +270,7 @@ Priority order if the live build stalls (quota hit, network, agent loop):
 3. **Screenshots slide.** Last resort: 4–5 captures (raw glyph soup → mapped text →
    schema → a query result) walked through as slides.
 
-Never debug live for more than ~60 seconds — cut to fallback and keep momentum.
+Never debug live for more than ≈60 seconds — cut to fallback and keep momentum.
 
 ---
 
