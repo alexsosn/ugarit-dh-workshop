@@ -6,6 +6,7 @@ repeated data preparation and plotting details out of beginner-facing cells.
 
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 
@@ -17,12 +18,174 @@ from data.loader import load_alphabet, sign_counts, texts_by_genre
 
 DATA_DIR = Path(__file__).resolve().parent
 UGARIT_DATABASE = DATA_DIR / "UGARIT_TEXTS_DATABASE.csv"
+SOUND_CORRESPONDENCES = DATA_DIR / "sound_correspondences.json"
 
 SOUTH_SEMITIC_ORDER = [
     "h", "l", "ḥ", "m", "q", "w", "š", "r", "t", "s",
     "k", "n", "ḫ", "b", "p", "a", "ʿ", "ẓ", "g", "d",
-    "ġ", "ṭ", "z", "ḏ", "y", "ṯ", "ṣ", "i", "u", "s2",
+    "ġ", "ṭ", "z", "ḏ", "y", "ṯ", "ṣ", "i", "u", "ś",
 ]
+
+_HEBREW_GLYPHS = {
+    "ʔ": "א", "ʾ": "א", "b": "ב", "g": "ג", "d": "ד", "h": "ה",
+    "w": "ו", "z": "ז", "ḥ": "ח", "ṭ": "ט", "y": "י", "k": "כ",
+    "l": "ל", "m": "מ", "n": "נ", "s": "ס", "ś": "שׂ", "š": "שׁ",
+    "ṣ": "צ", "ʕ": "ע", "ʿ": "ע", "p": "פ", "f": "פ", "q": "ק",
+    "r": "ר", "t": "ת",
+}
+_PHOENICIAN_GLYPHS = {
+    "ʔ": "𐤀", "ʾ": "𐤀", "b": "𐤁", "g": "𐤂", "d": "𐤃", "h": "𐤄",
+    "w": "𐤅", "z": "𐤆", "ḥ": "𐤇", "ḫ": "𐤇", "ṭ": "𐤈", "y": "𐤉",
+    "k": "𐤊", "l": "𐤋", "m": "𐤌", "n": "𐤍", "s": "𐤎", "š": "𐤔",
+    "ṯ": "𐤔", "ṣ": "𐤑", "ʕ": "𐤏", "ʿ": "𐤏", "p": "𐤐", "f": "𐤐",
+    "q": "𐤒", "r": "𐤓", "t": "𐤕",
+}
+_SYRIAC_GLYPHS = {
+    "ʔ": "ܐ", "ʾ": "ܐ", "b": "ܒ", "v": "ܒ", "g": "ܓ", "d": "ܕ",
+    "h": "ܗ", "w": "ܘ", "z": "ܙ", "ḥ": "ܚ", "ḫ": "ܚ", "ṭ": "ܛ",
+    "ṯ": "ܬ", "y": "ܝ", "k": "ܟ", "l": "ܠ", "m": "ܡ", "n": "ܢ",
+    "s": "ܣ", "š": "ܫ", "ṣ": "ܨ", "ʕ": "ܥ", "ʿ": "ܥ", "p": "ܦ",
+    "f": "ܦ", "q": "ܩ", "r": "ܪ", "t": "ܬ",
+}
+_ARABIC_GLYPHS = {
+    "ʔ": "ا", "ʾ": "ا", "b": "ب", "g": "ج", "d": "د", "ḏ": "ذ",
+    "h": "ه", "w": "و", "z": "ز", "ḥ": "ح", "ḫ": "خ", "ṭ": "ط",
+    "ṯ": "ث", "y": "ي", "k": "ك", "l": "ل", "m": "م", "n": "ن",
+    "s": "س", "š": "ش", "ṣ": "ص", "ḍ": "ض", "ẓ": "ظ", "ʕ": "ع",
+    "ʿ": "ع", "ġ": "غ", "p": "پ", "f": "ف", "q": "ق", "r": "ر",
+    "t": "ت",
+}
+_OSA_GLYPHS = {
+    "ʔ": "𐩱", "ʾ": "𐩱", "b": "𐩨", "g": "𐩴", "ǧ": "𐩴", "d": "𐩵",
+    "ḏ": "𐩹", "h": "𐩠", "w": "𐩥", "z": "𐩹", "ḥ": "𐩢", "ḫ": "𐩭",
+    "ṭ": "𐩷", "ṯ": "𐩻", "y": "𐩺", "k": "𐩫", "l": "𐩡", "m": "𐩣",
+    "n": "𐩬", "s": "𐩪", "š": "𐩦", "ṣ": "𐩮", "ḍ": "𐩲", "ẓ": "𐩳",
+    "ʕ": "𐩲", "ʿ": "𐩲", "ġ": "𐩶", "f": "𐩰", "q": "𐩤", "r": "𐩧",
+    "t": "𐩩",
+}
+
+TARGET_GLYPHS = {
+    "Aram": _HEBREW_GLYPHS,
+    "OAram": _HEBREW_GLYPHS,
+    "Ph": _PHOENICIAN_GLYPHS,
+    "Pun": _PHOENICIAN_GLYPHS,
+    "Syr": _SYRIAC_GLYPHS,
+    "Arab": _ARABIC_GLYPHS,
+    "OSA": _OSA_GLYPHS,
+}
+
+
+def sound_correspondence_figure(lang: str = "Hb", show_gaps: bool = False):
+    """Interactive Ugaritic-to-cognate-language correspondence diagram.
+
+    The bundled snapshot contains aggregate aligned-column counts only; lexical
+    examples from DULAT are intentionally not redistributed with the workshop.
+    """
+    import plotly.graph_objects as go
+
+    data = json.loads(SOUND_CORRESPONDENCES.read_text(encoding="utf-8"))
+    if lang not in data["languages"]:
+        choices = ", ".join(data["order"])
+        raise ValueError(f"unknown language {lang!r}; choose one of: {choices}")
+
+    target = data["languages"][lang]
+    target_glyph = target.get("tgt_glyph") or TARGET_GLYPHS.get(lang, {})
+    edges = [
+        edge for edge in target["edges"]
+        if show_gaps or edge["type"] not in {"ins", "del"}
+    ]
+    uga_order = list(data["uga_order"])
+    target_order = list(target["tgt_order"])
+    if show_gaps and any(edge["u"] == "-" for edge in edges):
+        uga_order.append("-")
+    if show_gaps and any(edge["h"] == "-" for edge in edges):
+        target_order.append("-")
+
+    def positions(order):
+        scale = max(len(order) - 1, 1)
+        return {item: 1 - i / scale for i, item in enumerate(order)}
+
+    uy, ty = positions(uga_order), positions(target_order)
+    colors = {"id": "#9aa0a6", "merge": "#BA7517",
+              "ins": "#2F7DC4", "del": "#C0392B"}
+    descriptions = {
+        "id": "same consonant", "merge": "regular sound shift",
+        "ins": "insertion in cognate", "del": "Ugaritic consonant dropped",
+    }
+    uga_display = {"ả": "a", "ỉ": "i", "ủ": "u", "ʕ": "ʿ", "-": "∅"}
+    target_display = {"ʔ": "ʾ", "ʕ": "ʿ", "-": "∅"}
+
+    fig = go.Figure()
+    midpoint_x, midpoint_y, midpoint_text = [], [], []
+    midpoint_color, midpoint_size = [], []
+    for edge in edges:
+        u, h, kind, count = edge["u"], edge["h"], edge["type"], edge["count"]
+        width = min(10, max(1.3, 0.28 * count ** 0.5))
+        fig.add_trace(go.Scatter(
+            x=[0, 1], y=[uy[u], ty[h]], mode="lines",
+            line={"color": colors[kind], "width": width, "shape": "spline"},
+            opacity=0.28 if kind == "id" else 0.78,
+            hoverinfo="skip", showlegend=False,
+        ))
+        ug = f"{data['uga_glyph'].get(u, '')} {uga_display.get(u, u)}".strip()
+        tg = f"{target_glyph.get(h, '')} {target_display.get(h, h)}".strip()
+        midpoint_x.append(0.5)
+        midpoint_y.append((uy[u] + ty[h]) / 2)
+        midpoint_text.append(
+            f"{ug} → {tg}<br>{count:,} aligned columns<br>{descriptions[kind]}"
+        )
+        midpoint_color.append(colors[kind])
+        midpoint_size.append(min(18, max(7, count ** 0.5)))
+
+    fig.add_trace(go.Scatter(
+        x=midpoint_x, y=midpoint_y, mode="markers", text=midpoint_text,
+        marker={"color": midpoint_color, "size": midpoint_size,
+                "line": {"color": "white", "width": 0.8}},
+        hovertemplate="%{text}<extra></extra>", showlegend=False,
+    ))
+
+    uga_labels = [
+        f"{data['uga_glyph'].get(sign, '')}  {uga_display.get(sign, sign)}".strip()
+        for sign in uga_order
+    ]
+    target_labels = [
+        f"{target_glyph.get(sign, '')}  {target_display.get(sign, sign)}".strip()
+        for sign in target_order
+    ]
+    fig.add_trace(go.Scatter(
+        x=[0] * len(uga_order), y=[uy[s] for s in uga_order], mode="markers+text",
+        marker={"size": 7, "color": "#667085"}, text=uga_labels,
+        textposition="middle left", hoverinfo="skip", showlegend=False,
+    ))
+    fig.add_trace(go.Scatter(
+        x=[1] * len(target_order), y=[ty[s] for s in target_order], mode="markers+text",
+        marker={"size": 7, "color": "#667085"}, text=target_labels,
+        textposition="middle right", hoverinfo="skip", showlegend=False,
+    ))
+
+    for kind in ["id", "merge"] + (["ins", "del"] if show_gaps else []):
+        fig.add_trace(go.Scatter(
+            x=[None], y=[None], mode="lines", name=descriptions[kind],
+            line={"color": colors[kind], "width": 5},
+        ))
+
+    fig.update_layout(
+        title=(f"Ugaritic → {target['name']} sound correspondences "
+               f"({target['n']:,} cognate pairs)"),
+        height=760, margin={"l": 95, "r": 95, "t": 75, "b": 35},
+        paper_bgcolor="white", plot_bgcolor="white",
+        font={"family": ("Noto Sans Ugaritic, Noto Sans Hebrew, Noto Sans Syriac, "
+                         "Noto Sans Arabic, Noto Sans Old South Arabian, "
+                         "DejaVu Sans, sans-serif")},
+        legend={"orientation": "h", "y": 1.03, "x": 0.5, "xanchor": "center"},
+        xaxis={"visible": False, "range": [-0.18, 1.18], "fixedrange": True},
+        yaxis={"visible": False, "range": [-0.04, 1.04], "fixedrange": True},
+        annotations=[
+            {"x": 0, "y": 1.045, "text": "<b>Ugaritic</b>", "showarrow": False},
+            {"x": 1, "y": 1.045, "text": f"<b>{target['name']}</b>", "showarrow": False},
+        ],
+    )
+    return fig
 
 
 def find_tablet(texts: list[dict], ktu: str) -> dict:
@@ -117,6 +280,86 @@ def barh(series: pd.Series, title: str, n: int = 12):
     return ax
 
 
+def metadata_bar(counts: pd.Series, title: str, n: int = 12, color: str = "#4c78a8"):
+    """Interactive horizontal bar chart of a count Series (e.g. a value_counts()).
+
+    The notebook does the *counting* in a visible cell (``value_counts()``) and
+    passes the result here; this helper only handles the Plotly styling so the
+    teaching cell stays about the numbers, not the plotting syntax.
+    """
+    import plotly.express as px
+
+    top = counts.head(n)[::-1]                       # largest bar on top
+    fig = px.bar(x=top.values, y=top.index, orientation="h", title=title,
+                 color_discrete_sequence=[color])
+    fig.update_layout(height=380, width=760, xaxis_title="texts", yaxis_title="",
+                      margin=dict(l=210, r=40, t=50, b=30),
+                      paper_bgcolor="white", plot_bgcolor="white")
+    return fig
+
+
+def metadata_stacked_bar(table: pd.DataFrame, title: str, top_cols: int = 8,
+                         height=470):
+    """Interactive stacked horizontal bars from a crosstab (rows × categories).
+
+    ``table`` is a ``pd.crosstab`` (e.g. archive × language) built in the
+    notebook; this helper only styles it. Archives are ordered by total size and
+    rare categories fold into "other" so the legend stays readable — the point is
+    the *composition* of each location, which a point-map cannot show.
+    """
+    import plotly.express as px
+
+    tbl = table.copy()
+    if tbl.shape[1] > top_cols:                       # fold the long tail
+        keep = tbl.sum().sort_values(ascending=False).head(top_cols).index
+        other = tbl.drop(columns=keep).sum(axis=1)
+        tbl = tbl[keep]
+        tbl["other"] = other
+    tbl = tbl.loc[tbl.sum(axis=1).sort_values().index]      # largest on top
+    long = tbl.reset_index().melt(id_vars=tbl.index.name or "index",
+                                  var_name="category", value_name="texts")
+    ycol = tbl.index.name or "index"
+    fig = px.bar(long, x="texts", y=ycol, color="category", orientation="h",
+                 title=title)
+    fig.update_layout(barmode="stack", height=height, width=900,
+                      yaxis_title="", xaxis_title="texts",
+                      margin=dict(l=215, r=30, t=50, b=40),
+                      paper_bgcolor="white", plot_bgcolor="white")
+    return fig
+
+
+def tablet_size_scatter(udb_texts: pd.DataFrame, color: str = "genre",
+                        top: int = 8, height=520):
+    """Scatter of tablet width vs height (cm), coloured by genre — from UDB.
+
+    Uses the ``height``/``width`` columns of the locally-built UDB ``texts``
+    table. Non-numeric or missing measurements are dropped. Only the ``top``
+    most common genres are coloured; the rest fold into "other" so the legend
+    stays readable.
+    """
+    import plotly.express as px
+
+    df = udb_texts.copy()
+    for col in ("height", "width"):
+        df[col] = pd.to_numeric(df[col], errors="coerce")
+    df = df.dropna(subset=["height", "width"])
+    df = df[(df["height"] > 0) & (df["width"] > 0)]
+    df[color] = df[color].fillna("").astype(str).str.strip().replace("", "unlabelled")
+    keep = df[color].value_counts().head(top).index
+    df["_c"] = df[color].where(df[color].isin(keep), "other")
+
+    fig = px.scatter(
+        df, x="width", y="height", color="_c",
+        hover_data={"tablet": True, "ktu": True, "_c": False},
+        title=f"Ugarit tablets: width vs height  ({len(df)} measured, coloured by {color})",
+    )
+    fig.update_traces(marker=dict(size=8, opacity=0.8))
+    fig.update_layout(height=height, xaxis_title="width (cm)", yaxis_title="height (cm)",
+                      legend_title_text=color,
+                      paper_bgcolor="white", plot_bgcolor="white")
+    return fig
+
+
 def archive_by(meta: pd.DataFrame, column: str, top: int = 10) -> pd.DataFrame:
     """Cross-tabulate the main archives by language or genre."""
     main_archives = meta["archive"].value_counts().head(top).index
@@ -209,7 +452,7 @@ def plot_complexity(alpha: pd.DataFrame):
     plt.figure(figsize=(7, 5))
     plt.scatter(alpha["complexity"], alpha["frequency"])
     for row in alpha.itertuples():
-        plt.annotate(row.sign, (row.complexity, row.frequency))
+        plt.annotate(row.char, (row.complexity, row.frequency))
     plt.xlabel("complexity (wedges + turns)")
     plt.ylabel("frequency")
     plt.title("Are frequent signs simpler?")

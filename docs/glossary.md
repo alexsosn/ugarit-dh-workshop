@@ -54,7 +54,7 @@ Frequent n-grams are how we find **formulas** automatically (notebook `3a`).
 that *characterise* one text. It rewards words that are frequent **in that tablet**
 but rare **across the whole corpus**, and down-weights words that are everywhere
 (*w* "and", *l* "to"). The result is each tablet's "signature vocabulary"
-(notebook `2a`). Think of it as: *distinctive = common here, but not common
+(notebook `2`). Think of it as: *distinctive = common here, but not common
 generally.*
 
 **Keyword (TF-IDF sense).** The top-scoring words from TF-IDF for a given text.
@@ -72,15 +72,43 @@ compare them by arithmetic.
 
 **Cosine similarity.** A 0-to-1 score for how alike two text-vectors are: 1 =
 identical vocabulary, 0 = nothing shared. It's the measure behind "nearest tablets"
-(notebook `2b`).
+(notebook `2`).
 
 **Clustering.** Letting the computer **group** texts by similarity *without being
 told the genres*. If the groups line up with the philologists' genres, the
 vocabulary alone "knew" the genre.
 
 **k-means.** One common clustering method; the *k* is how many groups you ask for
-(we use 4). It is "blind" — it never sees the genre labels, which is exactly why
-matching them is striking.
+(we use 4). It is "blind" — it never sees the genre labels. We therefore measure
+its partial agreement with those labels instead of judging the coloured map by eye.
+
+**Label / ground truth.** A **label** is the category attached to an example
+(here, a genre such as "letter"). "Ground truth" suggests the category is
+authoritative and stable; that phrase is often too strong for editorial genres.
+The workshop therefore calls them **editorial/teaching labels** and treats
+borderline texts as part of the research problem.
+
+**Validation.** Checking whether an apparent result survives a test beyond the
+picture that suggested it. In notebook `2`, adjusted Rand index compares blind
+clusters with the labels, silhouette measures cluster separation, and held-out
+classification tests whether vocabulary predicts labels for unseen tablets.
+
+**Baseline.** A deliberately simple result that a model should beat—for example,
+always guessing the most common genre. Accuracy without a baseline can sound
+impressive while saying very little.
+
+**Cross-validation / held-out data.** Train a model on some tablets and score it
+on different tablets, rotating the held-out group. This checks whether the model
+generalizes instead of merely remembering its training examples.
+
+**Adjusted Rand index (ARI).** A score comparing two ways of grouping the same
+items while correcting for chance. **1** means the groupings match; values around
+**0** indicate chance-level agreement. It does not say that either grouping is
+historically correct.
+
+**Silhouette score.** A measure of whether each point is closer to its own cluster
+than to other clusters. Near **1** is compact and separated; near **0** means the
+groups overlap.
 
 **Dimensionality reduction (PCA · UMAP · SVD).** Vocabulary space has thousands of
 dimensions; we can't see that. These methods **squash it down to 2-D** so we can

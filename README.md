@@ -16,16 +16,15 @@ this repo and downloads the corpus automatically. Nothing to install.
 
 | Hour | Notebook | Open |
 |------|----------|------|
-| 1 | Corpora and data | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/1a_corpora_and_data.ipynb) |
-| 1 | Alphabet hypothesis | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/1b_alphabet_hypothesis.ipynb) |
-| 2 | Keywords & TF-IDF | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/2a_tfidf_keywords.ipynb) |
-| 2 | **The genre map** ⭐ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/2b_similarity_clustering.ipynb) |
+| 1 | Tablets as objects (metadata) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/1a_corpora_and_data.ipynb) |
+| 1 | Reading the tablets (script & alphabet) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/1b_alphabet_hypothesis.ipynb) |
+| 2 | **From keywords to the genre map** ⭐ | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/2_similarity_clustering.ipynb) |
 | 3 | Formulas (n-grams) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/3a_ngrams_formulas.ipynb) |
 | 3 | Letter networks | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/3b_letter_networks.ipynb) |
 | 3 | Divination trees | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/3c_divination_trees.ipynb) |
 | 3 | PDF → local SQLite | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexsosn/ugarit-dh-workshop/blob/master/notebooks/3d_udb_pdf_to_sqlite.ipynb) |
 
-Prefer the full repo in-browser? [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/alexsosn/ugarit-dh-workshop/main)
+Prefer the full repo in-browser? [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/alexsosn/ugarit-dh-workshop/master)
 launches everything on Binder. Each notebook also carries its own Colab + Binder
 badges at the top.
 
@@ -36,28 +35,40 @@ badges at the top.
 | Hour | Theme | Readings | Notebooks |
 |------|-------|----------|-----------|
 | **1** | Ugarit: corpora and data | `docs/00`–`01` | `notebooks/1a_corpora_and_data`, `notebooks/1b_alphabet_hypothesis` |
-| **2** | From words to genres |  | `notebooks/2a_tfidf_keywords`, `notebooks/2b_similarity_clustering` |
+| **2** | From words to genres |  | `notebooks/2_similarity_clustering` |
 | **3** | From texts to structures | `docs/08` | `notebooks/3a_ngrams_formulas`, `notebooks/3b_letter_networks`, `notebooks/3c_divination_trees`, optional `notebooks/3d_udb_pdf_to_sqlite` |
 
-### Hour 1 — Ugarit: corpora and data (60 min)
-- *20 min* — Ugarit: historical context of the Late Bronze Age, excavations, tablets, publications.
-- *15 min* — Corpora and data: ContextFabric / CUC, UDB, and others.
-- *10 min* — The Ugaritic alphabet and language in its Semitic context.
-- *15 min* — Testing a philological hypothesis: Jared Diamond and the "optimal design" of the alphabet.
+Facilitators: start with [`docs/teaching-throughline.md`](docs/teaching-throughline.md).
+It aligns every exercise as **source → representation → computation → validation
+→ interpretation** and supplies a consistent discussion pattern.
+
+Experienced programmers can use the optional advanced track in
+[`docs/star-tasks-spec.md`](docs/star-tasks-spec.md). These extensions are
+segregated from the non-coder path and should be introduced only when useful.
+
+### Hour 1 — Ugarit: from objects to texts (60 min)
+- *10 min* — Ugarit: historical context of the Late Bronze Age (presenter + `docs/01`).
+- *20 min* — **`1a`, tablets as objects:** where the data comes from, building UDB
+  metadata from a PDF, genre/language/archive, tablet sizes, find-spot maps, and
+  replaying the excavation season by season.
+- *30 min* — **`1b`, reading the tablets:** the cuneiform alphabet and
+  transliteration, counting signs from the corpus, and testing Jared Diamond's
+  "optimal design" claim end to end.
+- History is interleaved as short asides beside the relevant cells, not front-loaded.
 
 ### Hour 2 — From words to genres (60 min)
-- *10 min* — Genres of Ugaritic texts (KTU, UDB, etc.).
-- *15 min* — Keywords and TF-IDF.
-- *10 min* — Text similarity, clustering, and visualization.
-- *5 min* — Formulaic language in Ugaritic and biblical poetry.
-- *15 min* — Finding formulas: bigrams and trigrams.
+- *10 min* — Where genre labels come from; sampling and imbalance.
+- *15 min* — TF-IDF keywords and their philological limits.
+- *15 min* — Similarity and the interactive UMAP projection.
+- *10 min* — Validate the picture: clustering scores and held-out classification.
+- *10 min* — Close-read contested/outlying tablets; separate model error from label problems.
 
 ### Hour 3 — From texts to structures (60 min)
-- *10 min* — Social networks in Ugaritic texts.
-- *10 min* — Network analysis of letters.
-- *10 min* — Divination as ancient algorithms.
-- *10 min* — Visualizing decision trees.
-- *20 min* — The modern philologist's toolkit and the future of DH: CUC morphological tagging, other corpora, LLMs and agents.
+- *12 min* — Formulaic language: n-grams, dispersion, and concordance.
+- *10 min* — Letter networks: extraction, entity ambiguity, and centrality.
+- *13 min* — Omen structures: protasis/apodosis, trees, and comparative caution.
+- *20 min* — The modern toolkit and the AI build demo, with provenance and validation.
+- *5 min* — Synthesis and next steps.
 
 ---
 

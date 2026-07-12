@@ -58,7 +58,7 @@ tasks” list, or a direct ask. What help do you most want?〕
 
 ### Self-study — textbooks
 - **John Huehnergard, *An Introduction to Ugaritic*** — the standard teaching
-  grammar (the transliteration key in `docs/03` follows it).
+  grammar (the transliteration key in notebook [`1b`](../notebooks/1b_alphabet_hypothesis.ipynb) follows it).
 - **Pierre Bordreuil & Dennis Pardee, *A Manual of Ugaritic*** — grammar + texts + glossary.
 - 〔Author: add any others you recommend (e.g. Sivan, Schniedewind & Hunt).〕
 

@@ -49,9 +49,10 @@ A successful session means participants:
   lack paid LLM subscriptions. Provide a watch-along path + free take-home options.
 
 ### Headline demo to polish hardest **[settled]**
-**The genre map (notebook 2b)** — the corpus clustering itself into genres on a
-2-D map, i.e. "the machine discovering what philologists already know." This is the
-moment participants should remember.
+**The genre map (notebook 2)** — the corpus projected in vocabulary space on a
+2-D map, followed by a check of how much genre signal vocabulary really carries.
+This is the moment participants should remember: a compelling picture becomes a
+research claim only after validation and close reading.
 
 - **Build:** **interactive UMAP** (Plotly) — scatter of tablets, coloured by genre,
   **hover a point to read that tablet's text/ref**.
@@ -86,8 +87,10 @@ calls (audience has no paid subs). Notebook code for H3 is minimal; the artifact
 the live build + the resulting custom GPT.
 
 ### Presentation / rendering **[settled]**
-- **Ugaritic is Unicode** and renders fine everywhere — **no font bundling needed.**
-- Use **interactive Plotly** for the headline 2b (and where it clearly helps);
+- **Ugaritic is Unicode**, but installed glyph coverage varies. Bundle the SIL-OFL
+  Noto Sans Ugaritic font and register it when available; retain system-font
+  fallback so the notebooks still run everywhere.
+- Use **interactive Plotly** for the headline Hour-2 map (and where it clearly helps);
   matplotlib is fine elsewhere.
 
 ### Call to action — "get involved & keep learning" **[settled]**
@@ -142,7 +145,7 @@ rights.
 - **Build target:** dry-run-ready by **early July** to leave rehearsal slack —
   critical for the H3 live agent demo + screen-capture fallback.
 - **Priority order under the deadline:** (1) hands-on H1–H2 notebooks + Colab
-  bootstrap; (2) headline interactive 2b; (3) get-involved materials; (4) H3 live
+  bootstrap; (2) headline interactive Hour-2 notebook; (3) get-involved materials; (4) H3 live
   build rehearsal + fallback recording.
 
 ---
@@ -162,7 +165,8 @@ author will supply**, not blockers to building:
 ## 7a. Implementation status
 
 - [x] Colab/Binder bootstrap + badges in all 7 notebooks; README launch table.
-- [x] Headline 2b rebuilt as interactive UMAP (Plotly hover) + PCA fallback.
+- [x] Hour-2 notebook consolidated as `2_similarity_clustering.ipynb`: TF-IDF,
+      interactive UMAP/PCA, quantitative validation, and contested-text close reading.
 - [x] "Your turn" cells in H1–H2 notebooks.
 - [x] Hour-3 agent runbook (`docs/hour3-agent-runbook.md`).
 - [x] `docs/09-get-involved.md` (placeholders for chat link, contact, self-study list).
@@ -181,9 +185,9 @@ author will supply**, not blockers to building:
 | 1 | Engagement = hands-on H1–H2; H3 LLM more demo (no paid subs). |
 | 1 | Environments = Colab (primary) + Binder + local venv. |
 | 2 | Colab bootstrap = `!git clone` public repo. Hosting = public personal account. |
-| 2 | Headline = genre map (2b); polish hardest. |
+| 2 | Headline = genre map (Hour 2); polish hardest. |
 | 2 | H3 = presenter demos: UgaritGPT, agent+MCP, PDF→UDB, LLM morph-tagging of CUC. |
-| 3 | 2b = interactive UMAP + hover. |
+| 3 | Hour 2 = interactive UMAP + hover. |
 | 3 | No font work — Ugaritic Unicode renders fine; use Plotly where it helps. |
 | 3 | CTA = contribute / contact / GitHub / group chat + "where to learn Ugaritic". |
 | 4 | H3 spine = "watch AI build a research tool" (coding agent: UDB PDF→SQLite→custom GPT). |

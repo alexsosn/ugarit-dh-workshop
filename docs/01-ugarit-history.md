@@ -1,9 +1,10 @@
 # 1. What is Ugarit? — historical introduction
 
-*Hour 1 · ~20 min · presenter reading + slides*
+*Hour 1 · ~10 min core introduction · optional comparative reading*
 
-> **Status:** outline stub. Bullet points are the talking points from the plan;
-> expand each into 1–2 paragraphs and add illustrations from `../images/`.
+The short opening below supplies the minimum historical frame needed for the
+metadata work in notebook `1a`. The longer comparative section is a reference,
+not a claim that every tradition is directly descended from Ugarit.
 
 ## Key points to cover
 
@@ -12,8 +13,11 @@
 - **A crossroads.** Ugarit sat between Egypt, the Hittite Empire, Mesopotamia,
   Cyprus (Alashiya), and the Levant — a hub of trade, diplomacy, and writing
   systems.
-- **The Bronze Age collapse.** Ugarit was destroyed c. 1185 BCE and never
-  reoccupied — which is precisely why its archives survived in place.
+- **The end of the kingdom.** The Late Bronze Age city was destroyed around
+  1190–1185 BCE. It was not rebuilt as a comparable urban centre, although
+  archaeologists have reported limited traces of activity after the destruction.
+  The destruction horizon helped preserve archives in their archaeological
+  contexts; clay, fire, abandonment, and modern recovery all shaped what survives.
 - **Background to later traditions.** Ugaritic myth and religion provide an early
   cultural and religious backdrop for the later biblical tradition (e.g. the god
   El, the storm-god Baal, poetic parallelism) — and connect outward to Phoenician,
@@ -24,18 +28,21 @@
 
 - **Place:** Ras Shamra, about 10 km north of Latakia and about 0.8 km from the
   Mediterranean coast.
-- **Discovery:** the ruins came to scholarly attention after a local plough
-  exposed remains near Minet el-Beida; French excavations under Claude F.A.
-  Schaeffer began in **1929**. Main campaigns: **1928-1939**, resumed
-  **1950-2008**.
+- **Discovery and excavation:** a tomb exposed near Minet el-Beida in **1928**
+  led Claude F. A. Schaeffer's expedition to begin excavating Ras Shamra in
+  **1929**. Work stopped during the Second World War; limited investigations
+  resumed in 1948–49 and full-scale excavation in 1950.
 - **Deep history:** the mound preserves a long settlement sequence, from early
   Neolithic occupation through Bronze Age urban phases.
 - **Middle Bronze Age:** Egyptian, Aegean, Babylonian, Hurrian/Mitannian, and
   Mesopotamian links are visible in finds and cultural contacts.
 - **Late Bronze Age "golden age":** c. **1450-1200 BCE**, with palaces,
   temples, shrines, libraries, and archives.
-- **End:** Ugarit was destroyed around **1200 BCE**, in the wider crisis of
-  invasions, earthquakes, famine, and political collapse.
+- **End:** Ugarit was destroyed around **1190–1185 BCE**, within the wider
+  disruption at the end of the Late Bronze Age. Drought, food insecurity,
+  political fragmentation, warfare, and population movement belong to the
+  historical discussion, but the workshop should not present a single cause as
+  settled.
 
 *Source for this overview: Encyclopaedia Britannica,
 ["Ugarit"](https://www.britannica.com/place/Ugarit).*
@@ -64,7 +71,7 @@ archives preserve local concerns in an international setting.
 ![Ugarit's location](../images/Ugarits-location.png)
 
 *Figure: Ugarit's location and discovered areas. Google Maps illustration
-showing the location of Ugarit. 
+showing the location of Ugarit.*
 
 
 
@@ -97,29 +104,40 @@ architecture gives those texts a spatial counterpart.
 
 ## Ugarit among the ancient traditions
 
-> **Status:** comparative / intertextual context. Pairs with the sacred-mountain
-> note in [`05-formulas.md`](05-formulas.md) and the omen-science note in
-> [`07-divination.md`](07-divination.md).
+> **Comparative rule:** similarity is evidence for comparison, not automatically
+> for borrowing, identity, or a direct line of descent. For every parallel ask:
+> (1) what are the dates, (2) what languages and genres are involved, (3) which
+> words or motifs actually correspond, and (4) what route of transmission is
+> being proposed? Notebook [`3a`](../notebooks/3a_ngrams_formulas.ipynb) tests
+> verbal recurrence; notebook [`3c`](../notebooks/3c_divination_trees.ipynb)
+> compares the structure of omen collections.
 
-Because Ugarit sat at a Late Bronze Age crossroads (above), its archives let us
-watch the *same* gods, the *same* stories, and even the *same* sacred mountain
-travel across the Canaanite/biblical, Phoenician, Hittite, Mesopotamian, and Greek
-worlds. For a non-specialist audience this is a payoff of the whole course: Ugarit
-is the hinge that makes those connections visible.
+Because Ugarit sat at a Late Bronze Age crossroads, its archives preserve an
+early Northwest Semitic corpus beside Akkadian and Hurrian material. They let us
+compare divine names, poetic formulae, story patterns, and scholarly genres
+across the Levant and eastern Mediterranean. Some correspondences are linguistic,
+some iconographic, and some structural; they do not all imply the same historical
+relationship.
 
 ### The Hebrew Bible — the closest tradition
 
-Ugaritic religion is our best picture of the Canaanite world out of which Israel
-emerged, so the overlaps are dense and well studied:
+Ugaritic is an exceptionally rich Late Bronze Age comparator for biblical Hebrew
+and later Levantine religion. It is earlier than the biblical manuscripts and
+closely related linguistically, but Ugarit is not a direct ancestor of every
+biblical form:
 
-- **El** (*ʾil*), the aged head of the Ugaritic pantheon, shares his name and many
-  epithets with biblical **ʾĒl / ʾElōhîm**.
-- **Baal**, the storm-god "**Rider on the Clouds**" (*rkb ʿrpt*), supplies imagery
-  later attached to **YHWH** (cf. *rōkēb bāʿarābôt*, Ps 68:5).
+- **El** (*ʾil*), head of the Ugaritic pantheon, shares the Northwest Semitic
+  divine title/name *ʾil* with biblical **ʾĒl**; comparison must still distinguish
+  a common noun, a divine name, and the plural/form **ʾĕlōhîm**.
+- **Baal**, the storm-god "**Rider on the Clouds**" (*rkb ʿrpt*), offers a close
+  comparator for biblical storm-theophany. Psalm 68:5 is often discussed here,
+  although Hebrew *ʿărābôt* is not simply the Ugaritic word *ʿrpt*; Psalm 104:3
+  supplies unambiguous cloud-riding imagery.
 - **Athirat** ↔ biblical **Asherah**; the seven-headed sea-dragon **Lôtan** (*ltn*)
   ↔ **Leviathan** (Isa 27:1; Ps 74:13–14).
 - The **parallelism** and stock word-pairs of Ugaritic poetry illuminate the
-  formulaic character of biblical Hebrew verse (see [`05-formulas.md`](05-formulas.md)).
+  formulaic character of biblical Hebrew verse (compare the corpus method in
+  notebook [`3a`](../notebooks/3a_ngrams_formulas.ipynb)).
 
 Two ready-made datasets in this repo let you *explore* this rather than just assert
 it:
@@ -152,11 +170,14 @@ standard *interpretatio*, his pantheon lines up with both the Ugaritic and the G
 | **Hadad / Demarous** | **Baal** (*Haddu*) | Zeus | active storm-god |
 | **Astarte** | **ʿAṯtart** | Aphrodite | great goddess |
 
-The decisive link to Ugarit: Philo reports (*PE* 1.10.31) a scene of **Hadad and
-Astarte reigning with Kronos' (El's) assent** — and *exactly* that scene turns up
-in a tablet from Ras Shamra, **RS 24.252** (*Ugaritica V*). So there is a traceable
-chain: **Bronze-Age Ugarit → Phoenician myth → Philo (Roman era) → Eusebius
-(Christian apologetics)**.
+Philo reports (*PE* 1.10.31) that **Astarte and Zeus Demarous** ruled with
+Kronos' consent, a useful comparison with Levantine configurations of Astarte,
+the storm-god, and El. It is not, however, a verbatim survival of a known Ugaritic
+tablet. **RS 24.252 / KTU 1.108**, sometimes invoked too loosely in this context,
+is a damaged ritual invitation and royal blessing involving Rap̣iʾu, Anat, Baal,
+and other deities. The responsible claim is continuity and reconfiguration of
+West Semitic mythic material, transmitted to us through Philo and Eusebius—not a
+documentable tablet-to-text chain.
 
 > **A scholarly caution worth teaching.** Whether Philo really had an ancient
 > written "Sanchuniathon," or constructed him, is disputed. The standard critical
@@ -172,9 +193,10 @@ god defeats a monstrous embodiment of the sea or chaos. Baal defeats **Yammu** (
 and the dragon **Lôtan**; **Zeus defeats Typhon**. The parallel is not just
 thematic — it is *geographic*: in **Apollodorus** (*Library* 1.6.3) Zeus pursues
 Typhon "as far as **Mount Casius, which overhangs Syria**" (trans. Frazer) — and that
-mountain is none other than Baal's holy **Ṣapānu**. This shared mountain is the single most
-vivid connection in the course; it gets its own treatment in
-[`05-formulas.md`](05-formulas.md).
+mountain is none other than Baal's holy **Ṣapānu**. This shared mountain is one
+of the course's most vivid comparisons; notebook
+[`3a`](../notebooks/3a_ngrams_formulas.ipynb) connects the historical question to
+searchable formulae.
 
 | Tradition | Storm/sky god | Chaos foe | Battleground |
 |-----------|---------------|-----------|--------------|
@@ -206,10 +228,10 @@ Egyptianizing ivories) was in fact **produced in Canaanite / Levantine workshops
 not imported from Egypt. "Egyptian-looking" at Ugarit often means *local craft in a
 prestigious international style*, not direct import.
 
-> **Central idea:** same gods, same story, even the same mountain. Ugarit lets a
-> newcomer *see* the shared substrate beneath Canaanite, biblical, Phoenician,
-> Anatolian, Mesopotamian, and Greek myth — and the in-repo datasets let them test
-> it for themselves.
+> **Central idea:** related names, motifs, and scholarly forms can travel, while
+> each corpus reworks them in a particular language, genre, and historical
+> setting. The digital task is to locate patterns; the philological task is to
+> decide which comparisons the evidence can bear.
 
 ## Why Ugarit is ideal for Digital Humanities
 
@@ -228,11 +250,18 @@ prestigious international style*, not direct import.
   (`images/Archeological-reading-of-the-Temple-of-Baal-A-Temple-of-Baal-Proposed-sections-by.png`).
 - Greek reflex of the storm-god myth: a Chalcidian black-figure hydria of **Zeus
   battling Typhon** (c. 540 BCE, Munich, Staatliche Antikensammlungen 596; ΖΕΥΣ
-  inscribed) — pairs with the Ṣapānu = Kásion point in `05-formulas.md`.
+  inscribed) — pairs with the Ṣapānu = Kásion point in notebook `3a`.
   *(Licence: confirm reuse terms before adding the file — see `images/README.md`.)*
 - Timeline strip: foundation → archives → 1185 BCE collapse.
 
 ## Further reading
+- Marguerite Yon, *The City of Ugarit at Tell Ras Shamra* (Winona Lake, IN:
+  Eisenbrauns, 2006) — archaeology, urban history, and the destruction horizon.
+- Dennis Pardee, *Ritual and Cult at Ugarit*, Writings from the Ancient World 10
+  (Atlanta: Society of Biblical Literature, 2002), especially pp. 127–45 on
+  divination and pp. 192–95 on RS 24.252.
+- Carolina López-Ruiz, "Greek and Canaanite Mythologies: Zeus, Baal, and Their
+  Rivals," *Religion Compass* 8 (2014): 1–11 — a careful comparative framework.
 - Wilfred G. E. Watson and Nicolas Wyatt, eds., *Handbook of Ugaritic Studies*,
   Handbook of Oriental Studies, Section 1: The Near and Middle East 39
   (Leiden: Brill). <https://brill.com/display/title/6633>
@@ -247,4 +276,5 @@ prestigious international style*, not direct import.
   (Atlanta: Scholars Press, 1998) — the Kumarbi cycle and Illuyanka.
 
 ## TODO
-- [ ] Expand each bullet into prose.
+- [ ] Add page-level citations from the chosen historical handbook before the
+      workshop is published as a standalone reading.

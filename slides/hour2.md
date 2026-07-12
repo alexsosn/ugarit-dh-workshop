@@ -7,14 +7,14 @@ title: "Ugarit & Digital Humanities — Hour 2"
 
 <!--
 DRAFT deck — co-build. Hour 2 budget (60 min):
-genres 10 · TF-IDF keywords 20 (→2a) · the genre map 25 (→2b, HEADLINE) · discussion 5.
-2b is the moment to land. Figures in ../images/. Notebook cues marked ▶.
+labels + sampling 10 · TF-IDF 15 · genre map 20 · validation 10 · close reading 5.
+The single Hour-2 notebook carries the full argument. Figures in ../images/.
 -->
 
 # Ugarit & Digital Humanities
 ## Hour 2 — From words to genres
 
-Can a machine *see* the genres without being told them?
+How much genre signal is present in vocabulary alone?
 
 <!-- 1 min. Today's headline question. Keep it suspenseful. -->
 
@@ -33,12 +33,14 @@ Can a machine *see* the genres without being told them?
 
 ---
 
-## The KTU numbering already hints at genre
+## First: where do the labels come from?
 
-- **1** literary & religious · **2** letters · **3** legal · **4** economic · **5** scribal
-- A useful prior — but is genre also visible in the **words themselves**?
+- KTU's first digit is an **editorial classification**: 1 literary/religious,
+  2 letters, 3 legal, 4 economic, 5 scribal.
+- The notebook adds finer teaching labels for selected tablets.
+- These are useful comparison labels—not neutral, timeless ground truth.
 
-**Central question:** how much genre can we recover from vocabulary alone?
+**Central question:** can vocabulary reproduce any of that editorial structure?
 
 <!-- 2 min. Sets up the whole hour: vocabulary vs the official label. -->
 
@@ -54,12 +56,12 @@ Can a machine *see* the genres without being told them?
 
 ---
 
-## ▶ Hands-on 2a — keywords & guess-the-genre
+## ▶ Hands-on 2 — keywords first
 
-**Notebook:** `2a_tfidf_keywords`
+**Notebook:** `2_similarity_clustering`
 
 - Compute TF-IDF keywords per tablet.
-- **Game:** read the keywords, guess the genre, then check.
+- **Game:** read the keywords, guess the label, then check the text.
 - Caveat: CUC has **no lemmas** — word *forms* only; homographs blur the signal.
 
 <!-- 17 min including this slide. Make the guessing interactive with the room. -->
@@ -76,34 +78,36 @@ Can a machine *see* the genres without being told them?
 
 ---
 
-## ▶ Hands-on 2b — the genre map ⭐
+## ▶ The genre map ⭐
 
-**Notebook:** `2b_similarity_clustering` — **today's headline**
+**Notebook:** `2_similarity_clustering` — **today's headline**
 
 - Interactive **UMAP** scatter — **hover any point to read that tablet**.
-- Coloured by the *known* genre.
-- **The question:** do the colours land in separate regions on their own?
+- Coloured afterward by our editorial/teaching label.
+- **The question:** do similarly labelled tablets occupy similar regions?
 
 <!-- 20 min including this slide. This is THE moment. Run it live, hover a few tablets, let them gasp.
 BACKUP: screenshot the rendered map in advance (save to ../images/genre_map.png) in case the live run fails. -->
 
 ---
 
-## The reveal
+## A picture is not a validation
 
-- Letters cluster with letters; myths pull away from rituals — **mostly unsupervised**.
-- Then `KMeans` groups them **blind** and we cross-tab against real genres.
-- The machine **rediscovers** much of what philologists already know.
+- UMAP makes neighbourhoods visible, but its coloured map is **exploratory**.
+- Blind KMeans only partly matches the labels: **ARI ≈ 0.34**.
+- Its clusters are diffuse: **silhouette ≈ 0.03**.
+- A 3-fold vocabulary classifier reaches **≈ 83%**, versus **≈ 33%** baseline.
 
-<!-- 2 min. The payoff. Emphasise: nobody told it the genres. -->
+<!-- 4 min. Distinguish projection, clustering, and supervised prediction. Values are from the bundled CUC sample, ≥30 tokens, fixed seeds. -->
 
 ---
 
 ## Where machine and scholars disagree
 
-- Ritual ↔ divination blur (shared cultic vocabulary).
+- Ritual ↔ divination may blur (shared cultic vocabulary).
 - Short / damaged tablets drift.
-- **Disagreements are interesting** — they point to real questions, not just errors.
+- Some "errors" expose the limits of our own labels (e.g. KTU 1.96).
+- **A disagreement becomes evidence only after close reading.**
 
 <!-- 2 min. Intellectual honesty + a hook for further research. -->
 
@@ -111,9 +115,9 @@ BACKUP: screenshot the rendered map in advance (save to ../images/genre_map.png)
 
 ## Recap — Hour 2
 
-- Vocabulary alone carries a lot of **genre signal**.
-- TF-IDF → vectors → a map that *means* something.
-- The machine agrees with philologists — and its disagreements are leads.
+- Vocabulary carries substantial **predictive signal**, but not clean natural clusters.
+- TF-IDF → projection → clustering/classification → **validation**.
+- The model proposes patterns; philology tests them against tablets and editions.
 
 **Next:** from words to **structures** — formulas, networks, decision trees. → Hour 3.
 

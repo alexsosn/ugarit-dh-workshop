@@ -21,6 +21,16 @@ cache and UDB through locally-generated Parquet tables.
   See setup instructions below.
 - **`alphabet.json`** — the 30 signs in abecedary order with cuneiform codepoints
   and a **complexity** score (wedges + turns), for the alphabet hypothesis (`1b`).
+- **`sound_correspondences.json`** — aggregate aligned-consonant counts exported
+  from the DULAT app for the comparative diagram in `1b`. The source pipeline
+  aligns consonantal cognate forms with Needleman–Wunsch and iteratively refines
+  the alignment scores. This workshop snapshot omits lexical examples and DULAT
+  entry identifiers; edge weight is an aligned-column count, not a probability.
+- **`ugaritic_wiktionary.json`** — an offline snapshot of 792 English Wiktionary
+  Ugaritic records (731 unique cuneiform headwords), including POS, definitions,
+  and source-page URLs. Used only for the dictionary-audit exercise in `3a`.
+- **`fonts/NotoSansUgaritic-Regular.ttf`** — bundled Ugaritic glyph fallback,
+  distributed under the SIL Open Font License in `fonts/OFL.txt`.
 - **`omens/`** — a real Ugaritic birth-omen text + a hand-built decision tree
   (`sheep_birth_omens.json`) and rendered image, for the divination notebook (`3c`).
 
@@ -54,6 +64,7 @@ cache and UDB through locally-generated Parquet tables.
 | **DULAT** | *Dictionary of the Ugaritic Language in the Alphabetic Tradition* | print / licensed digital |
 | **Oracc (UGA)** | Open Richly Annotated Cuneiform Corpus, Ugaritic annotation | oracc.museum.upenn.edu |
 | **USC Digital Library / InscriptiFact** | High-resolution tablet images produced by Bruce Zuckerman and the West Semitic Research Project | Formerly `inscriptifact.com`; now surfaced through USC Digital Library, e.g. <https://digitallibrary.usc.edu/asset-management/2A3BF1OL6PW?&WS=SearchResults&Flat=FP> |
+| **English Wiktionary — Ugaritic entries** | Offline teaching snapshot of lemma and non-lemma pages; incomplete by design, so exact lookup misses must remain visible | `data/ugaritic_wiktionary.json`; every record retains its English Wiktionary URL |
 
 Reference schemes (KTU / CTA / UT) are cross-mapped in the major digital editions,
 so texts can be cited and linked regardless of the original scheme.
@@ -66,4 +77,6 @@ from each participant's own PDF.
 
 Workshop-authored material follows the root `LICENSE`. **Primary corpus data is
 not covered by it** — each source keeps its provider's license. Check before
-redistributing.
+redistributing. The bundled Noto font remains under the SIL Open Font License.
+The Wiktionary snapshot remains subject to Wiktionary/Wikimedia licensing and
+attribution requirements; preserve its record-level source URLs when reusing it.

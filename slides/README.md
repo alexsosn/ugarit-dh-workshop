@@ -18,6 +18,8 @@ Three decks, one per hour, as **Marp** Markdown:
   `images/README.md`). `![bg right:40%](...)` places an image on the right.
 - Each hands-on slide is marked **▶** and names the notebook to open in Colab.
 - Per-hour timing budgets are noted at the top of each file.
+- [`../docs/teaching-throughline.md`](../docs/teaching-throughline.md) supplies
+  the shared source → model → validation → interpretation pattern for the notes.
 
 ## Render to PDF / PPTX / HTML
 
