@@ -26,6 +26,54 @@ SOUTH_SEMITIC_ORDER = [
     "ġ", "ṭ", "z", "ḏ", "y", "ṯ", "ṣ", "i", "u", "ś",
 ]
 
+_HEBREW_GLYPHS = {
+    "ʔ": "א", "ʾ": "א", "b": "ב", "g": "ג", "d": "ד", "h": "ה",
+    "w": "ו", "z": "ז", "ḥ": "ח", "ṭ": "ט", "y": "י", "k": "כ",
+    "l": "ל", "m": "מ", "n": "נ", "s": "ס", "ś": "שׂ", "š": "שׁ",
+    "ṣ": "צ", "ʕ": "ע", "ʿ": "ע", "p": "פ", "f": "פ", "q": "ק",
+    "r": "ר", "t": "ת",
+}
+_PHOENICIAN_GLYPHS = {
+    "ʔ": "𐤀", "ʾ": "𐤀", "b": "𐤁", "g": "𐤂", "d": "𐤃", "h": "𐤄",
+    "w": "𐤅", "z": "𐤆", "ḥ": "𐤇", "ḫ": "𐤇", "ṭ": "𐤈", "y": "𐤉",
+    "k": "𐤊", "l": "𐤋", "m": "𐤌", "n": "𐤍", "s": "𐤎", "š": "𐤔",
+    "ṯ": "𐤔", "ṣ": "𐤑", "ʕ": "𐤏", "ʿ": "𐤏", "p": "𐤐", "f": "𐤐",
+    "q": "𐤒", "r": "𐤓", "t": "𐤕",
+}
+_SYRIAC_GLYPHS = {
+    "ʔ": "ܐ", "ʾ": "ܐ", "b": "ܒ", "v": "ܒ", "g": "ܓ", "d": "ܕ",
+    "h": "ܗ", "w": "ܘ", "z": "ܙ", "ḥ": "ܚ", "ḫ": "ܚ", "ṭ": "ܛ",
+    "ṯ": "ܬ", "y": "ܝ", "k": "ܟ", "l": "ܠ", "m": "ܡ", "n": "ܢ",
+    "s": "ܣ", "š": "ܫ", "ṣ": "ܨ", "ʕ": "ܥ", "ʿ": "ܥ", "p": "ܦ",
+    "f": "ܦ", "q": "ܩ", "r": "ܪ", "t": "ܬ",
+}
+_ARABIC_GLYPHS = {
+    "ʔ": "ا", "ʾ": "ا", "b": "ب", "g": "ج", "d": "د", "ḏ": "ذ",
+    "h": "ه", "w": "و", "z": "ز", "ḥ": "ح", "ḫ": "خ", "ṭ": "ط",
+    "ṯ": "ث", "y": "ي", "k": "ك", "l": "ل", "m": "م", "n": "ن",
+    "s": "س", "š": "ش", "ṣ": "ص", "ḍ": "ض", "ẓ": "ظ", "ʕ": "ع",
+    "ʿ": "ع", "ġ": "غ", "p": "پ", "f": "ف", "q": "ق", "r": "ر",
+    "t": "ت",
+}
+_OSA_GLYPHS = {
+    "ʔ": "𐩱", "ʾ": "𐩱", "b": "𐩨", "g": "𐩴", "ǧ": "𐩴", "d": "𐩵",
+    "ḏ": "𐩹", "h": "𐩠", "w": "𐩥", "z": "𐩹", "ḥ": "𐩢", "ḫ": "𐩭",
+    "ṭ": "𐩷", "ṯ": "𐩻", "y": "𐩺", "k": "𐩫", "l": "𐩡", "m": "𐩣",
+    "n": "𐩬", "s": "𐩪", "š": "𐩦", "ṣ": "𐩮", "ḍ": "𐩲", "ẓ": "𐩳",
+    "ʕ": "𐩲", "ʿ": "𐩲", "ġ": "𐩶", "f": "𐩰", "q": "𐩤", "r": "𐩧",
+    "t": "𐩩",
+}
+
+TARGET_GLYPHS = {
+    "Aram": _HEBREW_GLYPHS,
+    "OAram": _HEBREW_GLYPHS,
+    "Ph": _PHOENICIAN_GLYPHS,
+    "Pun": _PHOENICIAN_GLYPHS,
+    "Syr": _SYRIAC_GLYPHS,
+    "Arab": _ARABIC_GLYPHS,
+    "OSA": _OSA_GLYPHS,
+}
+
 
 def sound_correspondence_figure(lang: str = "Hb", show_gaps: bool = False):
     """Interactive Ugaritic-to-cognate-language correspondence diagram.
@@ -41,7 +89,7 @@ def sound_correspondence_figure(lang: str = "Hb", show_gaps: bool = False):
         raise ValueError(f"unknown language {lang!r}; choose one of: {choices}")
 
     target = data["languages"][lang]
-    target_glyph = target.get("tgt_glyph") or {}
+    target_glyph = target.get("tgt_glyph") or TARGET_GLYPHS.get(lang, {})
     edges = [
         edge for edge in target["edges"]
         if show_gaps or edge["type"] not in {"ins", "del"}
@@ -126,7 +174,9 @@ def sound_correspondence_figure(lang: str = "Hb", show_gaps: bool = False):
                f"({target['n']:,} cognate pairs)"),
         height=760, margin={"l": 95, "r": 95, "t": 75, "b": 35},
         paper_bgcolor="white", plot_bgcolor="white",
-        font={"family": "Noto Sans Ugaritic, Noto Sans Hebrew, DejaVu Sans, sans-serif"},
+        font={"family": ("Noto Sans Ugaritic, Noto Sans Hebrew, Noto Sans Syriac, "
+                         "Noto Sans Arabic, Noto Sans Old South Arabian, "
+                         "DejaVu Sans, sans-serif")},
         legend={"orientation": "h", "y": 1.03, "x": 0.5, "xanchor": "center"},
         xaxis={"visible": False, "range": [-0.18, 1.18], "fixedrange": True},
         yaxis={"visible": False, "range": [-0.04, 1.04], "fixedrange": True},

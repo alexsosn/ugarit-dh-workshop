@@ -25,9 +25,16 @@ class SoundCorrespondenceDataTests(unittest.TestCase):
                 self.assertGreater(edge["count"], 0)
 
     def test_renderer_accepts_every_language_with_or_without_gaps(self):
-        from data.workshop_helpers import sound_correspondence_figure
+        from data.workshop_helpers import TARGET_GLYPHS, sound_correspondence_figure
 
         payload = json.loads(DATA.read_text(encoding="utf-8"))
+        expected_alephs = {
+            "Ph": "𐤀", "Pun": "𐤀", "Aram": "א", "OAram": "א",
+            "Syr": "ܐ", "Arab": "ا", "OSA": "𐩱",
+        }
+        for code, glyph in expected_alephs.items():
+            self.assertEqual(TARGET_GLYPHS[code]["ʔ"], glyph)
+
         for code in payload["order"]:
             for show_gaps in (False, True):
                 figure = sound_correspondence_figure(code, show_gaps=show_gaps)
