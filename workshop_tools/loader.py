@@ -367,31 +367,45 @@ def texts_by_genre(texts):
     return grouped
 
 
-def all_tokens(texts):
+def without_broken_tokens(tokens):
+    """Drop corpus tokens containing ``x`` (the broken-sign convention)."""
+    return [token for token in tokens if "x" not in token.lower()]
+
+
+def all_tokens(texts, exclude_broken=False):
     """Flatten every word token from every tablet into one list."""
     out = []
     for t in texts:
-        out.extend(t["tokens"])
+        tokens = t["tokens"]
+        out.extend(without_broken_tokens(tokens) if exclude_broken else tokens)
     return out
 
 
-def token_counts(texts):
+def token_counts(texts, exclude_broken=False):
     """collections.Counter of word-form frequencies across the corpus."""
-    return Counter(all_tokens(texts))
+    return Counter(all_tokens(texts, exclude_broken=exclude_broken))
 
 
-def text_as_string(text):
+def text_as_string(text, exclude_broken=False):
     """One tablet's word tokens as a single space-separated string (for TF-IDF)."""
-    return " ".join(text["tokens"])
+    tokens = text["tokens"]
+    if exclude_broken:
+        tokens = without_broken_tokens(tokens)
+    return " ".join(tokens)
 
 
-def corpus_as_documents(texts):
+def corpus_as_documents(texts, exclude_broken=True):
     """Return (labels, documents) parallel lists for TF-IDF / clustering.
 
-    labels    — KTU numbers; documents — one cleaned string per tablet.
+    Tokens containing ``x`` are excluded by default because CUC uses ``x`` for
+    broken signs; they are preservation noise rather than lexical evidence.
+
+    labels — KTU numbers; documents — one cleaned string per tablet.
     """
     labels = [t["ktu"] for t in texts]
-    documents = [text_as_string(t) for t in texts]
+    documents = [
+        text_as_string(t, exclude_broken=exclude_broken) for t in texts
+    ]
     return labels, documents
 
 

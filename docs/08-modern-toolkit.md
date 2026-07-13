@@ -1,12 +1,6 @@
 # 8. The modern philologist's toolkit and the future of DH
 
-*Hour 3 · ≈20 min · closing synthesis*
-
-> **Status:** outline stub.
-
-> **New term?** *morphological tagging, TF-IDF, MCP, LLM, agent, embedding* and
-> other computational terms are unpacked in plain language in
-> [glossary.md](glossary.md).
+*Hour 3 · ≈20 min
 
 ## Morphological tagging in CUC
 Show a **tagged word**: the link between word-form, lemma, part of speech, and

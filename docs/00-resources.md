@@ -21,12 +21,6 @@ hours / notebooks they feed.
 > **Attribution required; non-commercial use only.** The workshop repo notes this in
 > `LICENSE` and `data/README.md`.
 >
-> ⚙️ **Feature note:** CUC 0.1.x has **no lemma / part-of-speech** layer —
-> only `g_cons` (consonantal word form) and sign-level features. The TF-IDF /
-> similarity notebooks therefore work on **forms, not lemmas** (homographs blur
-> the signal). "Morphological tagging" in `08-modern-toolkit.md` is the *future*
-> goal, not current CUC.
->
 > **CACCHT:** CUC is developed by Christian Canu Højgaard, Martijn Naaijer,
 > Martin Ehrensvärd, Robert Rezetko, Oliver Glanz, and Willem van Peursen as
 > part of *Creating Annotated Corpora of Classical Hebrew Texts*.
