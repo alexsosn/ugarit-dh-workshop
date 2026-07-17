@@ -41,19 +41,21 @@ _DN_RE = re.compile(r"(?<!\w)DN(?!\w)")
 
 
 DEFAULT_ALIASES = {
-    # Baal / Haddu and attached or titular forms
-    "bˤlm": "bˤl", "lbˤl": "bˤl", "hd": "bˤl", "hdxt": "bˤl",
-    "dmrn": "bˤl", "ˤlm": "bˤl",
-    # El
-    "ilk": "il", "ilxx": "il", "id": "il",
-    # Athirat
-    "aṯ": "aṯrt", "rt": "aṯrt", "aṯtrt": "aṯrt",
-    # Yammu / Naharu
-    "ymm": "ym", "nhr": "ym", "nhrm": "ym", "yw": "ym",
-    # Kothar-wa-Hasis
-    "kṯrm": "kṯr", "ḫss": "kṯr", "wḫss": "kṯr", "hyn": "kṯr",
-    # Minor orthographic/attached variants
-    "tṭly": "ṭly", "šnnm": "šnm", "ṣpˤn": "ṣpn",
+    # # Baal / Haddu and attached or titular forms
+    # "bˤlm": "bˤl", "lbˤl": "bˤl", "hd": "bˤl", "hdxt": "bˤl",
+    # "dmrn": "bˤl", "ˤlm": "bˤl",
+    # # El
+    # "ilk": "il", "ilxx": "il", "id": "il",
+    # # Athirat
+    # "aṯ": "aṯrt", "rt": "aṯrt", "aṯtrt": "aṯrt",
+    # # Yammu / Naharu
+    # "ymm": "ym", "nhr": "ym", "nhrm": "ym", "yw": "ym",
+    # # Kothar-wa-Hasis
+    # "kṯrm": "kṯr", "ḫss": "kṯr", "wḫss": "kṯr", "hyn": "kṯr", "wḫssypˤr": "kṯr",
+    # # Minor orthographic/attached variants
+    # "tṭly": "ṭly", "šnnm": "šnm", "ṣpˤn": "ṣpn",
+    # # Arsay
+    # "yˤbdr": "arṣy"
 }
 
 DEFAULT_DROP = frozenset({"", "b", "h", "p", "yn", "ilm"})
